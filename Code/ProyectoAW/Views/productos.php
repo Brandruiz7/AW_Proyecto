@@ -16,70 +16,156 @@
     ?>
     <!-- Header Section End -->
 
-    <!-- Services Section Start -->
+        <!-- Services Section Start -->
     <section id="services" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s">Términos y
-                    condiciones</h2>
+      <div class="container">
+        <div class="section-header">          
+          <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s">Nuestros Servicios</h2>
+          <hr class="lines wow zoomIn" data-wow-delay="0.3s">
+          <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, dignissimos! <br> Lorem ipsum dolor sit amet, consectetur.</p>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-sm-6">
+            <div class="item-boxes wow fadeInDown" data-wow-delay="0.2s">
+              <div class="icon">
+                <i class="lnr lnr-pencil"></i>
+              </div>
+              <h4>Descripción 1</h4>
+              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut.</p>
             </div>
-            <hr class="lines wow zoomIn" data-wow-delay="0.3s">
-            <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"
-                style="text-align: justify;">
-            <br>
-            1. Introducción
-            Bienvenido a Mate, una página web de venta de licencias de software de diseño. Al acceder y utilizar
-            esta página web, aceptas los términos y condiciones de uso que se describen a continuación. Por favor,
-            lee estos términos y condiciones detenidamente antes de utilizar la página web de Mate.
-            <br>
-            <br>
-            2. Licencia de uso
-            Mate es un sitio web que vende licencias de software de diseño. Al adquirir una licencia de software a
-            través de Mate, se te concede una licencia limitada, no exclusiva e intransferible para utilizar el software
-            de acuerdo con los términos y condiciones de uso del proveedor de software. La licencia que adquieras será
-            única y personal para ti y no podrás transferirla o cederla a terceros.
-            <br>
-            <br>
-            3. Precios y pagos
-            El precio de las licencias de software se indica en la página web de Mate. Los precios pueden estar sujetos
-            a cambios sin previo aviso. Al comprar una licencia de software, aceptas pagar el precio indicado en la
-            página web de Mate en el momento de la compra. Mate utiliza una plataforma de pago seguro para procesar
-            todas las transacciones.
-            <br>
-            <br>
-            4. Información de la cuenta
-            Para comprar licencias de software de diseño en nuestro sitio web, deberá crear una cuenta con su
-            información personal y de pago. Usted es responsable de mantener la confidencialidad de su información de
-            cuenta y contraseña, y es responsable de todas las actividades que ocurran bajo su cuenta.
-            <br>
-            <br>
-            5. Política de reembolso
-            No se permiten devoluciones o reembolsos de las licencias de software de diseño compradas en nuestro sitio
-            web, a menos que se indique lo contrario. Si hay un problema con su licencia de software de diseño,
-            contáctenos y haremos todo lo posible para solucionarlo.
-            <br>
-            <br>
-            6. Propiedad intelectual
-            Los derechos de propiedad intelectual, incluidos los derechos de autor, marcas comerciales y patentes, en el
-            contenido de nuestro sitio web y el software de diseño que vendemos, son propiedad de Mate
-            o sus respectivos propietarios. Usted no puede utilizar este contenido sin nuestro permiso previo por
-            escrito.
-            <br>
-            <br>
-            7. Ley aplicable
-            Estos términos y condiciones se rigen e interpretan de acuerdo con las leyes del Costa Rica y se
-            someten a la jurisdicción exclusiva de los tribunales de San José.
-
-            Si tiene alguna pregunta sobre estos términos y condiciones, por favor contáctenos en pruebaPAW@outlook.com.
-
-            Fecha de la última actualización: 23 de Marzo de 2023.
-            </p>
-
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="item-boxes wow fadeInDown" data-wow-delay="0.8s">
+              <div class="icon">
+                <i class="lnr lnr-code"></i>
+              </div>
+              <h4>Descripción 2</h4>
+              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut.</p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="item-boxes wow fadeInDown" data-wow-delay="1.2s">
+              <div class="icon">
+                <i class="lnr lnr-mustache"></i>
+              </div>
+              <h4>Descripción 3</h4>
+              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut.</p>
+            </div>
+          </div>
         </div>
-        </div>
+      </div>
     </section>
     <!-- Services Section End -->
 
+    <!-- Features Section Start -->
+    <section id="features" class="section" data-stellar-background-ratio="0.2">
+      <div class="container">
+        <div class="section-header">          
+          <h2 class="section-title">Características o beneficios</h2>
+          <hr class="lines">
+          <p class="section-subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, dignissimos! <br> Lorem ipsum dolor sit amet, consectetur.</p>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="container">
+              <div class="row">
+                 <div class="col-lg-6 col-sm-6 col-xs-12 box-item">
+                    <span class="icon">
+                      <i class="lnr lnr-rocket"></i>
+                    </span>
+                    <div class="text">
+                      <h4>Bootstrap 4 Based</h4>
+                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-sm-6 col-xs-12 box-item">
+                    <span class="icon">
+                      <i class="lnr lnr-laptop-phone"></i>
+                    </span>
+                    <div class="text">
+                      <h4>Fully Responsive</h4>
+                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-sm-6 col-xs-12 box-item">
+                    <span class="icon">
+                      <i class="lnr lnr-layers"></i>
+                    </span>
+                    <div class="text">
+                      <h4>Parallax Background</h4>
+                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-sm-6 col-xs-12 box-item">
+                    <span class="icon">
+                      <i class="lnr lnr-cog"></i>
+                    </span>
+                    <div class="text">
+                      <h4>Easy to Customize</h4>
+                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- Features Section End -->    
+
+    <!-- Counter Section Start -->
+    <div class="counters section" data-stellar-background-ratio="0.5">
+      <div class="container">
+        <div class="row"> 
+          <div class="col-sm-6 col-md-3 col-lg-3">
+            <div class="facts-item">   
+              <div class="icon">
+                <i class="lnr lnr-clock"></i>
+              </div>             
+              <div class="fact-count">
+                <h3><span class="counter">32879</span></h3>
+                <h4>Descargas al día</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-3 col-lg-3">
+            <div class="facts-item">   
+              <div class="icon">
+                <i class="lnr lnr-briefcase"></i>
+              </div>            
+              <div class="fact-count">
+                <h3><span class="counter">142509</span></h3>
+                <h4>Proyectos exportados</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-3 col-lg-3">
+            <div class="facts-item"> 
+              <div class="icon">
+                <i class="lnr lnr-user"></i>
+              </div>              
+              <div class="fact-count">
+                <h3><span class="counter">542053</span></h3>
+                <h4>Clientes</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-3 col-lg-3">
+            <div class="facts-item"> 
+              <div class="icon">
+                <i class="lnr lnr-heart"></i>
+              </div>              
+              <div class="fact-count">
+                <h3><span class="counter">489238</span></h3>
+                <h4>Calificaciones excelentes</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Counter Section End -->
     <!-- Start Pricing Table Section -->
     <div id="pricing" class="section pricing-section">
       <div class="container">

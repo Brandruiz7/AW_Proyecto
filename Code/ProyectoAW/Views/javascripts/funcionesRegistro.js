@@ -19,4 +19,4 @@ function validarCedula(){
         }
       }
     });
-  }
+}

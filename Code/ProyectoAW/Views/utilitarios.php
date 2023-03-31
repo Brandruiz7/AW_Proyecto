@@ -18,8 +18,6 @@ function MostrarHead (){
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="dist/css/font-awesome.min.css">
-    <link rel="stylesheet" href="dist/css/line-icons.css">
     <link rel="stylesheet" href="dist/css/owl.carousel.css">
     <link rel="stylesheet" href="dist/css/owl.theme.css">
     <link rel="stylesheet" href="dist/css/nivo-lightbox.css">
@@ -56,9 +54,6 @@ function MostrarHeader(){
               <a class="nav-link page-scroll" href="principal.php">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link page-scroll" href="#services">Servicios</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link page-scroll" href="#features">Características</a>
             </li>
             <li class="nav-item">
@@ -70,26 +65,31 @@ function MostrarHeader(){
             <li class="nav-item">
               <a class="nav-link page-scroll" href="#contact">Contáctenos</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link page-scroll" href="productos.php">Productos</a>
-            </li>
           </ul>
-          <form action="" method="POST">
-          <li class="nav-item d-none d-sm-inline-block">
-            <input type="submit" class="btn" id="btnCerrarSesion" 
-            name="btnCerrarSesion" value="Cerrar Sesión">
-          </li>
-        </form>
+            <div class="dropdown show">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown link
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="productos.php" style="padding-top:10px; padding-left:25px;">Productos</a>
+                <a class="dropdown-item" href="mantenimientoUsuario.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Usuarios</a>
+                <a class="dropdown-item" href="mantenimientoProducto.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Productos</a>
+                <form action="" method="POST">
+                <li class="dropdown-item" style="padding-top:10px;">
+                  <input type="submit" id="btnCerrarSesion" class="dropdown-item" style="text-align:center;"
+                  name="btnCerrarSesion" value="Cerrar Sesión">
+                </li>
+                </form>
+              </div>
+            </div>
+
         </div>
       </div>
 
       <!-- Mobile Menu Start -->
       <ul class="mobile-menu">
          <li>
-            <a class="page-scroll" href="#hero-area">Home</a>
-          </li>
-          <li>
-            <a class="page-scroll" href="#services">Services</a>
+            <a class="page-scroll" href="principal.php">Home</a>
           </li>
           <li>
             <a class="page-scroll" href="#features">Features</a>
@@ -249,8 +249,7 @@ Function MostrarJS(){
     <script src="dist/js/jquery.stellar.min.js"></script>    
     <script src="dist/js/jquery.nav.js"></script>    
     <script src="dist/js/scrolling-nav.js"></script>    
-    <script src="dist/js/jquery.easing.min.js"></script>    
-    <script src="dist/js/smoothscroll.js"></script>    
+    <script src="dist/js/jquery.easing.min.js"></script>     
     <script src="dist/js/jquery.slicknav.js"></script>     
     <script src="dist/js/wow.js"></script>   
     <script src="dist/js/jquery.vide.js"></script>

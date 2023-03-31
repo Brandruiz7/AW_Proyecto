@@ -10,18 +10,17 @@
 
 <body>
 
-  <!-- Header Start -->
+    <!-- Header Section Start -->
     <?php
       MostrarHeader();
     ?>
-  <!-- Header End -->
+    <!-- Header Section End --> 
 
     <!-- Services Section Start -->
     <section id="services" class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s">Términos y
-                    condiciones</h2>
+                <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s">Mantenimiento Usuario</h2>
             </div>
             <hr class="lines wow zoomIn" data-wow-delay="0.3s">
             <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"
@@ -83,7 +82,6 @@
 
     <!-- Contact Section Start and Footer-->
     <?php 
-      MostrarContactUs();
       MostrarFooter();
     ?>
     <!-- Footer Section End -->

@@ -4,17 +4,17 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php 
+  <?php 
       MostrarHead();
    ?>
 
 <body>
 
-    <!-- Header Section Start -->
+    <!-- Header Start -->
     <?php
       MostrarHeader();
     ?>
-    <!-- Header Section End -->
+    <!-- Header End -->
 
     <!-- Services Section Start -->
     <section id="services" class="section">
