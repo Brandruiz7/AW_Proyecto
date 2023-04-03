@@ -12,12 +12,12 @@
 
     <!-- Header Section Start -->
     <?php
-      MostrarHeader();
+      MostrarHeaderAdicionales();
     ?>
     <!-- Header Section End --> 
 
     <!-- Services Section Start -->
-    <section id="services" class="section">
+    <section id="services" class="section" style="background-color: #000000;">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s">Mantenimiento Producto</h2>

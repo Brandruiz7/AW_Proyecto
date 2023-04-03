@@ -14,8 +14,9 @@ function MostrarHead (){
     <meta name="keywords" content="Bootstrap, Parallax, Template, Registration, Landing">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="author" content="Grayrids">
-    <title>Mate</title>
+    <title>Razer Costa Rica - For Gamers by Gamers</title>
 
+    <link rel="icon" type="image/x-icon" href="dist/img/logo-nav.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="dist/css/owl.carousel.css">
@@ -31,13 +32,18 @@ function MostrarHead (){
     ';
 }
 
-
-function MostrarHeader(){
+function MostrarPrincipal(){
   if($_SESSION["CorreoElectronico"] == null){
     header("Location: ../Views/login.php");
   }
     echo '
-    <header id="hero-area" data-stellar-background-ratio="0.5">    
+    <header id="hero-area6" data-stellar-background-ratio="0.5"> 
+    <div class="video-container">
+      <video autoplay muted loop>
+        <source src="dist/video/sobreNosotros.mp4" type="video/mp4">
+        Tu navegador no soporta la reproducción de videos.
+      </video>
+    </div>   
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar indigo">
       <div class="container">
@@ -54,9 +60,6 @@ function MostrarHeader(){
               <a class="nav-link page-scroll" href="principal.php">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link page-scroll" href="#features">Características</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link page-scroll" href="#team">Equipo</a>
             </li>
             <li class="nav-item">
@@ -65,13 +68,19 @@ function MostrarHeader(){
             <li class="nav-item">
               <a class="nav-link page-scroll" href="#contact">Contáctenos</a>
             </li>
+            <li class="nav-item">
+            <a class="nav-link page-scroll" href="tienda.php">Tienda</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link page-scroll" href="https://support.razer.com/?c=eu">Soporte</a>
+            </li>
           </ul>
             <div class="dropdown show">
               <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown link
+                Cuenta
               </a>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="productos.php" style="padding-top:10px; padding-left:25px;">Productos</a>
+                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>
                 <a class="dropdown-item" href="mantenimientoUsuario.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Usuarios</a>
                 <a class="dropdown-item" href="mantenimientoProducto.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Productos</a>
                 <form action="" method="POST">
@@ -92,9 +101,6 @@ function MostrarHeader(){
             <a class="page-scroll" href="principal.php">Home</a>
           </li>
           <li>
-            <a class="page-scroll" href="#features">Features</a>
-          </li>
-          <li>
             <a class="page-scroll" href="#portfolios">Works</a>
           </li>
           <li>
@@ -106,8 +112,107 @@ function MostrarHeader(){
           <li>
             <a class="page-scroll" href="#contact">Contact</a>
           </li>
+          <li>
+          <a class="page-scroll" href="tienda.php">Tienda</a>
+          </li>
           <li class="nav-item">
-            <a class="nav-link page-scroll" href="productos.php">Productos</a>
+          <a class="nav-link page-scroll" href="https://support.razer.com/?c=eu">Soporte</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link page-scroll" href="servicios.php">Servicios</a>
+          </li>
+          <form action="" method="POST">
+          <li class="nav-item d-none d-sm-inline-block">
+            <input type="submit" class="btn" id="btnCerrarSesion" 
+            name="btnCerrarSesion" value="Cerrar Sesión">
+          </li>
+        </form>
+      </ul>
+      <!-- Mobile Menu End -->
+
+    </nav>
+    <!-- Navbar End -->           
+  </header>
+
+    ';
+}
+
+function MostrarHeaderAdicionales(){
+  if($_SESSION["CorreoElectronico"] == null){
+    header("Location: ../Views/login.php");
+  }
+    echo '
+    <header id="hero-area5" data-stellar-background-ratio="0.5">    
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar indigo">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a href="principal.php" class="navbar-brand"><img class="img-fulid" src="dist/img/logo.png" alt=""></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="lnr lnr-menu"></i>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="main-navbar">
+          <ul class="navbar-nav mr-auto w-100 justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link page-scroll" href="principal.php">Inicio</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link page-scroll" href="#">Tienda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link page-scroll" href="#features">Características</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link page-scroll" href="#contact">Contáctenos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link page-scroll" href="tienda.php">Tienda</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link page-scroll" href="https://support.razer.com/?c=eu">Soporte</a>
+            </li>
+          </ul>
+            <div class="dropdown show">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Cuenta
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>
+                <a class="dropdown-item" href="mantenimientoUsuario.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Usuarios</a>
+                <a class="dropdown-item" href="mantenimientoProducto.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Productos</a>
+                <form action="" method="POST">
+                <li class="dropdown-item" style="padding-top:10px;">
+                  <input type="submit" id="btnCerrarSesion" class="dropdown-item" style="text-align:center;"
+                  name="btnCerrarSesion" value="Cerrar Sesión">
+                </li>
+                </form>
+              </div>
+            </div>
+
+        </div>
+      </div>
+
+      <!-- Mobile Menu Start -->
+      <ul class="mobile-menu">
+         <li>
+            <a class="page-scroll" href="principal.php">Inicio</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link page-scroll" href="tienda.php">Tienda</a>
+          </li>
+          <li>
+            <a class="page-scroll" href="#features">Features</a>
+          </li>
+          <li>
+            <a class="page-scroll" href="#contact">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link page-scroll" href="servicios.php">Productos</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link page-scroll" href="https://support.razer.com/?c=eu">Soporte</a>
           </li>
           <form action="" method="POST">
           <li class="nav-item d-none d-sm-inline-block">
@@ -124,8 +229,8 @@ function MostrarHeader(){
       <div class="row justify-content-md-center">
         <div class="col-md-10">
           <div class="contents text-center">
-            <h1 class="wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s">Crea, diseña y haz cosas asombrosas</h1>
-            <p class="lead  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="400ms">Prueba más de 20 aplicaciones y disfruta de todos los beneficios de la suscripción</p>
+            <h1 class="wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s"><br><br></h1>
+            <p class="lead  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="400ms"></p>
           </div>
         </div>
       </div> 
@@ -134,6 +239,412 @@ function MostrarHeader(){
 
     ';
 }
+
+function MostrarTienda(){
+  if($_SESSION["CorreoElectronico"] == null){
+    header("Location: ../Views/login.php");
+  }
+    echo ' 
+    <header id="hero-area2" data-stellar-background-ratio="0.5"> 
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar indigo">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a href="principal.php" class="navbar-brand"><img class="img-fulid" src="dist/img/logo.png" alt=""></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="lnr lnr-menu"></i>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="main-navbar">
+          <ul class="navbar-nav mr-auto w-100 justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link page-scroll" href="principal.php">Inicio</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link page-scroll" href="terminos.php">Tienda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link page-scroll" href="#features">Características</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link page-scroll" href="#contact">Contáctenos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link page-scroll" href="https://support.razer.com/?c=eu">Soporte</a>
+            </li>
+          </ul>
+            <div class="dropdown show">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Cuenta
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>
+                <a class="dropdown-item" href="mantenimientoUsuario.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Usuarios</a>
+                <a class="dropdown-item" href="mantenimientoProducto.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Productos</a>
+                <form action="" method="POST">
+                <li class="dropdown-item" style="padding-top:10px;">
+                  <input type="submit" id="btnCerrarSesion" class="dropdown-item" style="text-align:center;"
+                  name="btnCerrarSesion" value="Cerrar Sesión">
+                </li>
+                </form>
+              </div>
+            </div>
+
+        </div>
+      </div>
+
+      <!-- Mobile Menu Start -->
+      <ul class="mobile-menu">
+         <li>
+            <a class="page-scroll" href="principal.php">Inicio</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link page-scroll" href="tienda.php">Tienda</a>
+          </li>
+          <li>
+            <a class="page-scroll" href="#features">Features</a>
+          </li>
+          <li>
+            <a class="page-scroll" href="#contact">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link page-scroll" href="servicios.php">Productos</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link page-scroll" href="https://support.razer.com/?c=eu">Soporte</a>
+          </li>
+          <form action="" method="POST">
+          <li class="nav-item d-none d-sm-inline-block">
+            <input type="submit" class="btn" id="btnCerrarSesion" 
+            name="btnCerrarSesion" value="Cerrar Sesión">
+          </li>
+        </form>
+      </ul>
+      <!-- Mobile Menu End -->
+
+    </nav>
+    <!-- Navbar End --> 
+    <div class="container">      
+      <div class="row justify-content-md-center">
+        <div class="col-md-10">
+          <div class="contents text-center">
+            <h1 class="wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s"><br><br></h1>
+            <p class="lead  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="400ms"></p>
+          </div>
+        </div>
+      </div> 
+    </div> 
+    </header>  
+    ';
+}
+
+function MostrarPoliticas(){
+  if($_SESSION["CorreoElectronico"] == null){
+    header("Location: ../Views/login.php");
+  }
+    echo ' 
+    <header id="hero-area3" data-stellar-background-ratio="0.5"> 
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar indigo">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a href="principal.php" class="navbar-brand"><img class="img-fulid" src="dist/img/logo.png" alt=""></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="lnr lnr-menu"></i>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="main-navbar">
+          <ul class="navbar-nav mr-auto w-100 justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link page-scroll" href="principal.php">Inicio</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link page-scroll" href="#">Tienda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link page-scroll" href="#features">Características</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link page-scroll" href="#contact">Contáctenos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link page-scroll" href="tienda.php">Tienda</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link page-scroll" href="https://support.razer.com/?c=eu">Soporte</a>
+            </li>
+          </ul>
+            <div class="dropdown show">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Cuenta
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>
+                <a class="dropdown-item" href="mantenimientoUsuario.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Usuarios</a>
+                <a class="dropdown-item" href="mantenimientoProducto.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Productos</a>
+                <form action="" method="POST">
+                <li class="dropdown-item" style="padding-top:10px;">
+                  <input type="submit" id="btnCerrarSesion" class="dropdown-item" style="text-align:center;"
+                  name="btnCerrarSesion" value="Cerrar Sesión">
+                </li>
+                </form>
+              </div>
+            </div>
+
+        </div>
+      </div>
+
+      <!-- Mobile Menu Start -->
+      <ul class="mobile-menu">
+         <li>
+            <a class="page-scroll" href="principal.php">Inicio</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link page-scroll" href="tienda.php">Tienda</a>
+          </li>
+          <li>
+            <a class="page-scroll" href="#features">Features</a>
+          </li>
+          <li>
+            <a class="page-scroll" href="#contact">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link page-scroll" href="servicios.php">Productos</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link page-scroll" href="https://support.razer.com/?c=eu">Soporte</a>
+          </li>
+          <form action="" method="POST">
+          <li class="nav-item d-none d-sm-inline-block">
+            <input type="submit" class="btn" id="btnCerrarSesion" 
+            name="btnCerrarSesion" value="Cerrar Sesión">
+          </li>
+        </form>
+      </ul>
+      <!-- Mobile Menu End -->
+
+    </nav>
+    <!-- Navbar End --> 
+    <div class="container">      
+      <div class="row justify-content-md-center">
+        <div class="col-md-10">
+          <div class="contents text-center">
+            <h1 class="wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s"><br><br></h1>
+            <p class="lead  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="400ms"></p>
+          </div>
+        </div>
+      </div> 
+    </div> 
+    </header>  
+    ';
+}
+
+function MostrarTerminos(){
+  if($_SESSION["CorreoElectronico"] == null){
+    header("Location: ../Views/login.php");
+  }
+    echo ' 
+    <header id="hero-area4" data-stellar-background-ratio="0.5"> 
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar indigo">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a href="principal.php" class="navbar-brand"><img class="img-fulid" src="dist/img/logo.png" alt=""></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="lnr lnr-menu"></i>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="main-navbar">
+          <ul class="navbar-nav mr-auto w-100 justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link page-scroll" href="principal.php">Inicio</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link page-scroll" href="#">Tienda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link page-scroll" href="#features">Características</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link page-scroll" href="#contact">Contáctenos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link page-scroll" href="tienda.php">Tienda</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link page-scroll" href="https://support.razer.com/?c=eu">Soporte</a>
+            </li>
+          </ul>
+            <div class="dropdown show">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Cuenta
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>
+                <a class="dropdown-item" href="mantenimientoUsuario.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Usuarios</a>
+                <a class="dropdown-item" href="mantenimientoProducto.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Productos</a>
+                <form action="" method="POST">
+                <li class="dropdown-item" style="padding-top:10px;">
+                  <input type="submit" id="btnCerrarSesion" class="dropdown-item" style="text-align:center;"
+                  name="btnCerrarSesion" value="Cerrar Sesión">
+                </li>
+                </form>
+              </div>
+            </div>
+
+        </div>
+      </div>
+
+      <!-- Mobile Menu Start -->
+      <ul class="mobile-menu">
+         <li>
+            <a class="page-scroll" href="principal.php">Inicio</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link page-scroll" href="tienda.php">Tienda</a>
+          </li>
+          <li>
+            <a class="page-scroll" href="#features">Features</a>
+          </li>
+          <li>
+            <a class="page-scroll" href="#contact">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link page-scroll" href="servicios.php">Productos</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link page-scroll" href="https://support.razer.com/?c=eu">Soporte</a>
+          </li>
+          <form action="" method="POST">
+          <li class="nav-item d-none d-sm-inline-block">
+            <input type="submit" class="btn" id="btnCerrarSesion" 
+            name="btnCerrarSesion" value="Cerrar Sesión">
+          </li>
+        </form>
+      </ul>
+      <!-- Mobile Menu End -->
+
+    </nav>
+    <!-- Navbar End --> 
+    <div class="container">      
+      <div class="row justify-content-md-center">
+        <div class="col-md-10">
+          <div class="contents text-center">
+            <h1 class="wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s"><br><br></h1>
+            <p class="lead  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="400ms"></p>
+          </div>
+        </div>
+      </div> 
+    </div> 
+    </header>  
+    ';
+}
+
+function MostrarSobreNosotros(){
+  if($_SESSION["CorreoElectronico"] == null){
+    header("Location: ../Views/login.php");
+  }
+    echo ' 
+    <header id="hero-area" data-stellar-background-ratio="0.5"> 
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar indigo">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a href="principal.php" class="navbar-brand"><img class="img-fulid" src="dist/img/logo.png" alt=""></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="lnr lnr-menu"></i>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="main-navbar">
+          <ul class="navbar-nav mr-auto w-100 justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link page-scroll" href="principal.php">Inicio</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link page-scroll" href="#">Tienda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link page-scroll" href="#features">Características</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link page-scroll" href="#contact">Contáctenos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link page-scroll" href="tienda.php">Tienda</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link page-scroll" href="https://support.razer.com/?c=eu">Soporte</a>
+            </li>
+          </ul>
+            <div class="dropdown show">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Cuenta
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>
+                <a class="dropdown-item" href="mantenimientoUsuario.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Usuarios</a>
+                <a class="dropdown-item" href="mantenimientoProducto.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Productos</a>
+                <form action="" method="POST">
+                <li class="dropdown-item" style="padding-top:10px;">
+                  <input type="submit" id="btnCerrarSesion" class="dropdown-item" style="text-align:center;"
+                  name="btnCerrarSesion" value="Cerrar Sesión">
+                </li>
+                </form>
+              </div>
+            </div>
+
+        </div>
+      </div>
+
+      <!-- Mobile Menu Start -->
+      <ul class="mobile-menu">
+         <li>
+            <a class="page-scroll" href="principal.php">Inicio</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link page-scroll" href="tienda.php">Tienda</a>
+          </li>
+          <li>
+            <a class="page-scroll" href="#features">Features</a>
+          </li>
+          <li>
+            <a class="page-scroll" href="#contact">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link page-scroll" href="servicios.php">Productos</a>
+          </li>
+          <li class="nav-item">
+          <a class="nav-link page-scroll" href="https://support.razer.com/?c=eu">Soporte</a>
+          </li>
+          <form action="" method="POST">
+          <li class="nav-item d-none d-sm-inline-block">
+            <input type="submit" class="btn" id="btnCerrarSesion" 
+            name="btnCerrarSesion" value="Cerrar Sesión">
+          </li>
+        </form>
+      </ul>
+      <!-- Mobile Menu End -->
+
+    </nav>
+    <!-- Navbar End --> 
+    <div class="container">      
+      <div class="row justify-content-md-center">
+        <div class="col-md-10">
+          <div class="contents text-center">
+            <h1 class="wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s"><br><br></h1>
+            <p class="lead  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="400ms"></p>
+          </div>
+        </div>
+      </div> 
+    </div>
+    </header> 
+    ';
+}
+
 
 function MostrarContactUs(){
     echo'
@@ -198,7 +709,6 @@ function MostrarContactUs(){
     ';
 }
 
-
 function MostrarFooter(){
     echo '
     <footer>          
@@ -208,16 +718,16 @@ function MostrarFooter(){
         <div class="col-lg-6 col-sm-6 col-xs-12">
           <ul class="footer-links">
             <li>
-              <a href="#">Página principal</a>
+              <a href="principal.php">Página principal</a>
             </li>
             <li>
-              <a href="#">Servicios</a>
+              <a href="servicios.php">Servicios</a>
             </li>
             <li>
-              <a href="#">Sobre Nosotros</a>
+              <a href="sobreNosotros.php">Sobre Nosotros</a>
             </li>
             <li>
-              <a href="#">Contáctenos</a>
+              <a href="#contact">Contáctenos</a>
             </li>
             <li>
               <a href="politicas.php">Políticas y privacidad</a>

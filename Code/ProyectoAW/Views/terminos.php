@@ -12,12 +12,12 @@
 
   <!-- Header Start -->
     <?php
-      MostrarHeader();
+      MostrarTerminos();
     ?>
   <!-- Header End -->
 
     <!-- Services Section Start -->
-    <section id="services" class="section">
+    <section id="services" class="section" style="background-color: #000000;">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s">Términos y

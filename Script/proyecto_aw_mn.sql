@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 30-03-2023 a las 02:59:45
--- Versión del servidor: 10.4.25-MariaDB
--- Versión de PHP: 8.0.23
+-- Servidor: 127.0.0.1:3307
+-- Tiempo de generación: 03-04-2023 a las 11:33:18
+-- Versión del servidor: 10.4.27-MariaDB
+-- Versión de PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -25,6 +25,14 @@ DELIMITER $$
 --
 -- Procedimientos
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `BuscarUsuario` (IN `pCorreoElectronico` VARCHAR(70))   BEGIN
+
+	SELECT CorreoElectronico, Contrasenna
+    FROM   usuario
+    WHERE  CorreoElectronico = pCorreoElectronico;
+
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarCedula` (IN `pCedula` VARCHAR(20))   BEGIN
 
 	SELECT 	Cedula, Contrasenna
@@ -84,18 +92,45 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `factura`
+-- Estructura de tabla para la tabla `carrito`
 --
 
-CREATE TABLE `factura` (
-  `ConsecutivoFactura` int(11) NOT NULL,
+CREATE TABLE `carrito` (
+  `ConsecutivoCarrito` bigint(20) NOT NULL,
+  `ConsecutivoProducto` bigint(20) NOT NULL,
   `ConsecutivoUsuario` bigint(20) NOT NULL,
-  `Codigo_Producto` int(11) NOT NULL,
-  `Nombre_Producto` varchar(100) NOT NULL,
-  `Precio_Unitario` int(11) NOT NULL,
-  `Precio_Total` int(11) NOT NULL,
-  `Descripcion` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `Cantidad` smallint(6) NOT NULL,
+  `FechaCarrito` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `detallefactura`
+--
+
+CREATE TABLE `detallefactura` (
+  `ConsecutivoDetalle` bigint(20) NOT NULL,
+  `ConsecutivoEncabezado` bigint(20) NOT NULL,
+  `ConsecutivoProducto` bigint(20) NOT NULL,
+  `Cantidad` int(11) NOT NULL,
+  `Precio` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `encabezado`
+--
+
+CREATE TABLE `encabezado` (
+  `ConsecutivoEncabezado` bigint(20) NOT NULL,
+  `ConsecutivoUsuario` bigint(20) NOT NULL,
+  `FechaCompra` datetime NOT NULL,
+  `SubTotal` decimal(12,2) NOT NULL,
+  `IVA` decimal(12,2) NOT NULL,
+  `Total` decimal(12,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -105,11 +140,11 @@ CREATE TABLE `factura` (
 
 CREATE TABLE `producto` (
   `ConsecutivoProducto` bigint(20) NOT NULL,
-  `Codigo_Producto` int(11) NOT NULL,
-  `Nombre_Producto` varchar(200) NOT NULL,
-  `Descripcion` varchar(250) NOT NULL,
-  `Precio` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `Nombre_Producto` varchar(50) NOT NULL,
+  `Descripcion` varchar(500) NOT NULL,
+  `Precio` decimal(8,2) NOT NULL,
+  `rutaImagen` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -120,7 +155,7 @@ CREATE TABLE `producto` (
 CREATE TABLE `tipos_usuarios` (
   `TipoUsuario` tinyint(4) NOT NULL,
   `NombreTipoUsuario` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `tipos_usuarios`
@@ -146,27 +181,41 @@ CREATE TABLE `usuario` (
   `Contrasenna` varchar(10) NOT NULL,
   `Estado` bit(1) NOT NULL,
   `TipoUsuario` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`ConsecutivoUsuario`, `Cedula`, `Nombre`, `Apellidos`, `CorreoElectronico`, `Telefono`, `Contrasenna`, `Estado`, `TipoUsuario`) VALUES
-(1, '117020932', 'Brandon', 'Ruiz Miranda', 'brandruiz7@gmail.com', '72153137', 'fidelitas', b'1', 1),
-(3, '117020932', 'Brandon', 'Ruiz Miranda', 'brandruiz7@gmail.com', '72153137', 'b', b'1', 2),
-(4, '222222222', 'Brenda', 'Ruiz Miranda', 'brendruiz2@gmail.com', '22222222', 'a', b'1', 2);
+(1, '117020932', 'Brandon', 'Ruiz Miranda', 'brandruiz7@gmail.com', '72153137', 'fidelitas', b'1', 1);
 
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `factura`
+-- Indices de la tabla `carrito`
 --
-ALTER TABLE `factura`
-  ADD PRIMARY KEY (`ConsecutivoFactura`),
-  ADD KEY `ConsecutivoUsuario` (`ConsecutivoUsuario`,`Codigo_Producto`);
+ALTER TABLE `carrito`
+  ADD PRIMARY KEY (`ConsecutivoCarrito`),
+  ADD KEY `fk_carrito_producto` (`ConsecutivoProducto`),
+  ADD KEY `fk_carrito_usuario` (`ConsecutivoUsuario`);
+
+--
+-- Indices de la tabla `detallefactura`
+--
+ALTER TABLE `detallefactura`
+  ADD PRIMARY KEY (`ConsecutivoDetalle`),
+  ADD KEY `fk_encabezado_detalle` (`ConsecutivoEncabezado`),
+  ADD KEY `fk_productos_detalle` (`ConsecutivoProducto`);
+
+--
+-- Indices de la tabla `encabezado`
+--
+ALTER TABLE `encabezado`
+  ADD PRIMARY KEY (`ConsecutivoEncabezado`),
+  ADD KEY `fk_encabezado_usuario` (`ConsecutivoUsuario`);
 
 --
 -- Indices de la tabla `producto`
@@ -193,10 +242,22 @@ ALTER TABLE `usuario`
 --
 
 --
--- AUTO_INCREMENT de la tabla `factura`
+-- AUTO_INCREMENT de la tabla `carrito`
 --
-ALTER TABLE `factura`
-  MODIFY `ConsecutivoFactura` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `carrito`
+  MODIFY `ConsecutivoCarrito` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `detallefactura`
+--
+ALTER TABLE `detallefactura`
+  MODIFY `ConsecutivoDetalle` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `encabezado`
+--
+ALTER TABLE `encabezado`
+  MODIFY `ConsecutivoEncabezado` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -214,11 +275,31 @@ ALTER TABLE `tipos_usuarios`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `ConsecutivoUsuario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ConsecutivoUsuario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `carrito`
+--
+ALTER TABLE `carrito`
+  ADD CONSTRAINT `fk_carrito_producto` FOREIGN KEY (`ConsecutivoProducto`) REFERENCES `producto` (`ConsecutivoProducto`),
+  ADD CONSTRAINT `fk_carrito_usuario` FOREIGN KEY (`ConsecutivoUsuario`) REFERENCES `usuario` (`ConsecutivoUsuario`);
+
+--
+-- Filtros para la tabla `detallefactura`
+--
+ALTER TABLE `detallefactura`
+  ADD CONSTRAINT `fk_encabezado_detalle` FOREIGN KEY (`ConsecutivoEncabezado`) REFERENCES `encabezado` (`ConsecutivoEncabezado`),
+  ADD CONSTRAINT `fk_productos_detalle` FOREIGN KEY (`ConsecutivoProducto`) REFERENCES `producto` (`ConsecutivoProducto`);
+
+--
+-- Filtros para la tabla `encabezado`
+--
+ALTER TABLE `encabezado`
+  ADD CONSTRAINT `fk_encabezado_usuario` FOREIGN KEY (`ConsecutivoUsuario`) REFERENCES `usuario` (`ConsecutivoUsuario`);
 
 --
 -- Filtros para la tabla `usuario`
