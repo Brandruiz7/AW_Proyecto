@@ -89,6 +89,7 @@
 
     <!-- Contact Section Start and Footer-->
     <?php 
+      MostrarContactUs();
       MostrarFooter();
     ?>
     <!-- Footer Section End -->
