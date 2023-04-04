@@ -17,10 +17,11 @@ if(isset($_POST["btnIniciarSesion"])){
     if($res -> num_rows > 0){
         // Se extrae los datos y se guarda en el array según las posiciones
         $datosUsuario = mysqli_fetch_array($res);
-        $_SESSION["ConsecutivoUsuario"] = $datosUsuario["ConsecutivoUsuario"];
-        $_SESSION["CorreoElectronico"] = $datosUsuario["CorreoElectronico"];
-        $_SESSION["TipoUsuario"] = $datosUsuario["TipoUsuario"]; //Traer código de perfil
-        $_SESSION["PerfilUsuario"] = $datosUsuario["PerfilUsuario"]; 
+        $_SESSION["ConsecutivoUsuario"] =   $datosUsuario["ConsecutivoUsuario"];
+        $_SESSION["CorreoElectronico"]  =   $datosUsuario["CorreoElectronico"];
+        $_SESSION["Nombre"]             =   $datosUsuario["Nombre"];
+        $_SESSION["TipoUsuario"]        =   $datosUsuario["TipoUsuario"]; //Traer código de perfil
+        $_SESSION["PerfilUsuario"]      =   $datosUsuario["PerfilUsuario"]; 
         header("Location: ../Views/principal.php");
     }else{
         header("Location: ../Views/login.php");

@@ -21,13 +21,13 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s">Política de
-                    privacidad de Mate</h2>
+                    privacidad</h2>
             </div>
             <hr class="lines wow zoomIn" data-wow-delay="0.3s">
             <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"
                 style="text-align: justify;">
                 <br>
-                En Mate, entendemos la importancia de la privacidad de nuestros clientes y visitantes en línea. Por eso,
+                En Razer, entendemos la importancia de la privacidad de nuestros clientes y visitantes en línea. Por eso,
                 hemos creado esta política de privacidad para explicar cómo recopilamos, utilizamos y protegemos la
                 información personal que obtenemos a través de nuestro sitio web.
                 <br>
@@ -59,7 +59,7 @@
                 Divulgación de la información
                 <br>
                 <br>
-                En Mate, nos tomamos muy en serio la privacidad de nuestros clientes y visitantes. Por lo tanto, no
+                En Razer, nos tomamos muy en serio la privacidad de nuestros clientes y visitantes. Por lo tanto, no
                 vendemos, alquilamos ni compartimos tu información personal con terceros, excepto cuando sea necesario
                 para procesar tus pedidos o cumplir con las leyes aplicables.
                 <br>
@@ -67,7 +67,7 @@
                 Protección de la información
                 <br>
                 <br>
-                En Mate, utilizamos medidas de seguridad físicas, electrónicas y administrativas para proteger la
+                En Razer, utilizamos medidas de seguridad físicas, electrónicas y administrativas para proteger la
                 información personal que recopilamos. Sin embargo, ninguna medida de seguridad es completamente
                 infalible, por lo que no podemos garantizar la seguridad de la información transmitida a través de
                 nuestro sitio web.

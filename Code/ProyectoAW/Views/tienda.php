@@ -1,6 +1,7 @@
 <?php 
   include 'utilitarios.php';
   include_once '../Controllers/usuariosController.php';  
+  include_once '../Controllers/productosController.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,17 +24,27 @@
                 <h2 class="section-title">ACÉRCATE AL MUNDO DE LOS PROFESIONALES</h2>
                 <hr class="lines">
                 <p class="section-subtitle">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat,
-                dignissimos!
-                <br>
-                Lorem ipsum dolor sit amet, consectetur.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat,
+                    dignissimos!
+                    <br>
+                    Lorem ipsum dolor sit amet, consectetur.
                 </p>
+                <div class="content-wrapper">
+                    <section class="content-header">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <?php
+                                  MostrarProductos();
+                                ?>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
             </div>
         </div>
     </section>
     <!-- Features Section End -->
-
-
 
     <!-- Contact Section Start and Footer-->
     <?php 

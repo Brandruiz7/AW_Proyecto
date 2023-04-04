@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3307
--- Tiempo de generación: 03-04-2023 a las 11:33:18
+-- Tiempo de generación: 04-04-2023 a las 13:48:08
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -25,6 +25,25 @@ DELIMITER $$
 --
 -- Procedimientos
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarDatos` (IN `pConsecutivo` VARCHAR(70))   BEGIN
+	SELECT
+    	ESTADO
+    INTO
+    	@CODESTADO
+    FROM 
+    	USUARIO
+    WHERE
+    	ConsecutivoUsuario = pConsecutivo;
+    
+    UPDATE
+    	USUARIO
+    SET
+    	ESTADO = 0
+    WHERE
+    	ConsecutivoUsuario = pConsecutivo;
+
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `BuscarUsuario` (IN `pCorreoElectronico` VARCHAR(70))   BEGIN
 
 	SELECT CorreoElectronico, Contrasenna
@@ -41,10 +60,50 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarCedula` (IN `pCedula` VARC
 
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarUsuarios` (IN `pCorreoElectronico` VARCHAR(70), IN `pTipoUsuario` TINYINT(4))   BEGIN
+
+IF(pTipoUsuario = 1) THEN
+
+		SELECT 	ConsecutivoUsuario,
+    	   		CorreoElectronico,
+           		Estado,
+           		Case when Estado = 1 
+           			 then 'Activo' 
+                     Else 'Inactivo' End 'Estado',
+           		U.TipoUsuario,
+           		T.NombreTipoUsuario,
+                Cedula,
+                Apellidos,
+                Nombre
+        FROM usuario U
+        INNER JOIN tipos_usuarios T ON U.TipoUsuario = T.TipoUsuario;
+
+	ELSE
+    
+    	SELECT 	ConsecutivoUsuario,
+    	   		CorreoElectronico,
+           		Estado,
+           		Case when Estado = 1 
+           			 then 'Activo' 
+                     Else 'Inactivo' End 'Estado',
+           		U.TipoUsuario,
+           		T.NombreTipoUsuario,
+                Cedula,
+                Apellidos,
+                Nombre
+        FROM usuario U
+        INNER JOIN tipos_usuarios T ON U.TipoUsuario = T.TipoUsuario
+        WHERE CorreoElectronico = pCorreoElectronico;
+
+	END IF;
+
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `IniciarSesion` (IN `pCorreoElectronico` VARCHAR(70), IN `pContrasenna` VARCHAR(10))   BEGIN
 
 	SELECT  ConsecutivoUsuario,
     		CorreoElectronico,
+            Nombre,
             Estado,
             T.TipoUsuario,
             T.NombreTipoUsuario 'PerfilUsuario'
@@ -188,7 +247,13 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`ConsecutivoUsuario`, `Cedula`, `Nombre`, `Apellidos`, `CorreoElectronico`, `Telefono`, `Contrasenna`, `Estado`, `TipoUsuario`) VALUES
-(1, '117020932', 'Brandon', 'Ruiz Miranda', 'brandruiz7@gmail.com', '72153137', 'fidelitas', b'1', 1);
+(1, '117020932', 'Brandon', 'Ruiz Miranda', 'brandruiz7@gmail.com', '72153137', 'fidelitas', b'1', 1),
+(2, '111111111', 'Brenda', 'Ruiz', 'brendruiz2@gmail.com', '72153137', 'fidelitas', b'1', 2),
+(3, '111111112', 'Brandon', 'Vindas Retana', 'thenobra@gmail.com', '22222222', 'fidelitas', b'1', 2),
+(4, '111111113', 'Ernesto', 'Alvarado', 'ernesto@prueba.com', '22222223', 'fidelitas', b'1', 2),
+(5, '111111104', 'Breizer', 'Ruiz Miranda', 'breiruiz14@gmail.com', '22112222', 'fidelitas', b'1', 2),
+(6, '111111115', 'Ericka', 'Benavides', 'ericka@davivienda.cr', '22222211', 'fidelitas', b'1', 2),
+(7, '222222221', 'Erica', 'Ramírez', 'erica@davivienda.cr', '22331123', 'fidelitas', b'1', 2);
 
 --
 -- Índices para tablas volcadas
@@ -275,7 +340,7 @@ ALTER TABLE `tipos_usuarios`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `ConsecutivoUsuario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ConsecutivoUsuario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas

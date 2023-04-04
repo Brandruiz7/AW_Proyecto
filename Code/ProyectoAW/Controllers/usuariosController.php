@@ -2,6 +2,59 @@
 
 include_once '../Models/usuariosModel.php';
 
+function consultarUsuarios(){
+
+    //Los datos recibidos se pasan al modelo y luego van a la base de datos
+    $res = consultarUsuariosModel();
+
+    if($res -> num_rows > 0){
+        // Se extrae los datos y se guarda en el array según las posiciones
+        while($fila = mysqli_fetch_array($res)){
+            echo    "<tr>";
+            echo    "<td>" . $fila["CorreoElectronico"].    "</td>";
+            echo    "<td>" . $fila["Cedula"] .              "</td>";
+            echo    "<td>" . $fila["Nombre"] .              "</td>";
+            echo    "<td>" . $fila["Apellidos"] .              "</td>";
+            echo    "<td>" . $fila["NombreTipoUsuario"].    "</td>";
+            echo    "<td>" . $fila["Estado"].               "</td>";
+
+            // ?q=" . $fila["ConsecutivoUsuario"] . " es para buscar el usuario con el consecutivo sin cargar la página
+            if($_SESSION["TipoUsuario"] == 1){
+                if($fila["Estado"] == "Activo"){
+                    echo    "<td>
+                            <a href='../Views/actualizarUsuario.php?q=" . $fila["ConsecutivoUsuario"] . "'>Actualizar</a> 
+                            | <a href='' data-toggle='modal' data-target='#exampleModal' data-id=". $fila['ConsecutivoUsuario'] ." name='btnDesactivar' id='btnDesactivar'
+                            onclick='setConsecutivoUsuario(this.dataset.id)'>Eliminar</a>
+                            </td>";
+                }else{
+                    echo    "<td>
+                            <a href='../Views/actualizarUsuario.php?q=" . $fila["ConsecutivoUsuario"] . "'>Actualizar</a>
+                            </td>";
+                }
+            }else{
+                echo    "<td>
+                        <a href='../Views/actualizarUsuario.php?q=" . $fila["ConsecutivoUsuario"] . "'>Actualizar</a>
+                        </td>"; 
+            }
+            echo    "</tr>";
+        }
+    }else{        
+        echo "No hay datos";
+    }
+}
+
+if(isset($_POST["btnInactivar"])){
+    if(isset($_POST["Consecutivo"])){
+        $res = actualizarDatosModel($_POST["Consecutivo"]);
+        if($res){
+            echo "El usuario se desactivó";
+        }
+        else{
+            echo "Hubo un error desactivando el usuario";
+        }
+    }
+}
+
 
 if(isset($_POST["buscarCedula"])){
 

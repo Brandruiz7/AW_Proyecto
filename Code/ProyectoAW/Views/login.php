@@ -12,7 +12,10 @@ include '../Controllers/loginController.php';
     <link rel="stylesheet" href="dist/css/login.css" />
     <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 
-    <title>Iniciar Sesión</title>
+
+  <link rel="icon" type="image/x-icon" href="dist/img/logo-nav.png">
+
+    <title>Razer | Iniciar Sesión</title>
   </head>
   <body>
     <div class="container">

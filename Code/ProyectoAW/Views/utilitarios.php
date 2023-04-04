@@ -76,13 +76,18 @@ function MostrarPrincipal(){
             </li>
           </ul>
             <div class="dropdown show">
-              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Cuenta
+              <a class="btn btn-secondary dropdown-toggle" style="font-size:12px;" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+               href="#" class="d-block">'. $_SESSION["Nombre"] . ' | '. $_SESSION["PerfilUsuario"].'
               </a>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>
+                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>';
+                if($_SESSION["TipoUsuario"] == 1){
+                echo' 
                 <a class="dropdown-item" href="mantenimientoUsuario.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Usuarios</a>
                 <a class="dropdown-item" href="mantenimientoProducto.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Productos</a>
+                ';
+                }
+                echo' 
                 <form action="" method="POST">
                 <li class="dropdown-item" style="padding-top:10px;">
                   <input type="submit" id="btnCerrarSesion" class="dropdown-item" style="text-align:center;"
@@ -159,10 +164,7 @@ function MostrarHeaderAdicionales(){
               <a class="nav-link page-scroll" href="principal.php">Inicio</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link page-scroll" href="#">Tienda</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link page-scroll" href="#features">Características</a>
+              <a class="nav-link page-scroll" href="#services">Servicios</a>
             </li>
             <li class="nav-item">
               <a class="nav-link page-scroll" href="#contact">Contáctenos</a>
@@ -175,13 +177,18 @@ function MostrarHeaderAdicionales(){
             </li>
           </ul>
             <div class="dropdown show">
-              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Cuenta
+              <a class="btn btn-secondary dropdown-toggle" style="font-size:12px;" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+               href="#" class="d-block">'. $_SESSION["Nombre"] . ' | '. $_SESSION["PerfilUsuario"].'
               </a>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>
+                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>';
+                if($_SESSION["TipoUsuario"] == 1){
+                echo' 
                 <a class="dropdown-item" href="mantenimientoUsuario.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Usuarios</a>
                 <a class="dropdown-item" href="mantenimientoProducto.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Productos</a>
+                ';
+                }
+                echo' 
                 <form action="" method="POST">
                 <li class="dropdown-item" style="padding-top:10px;">
                   <input type="submit" id="btnCerrarSesion" class="dropdown-item" style="text-align:center;"
@@ -262,26 +269,31 @@ function MostrarTienda(){
               <a class="nav-link page-scroll" href="principal.php">Inicio</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link page-scroll" href="terminos.php">Tienda</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link page-scroll" href="#features">Características</a>
+              <a class="nav-link page-scroll" href="#features">Productos</a>
             </li>
             <li class="nav-item">
               <a class="nav-link page-scroll" href="#contact">Contáctenos</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link page-scroll" href="tienda.php">Tienda</a>
             </li>
             <li class="nav-item">
               <a class="nav-link page-scroll" href="https://support.razer.com/?c=eu">Soporte</a>
             </li>
           </ul>
             <div class="dropdown show">
-              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Cuenta
+              <a class="btn btn-secondary dropdown-toggle" style="font-size:12px;" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+               href="#" class="d-block">'. $_SESSION["Nombre"] . ' | '. $_SESSION["PerfilUsuario"].'
               </a>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>
+                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>';
+                if($_SESSION["TipoUsuario"] == 1){
+                echo' 
                 <a class="dropdown-item" href="mantenimientoUsuario.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Usuarios</a>
                 <a class="dropdown-item" href="mantenimientoProducto.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Productos</a>
+                ';
+                }
+                echo' 
                 <form action="" method="POST">
                 <li class="dropdown-item" style="padding-top:10px;">
                   <input type="submit" id="btnCerrarSesion" class="dropdown-item" style="text-align:center;"
@@ -361,10 +373,7 @@ function MostrarPoliticas(){
               <a class="nav-link page-scroll" href="principal.php">Inicio</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link page-scroll" href="#">Tienda</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link page-scroll" href="#features">Características</a>
+              <a class="nav-link page-scroll" href="#services">Características</a>
             </li>
             <li class="nav-item">
               <a class="nav-link page-scroll" href="#contact">Contáctenos</a>
@@ -377,13 +386,18 @@ function MostrarPoliticas(){
             </li>
           </ul>
             <div class="dropdown show">
-              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Cuenta
+              <a class="btn btn-secondary dropdown-toggle" style="font-size:12px;" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+               href="#" class="d-block">'. $_SESSION["Nombre"] . ' | '. $_SESSION["PerfilUsuario"].'
               </a>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>
+                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>';
+                if($_SESSION["TipoUsuario"] == 1){
+                echo' 
                 <a class="dropdown-item" href="mantenimientoUsuario.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Usuarios</a>
                 <a class="dropdown-item" href="mantenimientoProducto.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Productos</a>
+                ';
+                }
+                echo' 
                 <form action="" method="POST">
                 <li class="dropdown-item" style="padding-top:10px;">
                   <input type="submit" id="btnCerrarSesion" class="dropdown-item" style="text-align:center;"
@@ -463,10 +477,7 @@ function MostrarTerminos(){
               <a class="nav-link page-scroll" href="principal.php">Inicio</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link page-scroll" href="#">Tienda</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link page-scroll" href="#features">Características</a>
+              <a class="nav-link page-scroll" href="#services">Características</a>
             </li>
             <li class="nav-item">
               <a class="nav-link page-scroll" href="#contact">Contáctenos</a>
@@ -479,13 +490,18 @@ function MostrarTerminos(){
             </li>
           </ul>
             <div class="dropdown show">
-              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Cuenta
+              <a class="btn btn-secondary dropdown-toggle" style="font-size:12px;" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+               href="#" class="d-block">'. $_SESSION["Nombre"] . ' | '. $_SESSION["PerfilUsuario"].'
               </a>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>
+                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>';
+                if($_SESSION["TipoUsuario"] == 1){
+                echo' 
                 <a class="dropdown-item" href="mantenimientoUsuario.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Usuarios</a>
                 <a class="dropdown-item" href="mantenimientoProducto.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Productos</a>
+                ';
+                }
+                echo' 
                 <form action="" method="POST">
                 <li class="dropdown-item" style="padding-top:10px;">
                   <input type="submit" id="btnCerrarSesion" class="dropdown-item" style="text-align:center;"
@@ -565,10 +581,7 @@ function MostrarSobreNosotros(){
               <a class="nav-link page-scroll" href="principal.php">Inicio</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link page-scroll" href="#">Tienda</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link page-scroll" href="#features">Características</a>
+              <a class="nav-link page-scroll" href="#services">Características</a>
             </li>
             <li class="nav-item">
               <a class="nav-link page-scroll" href="#contact">Contáctenos</a>
@@ -581,13 +594,18 @@ function MostrarSobreNosotros(){
             </li>
           </ul>
             <div class="dropdown show">
-              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Cuenta
+              <a class="btn btn-secondary dropdown-toggle" style="font-size:12px;" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+               href="#" class="d-block">'. $_SESSION["Nombre"] . ' | '. $_SESSION["PerfilUsuario"].'
               </a>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>
+                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>';
+                if($_SESSION["TipoUsuario"] == 1){
+                echo' 
                 <a class="dropdown-item" href="mantenimientoUsuario.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Usuarios</a>
                 <a class="dropdown-item" href="mantenimientoProducto.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Productos</a>
+                ';
+                }
+                echo' 
                 <form action="" method="POST">
                 <li class="dropdown-item" style="padding-top:10px;">
                   <input type="submit" id="btnCerrarSesion" class="dropdown-item" style="text-align:center;"
@@ -635,7 +653,7 @@ function MostrarSobreNosotros(){
       <div class="row justify-content-md-center">
         <div class="col-md-10">
           <div class="contents text-center">
-            <h1 class="wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s"><br><br></h1>
+            <h1 class="wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s"><br><br><br></h1>
             <p class="lead  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="400ms"></p>
           </div>
         </div>
@@ -656,9 +674,9 @@ function MostrarContactUs(){
             <div class="contact-us">
               <h3>Contáctanos</h3>
               <div class="contact-address">
-                <p>Centerville Road, DE 19808, EE. UU. </p>
-                <p class="phone">Teléfono: <span>(+94 123 456 789)</span></p>
-                <p class="email">Correo electrónico: <span>(contacto@mate.com)</span></p>
+                <p>San José, Costa Rica </p>
+                <p class="phone">Teléfono: <span>(+506 7215-3137)</span></p>
+                <p class="email">Correo electrónico: <span>(brandon@razer.com)</span></p>
               </div>
               <div class="social-icons">
                 <ul>
@@ -758,8 +776,7 @@ Function MostrarJS(){
     <script src="dist/js/owl.carousel.js"></script>    
     <script src="dist/js/jquery.stellar.min.js"></script>    
     <script src="dist/js/jquery.nav.js"></script>    
-    <script src="dist/js/scrolling-nav.js"></script>    
-    <script src="dist/js/jquery.easing.min.js"></script>     
+    <script src="dist/js/scrolling-nav.js"></script>      
     <script src="dist/js/jquery.slicknav.js"></script>     
     <script src="dist/js/wow.js"></script>   
     <script src="dist/js/jquery.vide.js"></script>

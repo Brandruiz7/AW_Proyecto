@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="dist/css/login.css" />
     <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 
-    <title>Mate</title>
+    <title>Razer | Registrarse</title>
 </head>
 
 <body>

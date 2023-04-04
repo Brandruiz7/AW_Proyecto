@@ -192,7 +192,7 @@
                         </div>
                         <div class="fact-count">
                             <h3><span class="counter">32879</span></h3>
-                            <h4>Descargas al día</h4>
+                            <h4>Afiliaciones diarias</h4>
                         </div>
                     </div>
                 </div>
@@ -202,8 +202,8 @@
                             <i class="lnr lnr-briefcase"></i>
                         </div>
                         <div class="fact-count">
-                            <h3><span class="counter">142509</span></h3>
-                            <h4>Proyectos exportados</h4>
+                            <h3><span class="counter">1342509</span></h3>
+                            <h4>Puntos distribuidos</h4>
                         </div>
                     </div>
                 </div>
@@ -213,7 +213,7 @@
                             <i class="lnr lnr-user"></i>
                         </div>
                         <div class="fact-count">
-                            <h3><span class="counter">542053</span></h3>
+                            <h3><span class="counter">2452053</span></h3>
                             <h4>Clientes</h4>
                         </div>
                     </div>
@@ -224,7 +224,7 @@
                             <i class="lnr lnr-heart"></i>
                         </div>
                         <div class="fact-count">
-                            <h3><span class="counter">489238</span></h3>
+                            <h3><span class="counter">2289238</span></h3>
                             <h4>Calificaciones excelentes</h4>
                         </div>
                     </div>

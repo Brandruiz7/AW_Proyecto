@@ -4260,7 +4260,6 @@
     position: relative;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
-    padding: 15px;
   }
   .modal-footer {
     display: -ms-flexbox;
@@ -7499,4 +7498,17 @@
     visibility: hidden !important;
   }
   /*# sourceMappingURL=bootstrap.min.css.map */
+  
+  body.modal-open {
+    padding-right: 0 !important;
+  }
+
+  div.modal.fade.show {
+    padding-right: 0 !important;
+  }
+
+  nav.navbar.navbar-expand-lg{
+    padding-right: 0 !important;
+  }
+
   

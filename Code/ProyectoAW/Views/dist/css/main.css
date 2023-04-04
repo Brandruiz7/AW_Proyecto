@@ -1229,6 +1229,19 @@ button:focus {
   transition: all 0.3s;
 }
 
+.pricing-table2 {
+  padding: 40px 20px 40px 20px;
+  margin-bottom: 40px;
+  margin-left: 0px;
+  border: transparent;
+  text-align: center;
+  background-color: #000000;
+  border: 1px solid #2a2a2a;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
 .pricing-table:hover {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
 }
@@ -1619,3 +1632,6 @@ footer {
   object-fit: cover;
 }
 
+.mantenimiento{
+  color: #ffffff;
+}
