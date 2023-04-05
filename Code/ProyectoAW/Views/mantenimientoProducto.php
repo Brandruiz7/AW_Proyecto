@@ -34,54 +34,54 @@
                 <br>
             </p>
             <div class="content-wrapper">
-            <section class="content-header">
-                <div class="container-fluid">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr class="mantenimiento">
-                                <th>Correo Electrónico</th>
-                                <th>Identificación</th>
-                                <th>Nombre</th>
-                                <th>Apellidos</th>
-                                <th>Tipo Usuario</th>
-                                <th>Estado</th>
-                                <th>Acciones</th>
-                            </tr>
-                        <tbody class="mantenimiento">
-                            <?php 
+                <section class="content-header">
+                    <div class="container-fluid">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr class="mantenimiento">
+                                    <th>Correo Electrónico</th>
+                                    <th>Identificación</th>
+                                    <th>Nombre</th>
+                                    <th>Apellidos</th>
+                                    <th>Tipo Usuario</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            <tbody class="mantenimiento">
+                                <?php 
                               consultarProductos();
                             ?>
-                        </tbody>
-                        </thead>
-                    </table>
-                </div>
-            </section>
-        </div>
+                            </tbody>
+                            </thead>
+                        </table>
+                    </div>
+                </section>
+            </div>
 
-        <form action="" method="post">
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">¡Atención!</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            ¿Está completamente seguro?
-                            <input type="hidden" id="consecutivoUsuario" name="consecutivoUsuario">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-primary" value="true" name="btnInactivar"
-                                id="btnInactivar" onclick="confirmarInactivacion()">Inactivar cuenta</button>
+            <form action="" method="post">
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">¡Atención!</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                ¿Está completamente seguro?
+                                <input type="hidden" id="consecutivoUsuario" name="consecutivoUsuario">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primary" value="true" name="btnInactivar"
+                                    id="btnInactivar" onclick="confirmarInactivacion()">Inactivar cuenta</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
         </div>
         </div>
     </section>

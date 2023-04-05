@@ -6,21 +6,40 @@ if(session_status()==PHP_SESSION_NONE) {
     session_start();
 }
 
-// Reconoce si se presionó o no el botón se puede poner echo para ver si funciona / name = php
+/**
+ * Reconoce si se presionó o no el botón btnIniciarSesion. Si es así,
+ * se envía una consulta a iniciarSesion Model con los parámetros, la idea
+ * es verificar si el correo y la contraseña están en la base para poder
+ * iniciar sesión.
+ */
 if(isset($_POST["btnIniciarSesion"])){
-    $correoElectronico = $_POST["correoElectronico"]; 
-    $contrasenna = $_POST["contrasenna"];
+    /**
+     * Se reciben los datos de los campos en login.php y se almacenan en
+     * las variables $correoElectronico y $contrasenna. Después se envían
+     * por medio de parámetros
+     */
+    $correoElectronico      = $_POST["correoElectronico"]; 
+    $contrasenna            = $_POST["contrasenna"];
+    $res                    = iniciarSesionModel($correoElectronico, $contrasenna);
 
-    //Los datos recibidos se pasan al modelo y luego van a la base de datos
-    $res = iniciarSesionModel($correoElectronico, $contrasenna);
-
+    /**
+     * Funcionamiento del if:
+     * 
+     * Este if verifica si el resultado de la consulta anterior tuvo más de cero
+     * filas como respuesta. Si es correcto, entra al if y se crea una variable
+     * $datosUsuario que irá almacenando todas las flas en un array. Después se crean
+     * variables de sesión en las que se almacenan datos que se creen necesarios para 
+     * otros sectores del proyecto. Después el usuario es redirigido a la página principal.
+     * 
+     * Si no retorna filas, significa que no hubo coincidencias y redirecciona al usuario a 
+     * la vista de login.php
+     */
     if($res -> num_rows > 0){
-        // Se extrae los datos y se guarda en el array según las posiciones
         $datosUsuario = mysqli_fetch_array($res);
         $_SESSION["ConsecutivoUsuario"] =   $datosUsuario["ConsecutivoUsuario"];
         $_SESSION["CorreoElectronico"]  =   $datosUsuario["CorreoElectronico"];
         $_SESSION["Nombre"]             =   $datosUsuario["Nombre"];
-        $_SESSION["TipoUsuario"]        =   $datosUsuario["TipoUsuario"]; //Traer código de perfil
+        $_SESSION["TipoUsuario"]        =   $datosUsuario["TipoUsuario"];
         $_SESSION["PerfilUsuario"]      =   $datosUsuario["PerfilUsuario"]; 
         header("Location: ../Views/principal.php");
     }else{
@@ -28,6 +47,10 @@ if(isset($_POST["btnIniciarSesion"])){
     }
 }
 
+/**
+ * Permite destruir la sesión mietras se presione el btnCerrarSesion, una vez
+ * presionado el botón el usuario regresa a la página de login.php
+ */
 if(isset($_POST['btnCerrarSesion'])){
     session_destroy();
     header("Location: ../Views/login.php");

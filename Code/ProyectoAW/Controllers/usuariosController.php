@@ -2,23 +2,54 @@
 
 include_once '../Models/usuariosModel.php';
 
+/**
+ * Se encarga de consultar los usuarios que hay en la base de datos. La idea es
+ * que por medio de consultarUsuariosModel, se haga la consulta en la base y 
+ * devuelva las coincidencias que existan. Pero esto solo se podrá hacer si ya el usuario
+ * se encuentra con la sesión iniciada, porque en el modelo se solicitan las varibles
+ * de sesión que se encuentran en loginController.php
+ */
 function consultarUsuarios(){
 
-    //Los datos recibidos se pasan al modelo y luego van a la base de datos
     $res = consultarUsuariosModel();
 
+    /**
+     * Funcionamiento del if:
+     * 
+     * Este if verifica si el resultado de la consulta anterior tuvo más de cero
+     * filas como respuesta. Si es correcto, entra al if y después a un while que devolverá
+     * todas las coincidencias de cada uno de los usuarios que se encuentran registrados en la
+     * base de datos y se imprimen en pantalla con un echo.
+     * 
+     * Si no retorna filas, significa que no hubo coincidencias y redirecciona se muestra el 
+     * mensaje por medio de un echo.
+     */
     if($res -> num_rows > 0){
-        // Se extrae los datos y se guarda en el array según las posiciones
         while($fila = mysqli_fetch_array($res)){
             echo    "<tr>";
             echo    "<td>" . $fila["CorreoElectronico"].    "</td>";
             echo    "<td>" . $fila["Cedula"] .              "</td>";
             echo    "<td>" . $fila["Nombre"] .              "</td>";
-            echo    "<td>" . $fila["Apellidos"] .              "</td>";
+            echo    "<td>" . $fila["Apellidos"] .           "</td>";
             echo    "<td>" . $fila["NombreTipoUsuario"].    "</td>";
             echo    "<td>" . $fila["Estado"].               "</td>";
-
-            // ?q=" . $fila["ConsecutivoUsuario"] . " es para buscar el usuario con el consecutivo sin cargar la página
+            
+            /**
+             * Funcionamiento del IF:
+             * 
+             * Este if recibe la variable de sesión de usuario que ha iniciado sesión 
+             * y le muestra los datos según el tipo de usuario (Administrador o cliente). 
+             * Después se hace una validación, si el estado del usuario recuperado 
+             * anteriormente es Activo, entonce debe mostrar un echo que permita 
+             * actualizar y eliminar lógicamente un registro. En caso contrario solo actualizar.
+             * 
+             * Nota: ?q=" . $fila["ConsecutivoUsuario"] . " es para buscar el usuario con el 
+             * consecutivo sin cargar la página
+             * 
+             * Con el onclick='setConsecutivoUsuario(this.dataset.id) se envía el consecutivo
+             * por medio de la función que está en el sitio donde se llame el <script>
+             * 
+             */
             if($_SESSION["TipoUsuario"] == 1){
                 if($fila["Estado"] == "Activo"){
                     echo    "<td>
@@ -43,8 +74,15 @@ function consultarUsuarios(){
     }
 }
 
+/**
+ * Permite inactivar un registro mientras se presione el botón btnInactivar. La idea
+ * es que si se recibe un consecutivo entre al if y lo envíe por medio de parámetro en 
+ * actualizarDatosModel y el usuario se inactive lógicamente en la base de datos.
+ */
 if(isset($_POST["btnInactivar"])){
+    
     if(isset($_POST["Consecutivo"])){
+
         $res = actualizarDatosModel($_POST["Consecutivo"]);
         if($res){
             echo "El usuario se desactivó";
@@ -55,7 +93,11 @@ if(isset($_POST["btnInactivar"])){
     }
 }
 
-
+/**
+ * Se ejecuta cuando se envía la consulta por medio del Ajax en el Js funcionesRegistro.js
+ * el dato viaja a la base de datos por medio de buscarUsuarioModel. Si devuelve filas
+ * significa que la cédula registrada ya tiene datos.
+ */
 if(isset($_POST["buscarCedula"])){
 
     $res = buscarUsuarioModel($_POST["cedula"]);
@@ -68,15 +110,26 @@ if(isset($_POST["buscarCedula"])){
     }
 }
 
+/**
+ * Se ejecuta cuando se presione el botón btnRegistrar, este if - isset se encarga de 
+ * se enviar una solicitud a registrarModel. Si el registro develve un true, significa
+ * que el registro del nuevo usuario se hizo sin problemas y se redireccion al usuario
+ * a la página de login.php
+ */
 
 if(isset($_POST['btnRegistrar'])){
+
+    /**
+     * Se almacenan los datos que se encuentran en la vista regitrar.php para 
+     * posteriormente ser enviados por medio de parámetros a registrarModel que 
+     * se encargará de hacer la interacción con la base de datos.
+     */
     $nombre             =   $_POST['nombre'];
     $apellidos          =   $_POST['apellidos'];
     $cedula             =   $_POST['cedula'];
     $correoElectronico  =   $_POST['correoElectronico'];
     $telefono           =   $_POST['telefono'];
     $contrasenna        =   $_POST["contrasenna"];
-
 
     $res = registrarModel($nombre,$apellidos, $cedula, $correoElectronico, $telefono, $contrasenna);
 
@@ -85,22 +138,17 @@ if(isset($_POST['btnRegistrar'])){
     }
 }
 
-if(isset($_POST['btnNotificar'])){
-    $nombre=$_POST["nameC"];
-    $correoElectronico=$_POST["correoC"];
-    $mensaje=$_POST["message"];
-    $correoOficial = "pruebaPAW@outlook.com";
-
-    $cuerpo = "El cliente: ". $nombre. ", con el correo: ".$correoElectronico. ", te ha escrito el siguiente mensaje: "
-    .$mensaje;
-    enviarCorreo($correoOficial, 'Mensaje de cliente',$cuerpo);
-    header("Location: ../Views/principal.php");
-}
-
+/**
+ * Se activa cuando se presiona el botón btnRecuperar, este if - isset permite
+ * que el cliente recupere la contraseña ya que es enviada por parámetro de 
+ * $datosUsuario por correo al cliente que lo solicita. NO es lo correcto, ya que
+ * hay que cumplir con una serie de requisitos previos en producción para hacerlo
+ * de la mejor manera posible.
+ */
 if(isset($_POST["btnRecuperar"]))
 {
-    $correoElectronico = $_POST["correoElectronico"];
-    $res = BuscarUsuariosModel($correoElectronico);
+    $correoElectronico  =   $_POST["correoElectronico"];
+    $res                =   BuscarUsuariosModel($correoElectronico);
 
     if($res -> num_rows > 0){
         $datosUsuario = mysqli_fetch_array($res);
@@ -111,6 +159,40 @@ if(isset($_POST["btnRecuperar"]))
     }
 }
 
+/**
+ * Se ejecuta cuando se presiona el botón btnNotificar, este se utiliza para enviar un mensaje de un 
+ * usuario por medio del campo Contactenos que se encuentra en el Front-End.
+ */
+if(isset($_POST['btnNotificar'])){
+
+    /**
+     * Se traen los campos que se encuentran en la sección de contáctenos. Esos campos son: nombre de la
+     * persona que quiere ponerse en contacto con la empresa, el correo electrónico y el mensaje que 
+     * quiere enviar.
+     * 
+     * Después todos se almacena en una variable para posteriormente ser enviada al correo empresarial.
+     */
+    $nombre              =  $_POST["nameC"];
+    $correoElectronico   =  $_POST["correoC"];
+    $mensaje             =  $_POST["message"];
+    $correoOficial       =  "RazerAmbienteWeb@outlook.com";
+
+    // Para que el mensaje sea envíado con un formato específico se envía como HTML para una mejor comprensión
+    $cuerpo = '<html><body>';
+    $cuerpo .= '<p>Estimado encargado,</p>';
+    $cuerpo .= '<p>El cliente: ' . $nombre . ', con el correo: ' . $correoElectronico . ', te ha escrito el siguiente mensaje:</p>';
+    $cuerpo .= '<p>' . $mensaje . '</p>';
+    $cuerpo .= '<p>Por favor, ponerse en contacto con el cliente en cuanto pueda.</p>';
+    $cuerpo .= '<p>No responder el correo, este mensaje fue generado automáticamente por el sistema.</p>';
+    $cuerpo .= '</body></html>';
+
+    enviarCorreo($correoOficial, 'Mensaje de cliente',$cuerpo);
+    header("Location: ../Views/principal.php");
+}
+
+/**
+ * Esta función se encarga de enviar el correo a los clientes. Es una propiedad de phpMailer.
+ */
 function enviarCorreo($destinatario, $asunto, $cuerpo)
 {
     require '../PHPMailer/src/PHPMailer.php';
@@ -124,7 +206,7 @@ function enviarCorreo($destinatario, $asunto, $cuerpo)
     $mail -> SMTPSecure = 'tls';
     $mail -> Port = 587; // 465 // 25                               
     $mail -> SMTPAuth = true;
-    $mail -> Username = 'pruebaPAW@outlook.com';               
+    $mail -> Username = 'RazerAmbienteWeb@outlook.com';               
     $mail -> Password = 'fidelitas1';  
     
     /**  
@@ -140,10 +222,10 @@ function enviarCorreo($destinatario, $asunto, $cuerpo)
         echo "Error al cargar el archivo.";
     }
     
-    $mail -> SetFrom('pruebaPAW@outlook.com', "Mate Team");
+    $mail -> SetFrom('RazerAmbienteWeb@outlook.com', "Razer Team");
     $mail -> Subject = $asunto;
     $mail -> MsgHTML($cuerpo);   
-    $mail -> AddAddress($destinatario, 'UsuarioMate');
+    $mail -> AddAddress($destinatario, 'UsuarioRazer');
 
     $mail -> send();
 }

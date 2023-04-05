@@ -4,7 +4,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <?php 
+<?php 
       MostrarHead();
    ?>
 
@@ -27,7 +27,8 @@
             <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"
                 style="text-align: justify;">
                 <br>
-                En Razer, entendemos la importancia de la privacidad de nuestros clientes y visitantes en línea. Por eso,
+                En Razer, entendemos la importancia de la privacidad de nuestros clientes y visitantes en línea. Por
+                eso,
                 hemos creado esta política de privacidad para explicar cómo recopilamos, utilizamos y protegemos la
                 información personal que obtenemos a través de nuestro sitio web.
                 <br>

@@ -2,6 +2,7 @@
 
 include_once '../Models/productosModel.php';
 
+// Acá se van a consultar los productos que tiene la base
 function consultarProductos(){
 
     //Los datos recibidos se pasan al modelo y luego van a la base de datos
@@ -43,12 +44,15 @@ function consultarProductos(){
     }
 }
 
+// Esta función se encargará de mostrar los productos que hay en la base
 function MostrarProductos()
 {
     $respuesta = ConsultarUsuariosModel();
 
+    // Este if verifica si hay datos en la consulta anterior
     if($respuesta -> num_rows > 0)
     {
+        // Se imprimen los datos mientras haya respuesta de la consulta
         while($fila = mysqli_fetch_array($respuesta))
         {
             echo '
@@ -74,7 +78,10 @@ function MostrarProductos()
 
 }
 
+// Permite inactivar un registro mientras se presione el btnInactivar
 if(isset($_POST["btnInactivar"])){
+    
+    // Si recibe un consecutivo entra al if y ejecuta los pasos.
     if(isset($_POST["Consecutivo"])){
         $res = actualizarDatosModel($_POST["Consecutivo"]);
         if($res){
