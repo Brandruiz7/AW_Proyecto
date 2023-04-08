@@ -2,18 +2,79 @@
 
 include_once 'conexionModel.php';
 
-function consultarProductosModel()
-{   
-    $instancia      = Open();
-    
-    $usuario        = $_SESSION["CorreoElectronico"];
-    $tipoUsuario    = $_SESSION["TipoUsuario"];
-    $sentencia      = "CALL ConsultarUsuarios('$usuario','$tipoUsuario');"; 
-    $respuesta      = $instancia -> query($sentencia);
+function ConsultarProductosModel(){
+    $instancia = Open();
+
+    $sentencia = "CALL ConsultarProductos();"; 
+    $respuesta = $instancia -> query($sentencia);
 
     Close($instancia);
     return $respuesta;
 }
 
+function ActualizarCarritoModel($ConsecutivoProducto, $CantidadProducto){
+    $instancia = Open();
+
+    $usuario   = $_SESSION["ConsecutivoUsuario"];   
+
+    $sentencia = "CALL ActualizarCarrito($ConsecutivoProducto, $usuario , $CantidadProducto);"; 
+    $instancia -> query($sentencia);
+
+    Close($instancia);
+}
+
+function InactivarProductoModel($consecutivo){
+    $instancia  = Open();
+    
+    $sentencia  = "CALL InactivarProducto('$consecutivo');";
+    echo          $sentencia;
+    $res        = $instancia -> query($sentencia);
+    
+    Close($instancia);
+    return $res;
+}
+
+function ConsultarTiposProductoModel(){
+    $instancia = Open();
+
+    $sentencia = "CALL ConsultarTiposProducto();"; 
+    $respuesta = $instancia -> query($sentencia);
+
+    Close($instancia);
+    return $respuesta;
+}
+
+function ActualizarProductoModel($NombreProducto,$Precio,$RutaImagen, $Stock,$ConsecutivoProducto, $TipoProducto,$Estado){
+    $instancia = Open();
+    
+    $sentencia = "CALL ActualizarProducto('$NombreProducto','$Precio','$RutaImagen',$Stock,$ConsecutivoProducto, $TipoProducto,$Estado);";
+    
+    $respuesta = $instancia -> query($sentencia);
+
+    Close($instancia);
+    return $respuesta;
+}
+
+function ConsultarProductoModel($consecutivo)
+{   
+    $instancia = Open();
+
+    // Usuario va en comillas por ser un varchar
+    $sentencia = "CALL ConsultarProducto($consecutivo);"; 
+    $respuesta = $instancia -> query($sentencia);
+
+    Close($instancia);
+    return $respuesta;
+}
+
+function ConsultarTiposEstadoProductoModel(){
+    $instancia = Open();
+
+    $sentencia = "CALL ConsultarTiposEstado();"; 
+    $respuesta = $instancia -> query($sentencia);
+
+    Close($instancia);
+    return $respuesta;
+}
 
 ?> 

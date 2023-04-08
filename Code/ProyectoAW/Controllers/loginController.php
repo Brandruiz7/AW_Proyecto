@@ -41,6 +41,7 @@ if(isset($_POST["btnIniciarSesion"])){
         $_SESSION["Nombre"]             =   $datosUsuario["Nombre"];
         $_SESSION["TipoUsuario"]        =   $datosUsuario["TipoUsuario"];
         $_SESSION["PerfilUsuario"]      =   $datosUsuario["PerfilUsuario"]; 
+        $_SESSION["Cedula"]             =   $datosUsuario["Cedula"];
         header("Location: ../Views/principal.php");
     }else{
         header("Location: ../Views/login.php");

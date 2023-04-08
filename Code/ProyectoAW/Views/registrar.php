@@ -24,22 +24,18 @@
         <form action="" method="post">
             <div class="field">
                 <span class="fas fa-user"></span>
-                <input type="text" required placeholder="Nombre" id="nombre" name="nombre">
+                <input type="text" required placeholder="Cédula" id="Identificacion" name="Identificacion"
+                    onblur="buscarNombreApi();">
             </div>
             <div class="field">
                 <span class="fas fa-user"></span>
-                <input type="text" required placeholder="Apellidos" id="apellidos" name="apellidos">
-            </div>
-            <br>
-            <div class="field">
-                <span class="fas fa-user"></span>
-                <input type="text" required placeholder="Cédula" id="cedula" name="cedula" onblur="validarCedula();">
+                <input type="text" required placeholder="Nombre" disable id="Nombre" name="nombre">
             </div>
             <br>
             <div class="field">
                 <span class="fas fa-user"></span>
                 <input type="mail" required placeholder="Correo Electrónico" id="correoElectronico"
-                    name="correoElectronico">
+                    name="correoElectronico" onblur="validarCorreo();">
             </div>
             <br>
             <div class="field">
@@ -68,6 +64,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="javascripts/funcionesRegistro.js"></script>
     <script src="javascripts/validarContrasenna.js"></script>
+    <script src="javascripts/funcionesActualizarUsuario.js"></script>
 </body>
 
 </html>

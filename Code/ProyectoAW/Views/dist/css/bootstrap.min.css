@@ -1471,8 +1471,8 @@
     padding: 0.5rem 0.75rem;
     font-size: 1rem;
     line-height: 1.25;
-    color: #495057;
-    background-color: #fff;
+    color: #fefefe;
+    background-color: #000000;
     background-image: none;
     background-clip: padding-box;
     border: 1px solid rgba(0, 0, 0, 0.15);
@@ -1503,7 +1503,7 @@
   }
   .form-control:disabled,
   .form-control[readonly] {
-    background-color: #e9ecef;
+    background-color: #000000;
     opacity: 1;
   }
   select.form-control:not([size]):not([multiple]) {
@@ -3376,7 +3376,7 @@
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
-    background-color: #fff;
+    background-color: #000000;
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;

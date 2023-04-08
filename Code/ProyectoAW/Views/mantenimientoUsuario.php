@@ -42,15 +42,14 @@
                                     <th>Correo Electrónico</th>
                                     <th>Identificación</th>
                                     <th>Nombre</th>
-                                    <th>Apellidos</th>
                                     <th>Tipo Usuario</th>
                                     <th>Estado</th>
                                     <th>Acciones</th>
                                 </tr>
                             <tbody class="mantenimiento">
                                 <?php 
-                              consultarUsuarios();
-                            ?>
+                                    consultarUsuarios();
+                                ?>
                             </tbody>
                             </thead>
                         </table>

@@ -2,39 +2,74 @@
 
 include_once '../Models/productosModel.php';
 
-// Acá se van a consultar los productos que tiene la base
-function consultarProductos(){
+if (session_status() == PHP_SESSION_NONE)
+{
+    session_start();
+}
 
-    //Los datos recibidos se pasan al modelo y luego van a la base de datos
-    $res = consultarProductosModel();
+/**
+ * Se encarga de consultar los usuarios que hay en la base de datos. La idea es
+ * que por medio de consultarUsuariosModel, se haga la consulta en la base y 
+ * devuelva las coincidencias que existan. Pero esto solo se podrá hacer si ya el usuario
+ * se encuentra con la sesión iniciada, porque en el modelo se solicitan las varibles
+ * de sesión que se encuentran en loginController.php
+ */
+function ConsultarProductos(){
 
+    $res = ConsultarProductosModel();
+
+    /**
+     * Funcionamiento del if:
+     * 
+     * Este if verifica si el resultado de la consulta anterior tuvo más de cero
+     * filas como respuesta. Si es correcto, entra al if y después a un while que devolverá
+     * todas las coincidencias de cada uno de los usuarios que se encuentran registrados en la
+     * base de datos y se imprimen en pantalla con un echo.
+     * 
+     * Si no retorna filas, significa que no hubo coincidencias y redirecciona se muestra el 
+     * mensaje por medio de un echo.
+     */
     if($res -> num_rows > 0){
-        // Se extrae los datos y se guarda en el array según las posiciones
         while($fila = mysqli_fetch_array($res)){
             echo    "<tr>";
-            echo    "<td>" . $fila["CorreoElectronico"].    "</td>";
-            echo    "<td>" . $fila["Cedula"] .              "</td>";
-            echo    "<td>" . $fila["Nombre"] .              "</td>";
-            echo    "<td>" . $fila["Apellidos"] .              "</td>";
-            echo    "<td>" . $fila["NombreTipoUsuario"].    "</td>";
-            echo    "<td>" . $fila["Estado"].               "</td>";
-
-            // ?q=" . $fila["ConsecutivoUsuario"] . " es para buscar el usuario con el consecutivo sin cargar la página
+            echo    "<td>" . $fila["Nombre_Producto"].  "</td>";
+            echo    "<td>" . $fila["Precio"] .          "</td>";
+            echo    "<td>" . $fila["RutaImagen"] .      "</td>";
+            echo    "<td>" . $fila["Stock"].            "</td>";
+            echo    "<td>" . $fila["Estado"].           "</td>";
+            
+            /**
+             * Funcionamiento del IF:
+             * 
+             * Este if recibe la variable de sesión de usuario que ha iniciado sesión 
+             * y le muestra los datos según el tipo de usuario (Administrador o cliente). 
+             * Después se hace una validación, si el estado del usuario recuperado 
+             * anteriormente es Activo, entonce debe mostrar un echo que permita 
+             * actualizar y eliminar lógicamente un registro. En caso contrario solo actualizar.
+             * 
+             * Nota: ?q=" . $fila["ConsecutivoProducto"] . " es para buscar el usuario con el 
+             * consecutivo sin cargar la página
+             * 
+             * Con el onclick='setConsecutivoProducto(this.dataset.id) se envía el consecutivo
+             * por medio de la función que está en el sitio donde se llame el <script>
+             * 
+             */
             if($_SESSION["TipoUsuario"] == 1){
                 if($fila["Estado"] == "Activo"){
                     echo    "<td>
-                            <a href='../Views/actualizarUsuario.php?q=" . $fila["ConsecutivoUsuario"] . "'>Actualizar</a> 
-                            | <a href='' data-toggle='modal' data-target='#exampleModal' data-id=". $fila['ConsecutivoUsuario'] ." name='btnDesactivar' id='btnDesactivar'
-                            onclick='setConsecutivoUsuario(this.dataset.id)'>Eliminar</a>
+                            <a href='../Views/actualizarProducto.php?q=" . $fila["ConsecutivoProducto"] . " 
+                            onclick='setConsecutivoProducto(this.dataset.id)''>Actualizar</a> 
+                            | <a href='' data-toggle='modal' data-target='#exampleModal2' data-id=". $fila['ConsecutivoProducto'] ." name='btnDesactivar' id='btnDesactivar'
+                            onclick='setConsecutivoProducto(this.dataset.id)'>Eliminar</a>
                             </td>";
                 }else{
                     echo    "<td>
-                            <a href='../Views/actualizarUsuario.php?q=" . $fila["ConsecutivoUsuario"] . "'>Actualizar</a>
+                            <a href='../Views/actualizarProducto.php?q=" . $fila["ConsecutivoProducto"] . "'>Actualizar</a>
                             </td>";
                 }
             }else{
                 echo    "<td>
-                        <a href='../Views/actualizarUsuario.php?q=" . $fila["ConsecutivoUsuario"] . "'>Actualizar</a>
+                        <a href='../Views/actualizarProducto.php?q=" . $fila["ConsecutivoProducto"] . "'>Actualizar</a>
                         </td>"; 
             }
             echo    "</tr>";
@@ -44,10 +79,73 @@ function consultarProductos(){
     }
 }
 
-// Esta función se encargará de mostrar los productos que hay en la base
-function MostrarProductos()
+function ConsultarProducto($consecutivo){
+    $res = ConsultarProductoModel($consecutivo);
+    return mysqli_fetch_array($res);
+}
+
+function ConsultarTiposProducto($tipoProducto)
 {
-    $respuesta = ConsultarUsuariosModel();
+    $respuesta = ConsultarTiposProductoModel();
+
+    if($respuesta -> num_rows > 0)
+    {
+        while($fila = mysqli_fetch_array($respuesta))
+        {
+            if($tipoProducto == $fila["TipoProducto"]){
+            // El primero es el código interno y el otro es lo que el usuario ve
+            echo "<option selected value=" . $fila["TipoProducto"] . ">" . $fila["NombreTipoProducto"] . "</option>";
+            }else{
+            // El primero es el código interno y el otro es lo que el usuario ve
+            echo "<option value=" . $fila["TipoProducto"] . ">" . $fila["NombreTipoProducto"] . "</option>";                
+            }
+
+        }
+    }
+}
+
+function ConsultarTiposEstadoProducto($Estado)
+{
+    $respuesta = ConsultarTiposEstadoProductoModel();
+
+    if($respuesta -> num_rows > 0)
+    {
+        while($fila = mysqli_fetch_array($respuesta))
+        {
+            if($Estado == $fila["Estado"]){
+            // El primero es el código interno y el otro es lo que el usuario ve
+            echo "<option selected value=" . $fila["Estado"] . ">" . $fila["NombreTipoEstado"] . "</option>";
+            }else{
+            // El primero es el código interno y el otro es lo que el usuario ve
+            echo "<option value=" . $fila["Estado"] . ">" . $fila["NombreTipoEstado"] . "</option>";                
+            }
+
+        }
+    }
+}
+
+if(isset($_POST["btnActualizarProducto"])){
+
+    $Adjunto = "dist/img/" . $_FILES["RutaImagen"]["name"];
+    $NombreProducto         = $_POST["NombreProducto"];
+    $Precio                 = $_POST["Precio"];
+    $RutaImagen             = addslashes("dist\img\\" . $_FILES["RutaImagen"]["name"]);
+    $Stock                  = $_POST["Stock"];
+    $ConsecutivoProducto    = $_POST["ConsecutivoProducto"];
+    $TipoProducto           = $_POST["Perfil"];
+    $Estado                 = $_POST["Estado"];
+    move_uploaded_file($_FILES["RutaImagen"]["tmp_name"], $Adjunto);
+
+    $respuesta = ActualizarProductoModel($NombreProducto,$Precio,$RutaImagen, $Stock,$ConsecutivoProducto, $TipoProducto ,$Estado);
+    
+    if($respuesta == true){
+        header("Location: ../Views/mantenimientoProducto.php");
+    }
+}
+
+// Esta función se encargará de mostrar los productos que hay en la base
+function MostrarProductos(){
+    $respuesta = ConsultarProductosModel();
 
     // Este if verifica si hay datos en la consulta anterior
     if($respuesta -> num_rows > 0)
@@ -59,14 +157,22 @@ function MostrarProductos()
                 <div class="col-md-4 col-sm-6 col-12 pricing-table2">
                     <div>
                         <span class="info-box-icon">
-                            <img src="dist\img\headset.jpg" />           
+                            <img src="'. $fila["RutaImagen"] .'" />           
                         </span>
                         <div class="info-box-content">
-                            <span class="info-box-text">'. $fila["CorreoElectronico"] .'</span>
-                            <span class="info-box-number">41,410</span>
-                            <span class="progress-description">
-                                70% Increase in 30 Days
-                            </span>
+                            <span class="info-box-text">'. $fila["Nombre_Producto"] .'   -   ₡'. number_format($fila["Precio"]) .'</span>
+                            <span class="progress-description"> Unidades: '. $fila["Stock"] .'</span>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 100%;"></div>
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Cantidad" required id="Cantidad-'. $fila["ConsecutivoProducto"] . '">
+                                <div class="input-group-append">
+                                    <div class="input-group-text" onclick="ActualizarCarrito('. $fila["ConsecutivoProducto"] . ',' . $fila["Stock"] . ')">
+                                        <span style="font-size:12pt; font-weight:bold;"> + </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -78,12 +184,22 @@ function MostrarProductos()
 
 }
 
+
+
+if(isset($_POST["ActualizarCarrito"])){
+
+    $ConsecutivoProducto    =   $_POST["ConsecutivoProducto"];
+    $CantidadProducto       =   $_POST["CantidadProducto"];
+
+    ActualizarCarritoModel($ConsecutivoProducto,$CantidadProducto);
+}
+
 // Permite inactivar un registro mientras se presione el btnInactivar
-if(isset($_POST["btnInactivar"])){
+if(isset($_POST["btnInactivarProducto"])){
     
     // Si recibe un consecutivo entra al if y ejecuta los pasos.
     if(isset($_POST["Consecutivo"])){
-        $res = actualizarDatosModel($_POST["Consecutivo"]);
+        $res = InactivarProductoModel($_POST["Consecutivo"]);
         if($res){
             echo "El usuario se desactivó";
         }

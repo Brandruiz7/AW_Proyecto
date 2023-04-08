@@ -79,8 +79,13 @@ function MostrarPrincipal(){
               <a class="btn btn-secondary dropdown-toggle" style="font-size:12px;" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                href="#" class="d-block">'. $_SESSION["Nombre"] . ' | '. $_SESSION["PerfilUsuario"].'
               </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>';
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">';
+                if($_SESSION["TipoUsuario"] == 2){
+                echo'
+                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>
+                <a class="dropdown-item" href="actualizarUsuario.php" style="padding-top:10px; padding-left:25px;">Editar Perfil</a>
+                ';
+                }
                 if($_SESSION["TipoUsuario"] == 1){
                 echo' 
                 <a class="dropdown-item" href="mantenimientoUsuario.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Usuarios</a>

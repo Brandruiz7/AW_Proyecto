@@ -24,6 +24,28 @@ function consultarUsuariosModel()
     return $respuesta;
 }
 
+function ConsultarTiposUsuarioModel(){
+    $instancia = Open();
+
+    $sentencia = "CALL ConsultarTiposUsuario();"; 
+    $respuesta = $instancia -> query($sentencia);
+
+    Close($instancia);
+    return $respuesta;
+}
+
+function actualizarUsuarioModel($contrasenna,$cedula,$nombre,$perfil,$consecutivo){
+    $instancia = Open();
+    
+    $sentencia = "CALL ActualizarUsuario('$contrasenna','$cedula','$nombre',$perfil,$consecutivo);";
+    
+    $respuesta = $instancia -> query($sentencia);
+
+    Close($instancia);
+    return $respuesta;
+}
+
+
 /**
  * Esta función se encarga de llamar la función de MySQL ActualizarDatos
  * y se le envía el parámetro de consecutivo. Con ello, el usuario que 
@@ -61,11 +83,11 @@ function actualizarDatosModel($consecutivo){
  * Return:
  * $res                 Retorna los datos de la base MySQL.
  */
-function buscarUsuarioModel($cedula){
+function buscarUsuarioModel($correoElectronico){
 
     $instancia  = Open();
 
-    $sentencia  = "CALL ConsultarCedula('$cedula');";
+    $sentencia  = "CALL ConsultarCorreo('$correoElectronico');";
     $res        = $instancia -> query($sentencia);
 
     Close($instancia);
@@ -81,7 +103,6 @@ function buscarUsuarioModel($cedula){
  * Parámetro:
  * 
  * $nombre              Almacena el nombre del usuario.
- * $apellidos           Almacena los apellidos del usuario
  * $cedula              Almacena la cédula del usuario.
  * $correoElectronico   Almacena el correo del usuario.
  * $telefono            Almacena el teléfono del usuario.
@@ -90,10 +111,10 @@ function buscarUsuarioModel($cedula){
  * Return:
  * $res                 Retorna los datos de la base MySQL.
  */
-function registrarModel($nombre,$apellidos, $cedula, $correoElectronico, $telefono, $contrasenna){
+function registrarModel($nombre, $cedula, $correoElectronico, $telefono, $contrasenna){
     $instancia  = Open();
     
-    $sentencia  = "CALL RegistrarUsuarios('$nombre','$apellidos', '$cedula', '$correoElectronico', '$telefono', '$contrasenna');";
+    $sentencia  = "CALL RegistrarUsuarios('$nombre', '$cedula', '$correoElectronico', '$telefono', '$contrasenna');";
     $res        = $instancia -> query($sentencia);
     
     Close($instancia);

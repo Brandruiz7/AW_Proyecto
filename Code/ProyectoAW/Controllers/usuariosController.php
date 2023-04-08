@@ -30,7 +30,6 @@ function consultarUsuarios(){
             echo    "<td>" . $fila["CorreoElectronico"].    "</td>";
             echo    "<td>" . $fila["Cedula"] .              "</td>";
             echo    "<td>" . $fila["Nombre"] .              "</td>";
-            echo    "<td>" . $fila["Apellidos"] .           "</td>";
             echo    "<td>" . $fila["NombreTipoUsuario"].    "</td>";
             echo    "<td>" . $fila["Estado"].               "</td>";
             
@@ -74,6 +73,41 @@ function consultarUsuarios(){
     }
 }
 
+
+function ConsultarTiposUsuario($tipoUsuario)
+{
+    $respuesta = ConsultarTiposUsuarioModel();
+
+    if($respuesta -> num_rows > 0)
+    {
+        while($fila = mysqli_fetch_array($respuesta))
+        {
+            if($tipoUsuario == $fila["TipoUsuario"]){
+            // El primero es el código interno y el otro es lo que el usuario ve
+            echo "<option selected value=" . $fila["TipoUsuario"] . ">" . $fila["NombreTipoUsuario"] . "</option>";
+            }else{
+            // El primero es el código interno y el otro es lo que el usuario ve
+            echo "<option value=" . $fila["TipoUsuario"] . ">" . $fila["NombreTipoUsuario"] . "</option>";                
+            }
+
+        }
+    }
+}
+
+if(isset($_POST["btnActualizar"])){
+    $contrasenna    =   $_POST["contrasenna"];
+    $cedula         =   $_POST["Identificacion"];
+    $nombre         =   $_POST["Nombre"];
+    $perfil         =   $_POST["Perfil"];
+    $consecutivo    =   $_POST["Consecutivo"];
+
+    $respuesta = actualizarUsuarioModel($contrasenna,$cedula,$nombre, $perfil,$consecutivo);
+    
+    if($respuesta == true){
+        header("Location: ../Views/mantenimientoUsuario.php");
+    }
+}
+
 /**
  * Permite inactivar un registro mientras se presione el botón btnInactivar. La idea
  * es que si se recibe un consecutivo entre al if y lo envíe por medio de parámetro en 
@@ -96,14 +130,14 @@ if(isset($_POST["btnInactivar"])){
 /**
  * Se ejecuta cuando se envía la consulta por medio del Ajax en el Js funcionesRegistro.js
  * el dato viaja a la base de datos por medio de buscarUsuarioModel. Si devuelve filas
- * significa que la cédula registrada ya tiene datos.
+ * significa que el correo registrado ya tiene datos.
  */
-if(isset($_POST["buscarCedula"])){
+if(isset($_POST["buscarUsuario"])){
 
-    $res = buscarUsuarioModel($_POST["cedula"]);
+    $res = buscarUsuarioModel($_POST["correo"]);
 
     if($res -> num_rows > 0){
-        echo "La cédula ya se encuentra registrada";
+        echo "El correo ya se encuentra registrado";
     }
     else{
         echo "OK";
@@ -125,13 +159,12 @@ if(isset($_POST['btnRegistrar'])){
      * se encargará de hacer la interacción con la base de datos.
      */
     $nombre             =   $_POST['nombre'];
-    $apellidos          =   $_POST['apellidos'];
-    $cedula             =   $_POST['cedula'];
+    $cedula             =   $_POST['Identificacion'];
     $correoElectronico  =   $_POST['correoElectronico'];
     $telefono           =   $_POST['telefono'];
     $contrasenna        =   $_POST["contrasenna"];
 
-    $res = registrarModel($nombre,$apellidos, $cedula, $correoElectronico, $telefono, $contrasenna);
+    $res = registrarModel($nombre, $cedula, $correoElectronico, $telefono, $contrasenna);
 
     if($res == true){
         header("Location: ../Views/login.php");

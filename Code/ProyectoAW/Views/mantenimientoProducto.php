@@ -39,18 +39,17 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr class="mantenimiento">
-                                    <th>Correo Electrónico</th>
-                                    <th>Identificación</th>
-                                    <th>Nombre</th>
-                                    <th>Apellidos</th>
-                                    <th>Tipo Usuario</th>
+                                    <th>Nombre Producto</th>
+                                    <th>Precio</th>
+                                    <th>Ruta de la Imagen</th>
+                                    <th>Stock</th>
                                     <th>Estado</th>
                                     <th>Acciones</th>
                                 </tr>
                             <tbody class="mantenimiento">
                                 <?php 
-                              consultarProductos();
-                            ?>
+                                    ConsultarProductos();
+                                ?>
                             </tbody>
                             </thead>
                         </table>
@@ -59,7 +58,7 @@
             </div>
 
             <form action="" method="post">
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -71,12 +70,12 @@
                             </div>
                             <div class="modal-body">
                                 ¿Está completamente seguro?
-                                <input type="hidden" id="consecutivoUsuario" name="consecutivoUsuario">
+                                <input type="hidden" id="consecutivoProducto" name="consecutivoProducto">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="btn btn-primary" value="true" name="btnInactivar"
-                                    id="btnInactivar" onclick="confirmarInactivacion()">Inactivar cuenta</button>
+                                <button type="submit" class="btn btn-primary" value="true" name="btnInactivarProducto"
+                                    id="btnInactivarProducto" onclick="confirmarInactivacion()">Inactivar producto</button>
                             </div>
                         </div>
                     </div>
@@ -111,10 +110,10 @@
     ?>
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="javascripts/inactivarUsuario.js"></script>
+    <script src="javascripts/inactivarProducto.js"></script>
     <script>
-    function setConsecutivoUsuario(id) {
-        document.getElementById('consecutivoUsuario').value = id;
+    function setConsecutivoProducto(id) {
+        document.getElementById('consecutivoProducto').value = id;
     }
     </script>
 </body>
