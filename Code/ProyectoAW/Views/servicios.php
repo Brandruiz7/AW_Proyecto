@@ -1,6 +1,6 @@
 <?php 
   include 'utilitarios.php';
-  include_once '../Controllers/usuariosController.php';  
+  include_once '../Controllers/productosController.php';  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,60 +56,9 @@
             </div>
 
             <div class="row pricing-tables">
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="pricing-table">
-                        <div class="pricing-details">
-                            <h2>Silver</h2>
-                            <span>$29.99</span>
-                            <ul>
-                                <li>Consectetur adipiscing</li>
-                                <li>Nunc luctus nulla et tellus</li>
-                                <li>Suspendisse quis metus</li>
-                                <li>Vestibul varius fermentum erat</li>
-                            </ul>
-                        </div>
-                        <div class="plan-button">
-                            <a href="#" class="btn btn-common">Lo quiero</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="pricing-table">
-                        <div class="pricing-details">
-                            <h2>Gold</h2>
-                            <span>$39.99</span>
-                            <ul>
-                                <li>Consectetur adipiscing</li>
-                                <li>Nunc luctus nulla et tellus</li>
-                                <li>Suspendisse quis metus</li>
-                                <li>Vestibul varius fermentum erat</li>
-                            </ul>
-                        </div>
-                        <div class="plan-button">
-                            <a href="#" class="btn btn-common">Comprar ahora</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="pricing-table">
-                        <div class="pricing-details">
-                            <h2>Platinum</h2>
-                            <span>$59.99</span>
-                            <ul>
-                                <li>Consectetur adipiscing</li>
-                                <li>Nunc luctus nulla et tellus</li>
-                                <li>Suspendisse quis metus</li>
-                                <li>Vestibul varius fermentum erat</li>
-                            </ul>
-                        </div>
-                        <div class="plan-button">
-                            <a href="#" class="btn btn-common">Comprar ahora</a>
-                        </div>
-                    </div>
-                </div>
-
+                <?php
+                    MostrarPlanes();
+                ?>
             </div>
         </div>
     </div>

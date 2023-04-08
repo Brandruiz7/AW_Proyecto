@@ -57,9 +57,8 @@ function ConsultarProductos(){
             if($_SESSION["TipoUsuario"] == 1){
                 if($fila["Estado"] == "Activo"){
                     echo    "<td>
-                            <a href='../Views/actualizarProducto.php?q=" . $fila["ConsecutivoProducto"] . " 
-                            onclick='setConsecutivoProducto(this.dataset.id)''>Actualizar</a> 
-                            | <a href='' data-toggle='modal' data-target='#exampleModal2' data-id=". $fila['ConsecutivoProducto'] ." name='btnDesactivar' id='btnDesactivar'
+                            <a href='../Views/actualizarProducto.php?q=" . $fila["ConsecutivoProducto"] . "'>Actualizar</a> 
+                            | <a href='' data-toggle='modal' data-target='#exampleModal2' data-id=". $fila['ConsecutivoProducto'] ." name='btnInactivarProducto' id='btnInactivarProducto'
                             onclick='setConsecutivoProducto(this.dataset.id)'>Eliminar</a>
                             </td>";
                 }else{
@@ -84,14 +83,11 @@ function ConsultarProducto($consecutivo){
     return mysqli_fetch_array($res);
 }
 
-function ConsultarTiposProducto($tipoProducto)
-{
+function ConsultarTiposProducto($tipoProducto){
     $respuesta = ConsultarTiposProductoModel();
 
-    if($respuesta -> num_rows > 0)
-    {
-        while($fila = mysqli_fetch_array($respuesta))
-        {
+    if($respuesta -> num_rows > 0){
+        while($fila = mysqli_fetch_array($respuesta)){
             if($tipoProducto == $fila["TipoProducto"]){
             // El primero es el código interno y el otro es lo que el usuario ve
             echo "<option selected value=" . $fila["TipoProducto"] . ">" . $fila["NombreTipoProducto"] . "</option>";
@@ -104,20 +100,17 @@ function ConsultarTiposProducto($tipoProducto)
     }
 }
 
-function ConsultarTiposEstadoProducto($Estado)
-{
+function ConsultarTiposEstadoProducto($Estado){
     $respuesta = ConsultarTiposEstadoProductoModel();
 
-    if($respuesta -> num_rows > 0)
-    {
-        while($fila = mysqli_fetch_array($respuesta))
-        {
-            if($Estado == $fila["Estado"]){
+    if($respuesta -> num_rows > 0){
+        while($fila = mysqli_fetch_array($respuesta)){
+            if($Estado == $fila["TipoEstado"]){
             // El primero es el código interno y el otro es lo que el usuario ve
-            echo "<option selected value=" . $fila["Estado"] . ">" . $fila["NombreTipoEstado"] . "</option>";
+            echo "<option selected value=" . $fila["TipoEstado"] . ">" . $fila["NombreTipoEstado"] . "</option>";
             }else{
             // El primero es el código interno y el otro es lo que el usuario ve
-            echo "<option value=" . $fila["Estado"] . ">" . $fila["NombreTipoEstado"] . "</option>";                
+            echo "<option value=" . $fila["TipoEstado"] . ">" . $fila["NombreTipoEstado"] . "</option>";                
             }
 
         }
@@ -148,41 +141,78 @@ function MostrarProductos(){
     $respuesta = ConsultarProductosModel();
 
     // Este if verifica si hay datos en la consulta anterior
-    if($respuesta -> num_rows > 0)
-    {
+    if($respuesta -> num_rows > 0){
         // Se imprimen los datos mientras haya respuesta de la consulta
-        while($fila = mysqli_fetch_array($respuesta))
-        {
-            echo '
-                <div class="col-md-4 col-sm-6 col-12 pricing-table2">
-                    <div>
-                        <span class="info-box-icon">
-                            <img src="'. $fila["RutaImagen"] .'" />           
-                        </span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">'. $fila["Nombre_Producto"] .'   -   ₡'. number_format($fila["Precio"]) .'</span>
-                            <span class="progress-description"> Unidades: '. $fila["Stock"] .'</span>
-                            <div class="progress">
-                                <div class="progress-bar" style="width: 100%;"></div>
-                            </div>
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Cantidad" required id="Cantidad-'. $fila["ConsecutivoProducto"] . '">
-                                <div class="input-group-append">
-                                    <div class="input-group-text" onclick="ActualizarCarrito('. $fila["ConsecutivoProducto"] . ',' . $fila["Stock"] . ')">
-                                        <span style="font-size:12pt; font-weight:bold;"> + </span>
+        while($fila = mysqli_fetch_array($respuesta)){
+            if($fila["Estado"]=="Activo"){
+                if($fila["TipoProducto"]==1){
+                echo '
+                    <div class="col-md-4 col-sm-6 col-12 pricing-table2">
+                        <div>
+                            <span class="info-box-icon">
+                                <img style="width:300px; height:300px;"src="'. $fila["RutaImagen"] .'" />           
+                            </span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">'. $fila["Nombre_Producto"] .'   -   ₡'. number_format($fila["Precio"]) .'</span>
+                                <span class="progress-description"> Unidades: '. $fila["Stock"] .'</span>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 100%;"></div>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Cantidad" required id="Cantidad-'. $fila["ConsecutivoProducto"] . '">
+                                    <div class="input-group-append">
+                                        <div class="input-group-text" onclick="ActualizarCarrito('. $fila["ConsecutivoProducto"] . ',' . $fila["Stock"] . ')">
+                                            <span style="font-size:12pt; font-weight:bold;"> + </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                    
-                    
-                ';
+                        
+                        
+                    ';
+                }
+            } 
         }
     }
 
 }
+
+function MostrarPlanes(){
+    $respuesta = ConsultarProductosModel();
+
+    // Este if verifica si hay datos en la consulta anterior
+    if($respuesta -> num_rows > 0){
+        // Se imprimen los datos mientras haya respuesta de la consulta
+        
+        while($fila = mysqli_fetch_array($respuesta)){
+            if($fila["Estado"]=="Activo"){
+                if($fila["TipoProducto"]==2){
+                    echo '
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="pricing-table">
+                            <div class="pricing-details">
+                                <h2>'. $fila["Nombre_Producto"] .'</h2>
+                                <span>$'. $fila["Precio"] .'</span>
+                                <ul style="text-align:justify;">
+                                '. $fila["Descripcion"] .'
+                                </ul>
+                            </div>
+                            <div class="plan-button">
+                                <a href="#" class="btn btn-common">Comprar</a>
+                            </div>
+                        </div>
+                    </div>           
+                    ';
+                }
+            
+            }
+        }
+    }
+
+}
+
 
 
 

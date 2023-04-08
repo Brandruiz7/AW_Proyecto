@@ -11,7 +11,7 @@ include_once '../Models/usuariosModel.php';
  */
 function consultarUsuarios(){
 
-    $res = consultarUsuariosModel();
+    $res = ConsultarUsuariosModel();
 
     /**
      * Funcionamiento del if:
@@ -73,6 +73,10 @@ function consultarUsuarios(){
     }
 }
 
+function ConsultarUsuario($consecutivo){
+    $res = ConsultarUsuarioModel($consecutivo);
+    return mysqli_fetch_array($res);
+}
 
 function ConsultarTiposUsuario($tipoUsuario)
 {
@@ -101,23 +105,37 @@ if(isset($_POST["btnActualizar"])){
     $perfil         =   $_POST["Perfil"];
     $consecutivo    =   $_POST["Consecutivo"];
 
-    $respuesta = actualizarUsuarioModel($contrasenna,$cedula,$nombre, $perfil,$consecutivo);
+    $respuesta = ActualizarUsuarioModel($contrasenna,$cedula,$nombre, $perfil,$consecutivo);
     
     if($respuesta == true){
         header("Location: ../Views/mantenimientoUsuario.php");
     }
 }
 
+if(isset($_POST["btnActualizarPerfil"])){
+    $contrasenna        =   $_POST["contrasenna"];
+    $correoElectronico  =   $_SESSION["CorreoElectronico"];
+    $Telefono           =   $_POST["Telefono"];
+    $consecutivo        =   $_POST["Consecutivo"];
+    
+
+    $respuesta = EditarPerfilUsuarioModel($contrasenna,$correoElectronico,$Telefono,$consecutivo);
+    
+    if($respuesta == true){
+        header("Location: ../Views/principal.php");
+    }
+}
+
 /**
  * Permite inactivar un registro mientras se presione el botón btnInactivar. La idea
  * es que si se recibe un consecutivo entre al if y lo envíe por medio de parámetro en 
- * actualizarDatosModel y el usuario se inactive lógicamente en la base de datos.
+ * ActualizarEstadoUsuarioModel y el usuario se inactive lógicamente en la base de datos.
  */
 if(isset($_POST["btnInactivar"])){
     
     if(isset($_POST["Consecutivo"])){
 
-        $res = actualizarDatosModel($_POST["Consecutivo"]);
+        $res = ActualizarEstadoUsuarioModel($_POST["Consecutivo"]);
         if($res){
             echo "El usuario se desactivó";
         }
@@ -134,7 +152,7 @@ if(isset($_POST["btnInactivar"])){
  */
 if(isset($_POST["buscarUsuario"])){
 
-    $res = buscarUsuarioModel($_POST["correo"]);
+    $res = ConsultarCorreoModel($_POST["correo"]);
 
     if($res -> num_rows > 0){
         echo "El correo ya se encuentra registrado";
@@ -164,7 +182,7 @@ if(isset($_POST['btnRegistrar'])){
     $telefono           =   $_POST['telefono'];
     $contrasenna        =   $_POST["contrasenna"];
 
-    $res = registrarModel($nombre, $cedula, $correoElectronico, $telefono, $contrasenna);
+    $res = RegistrarModel($nombre, $cedula, $correoElectronico, $telefono, $contrasenna);
 
     if($res == true){
         header("Location: ../Views/login.php");

@@ -11,7 +11,7 @@ include_once 'conexionModel.php';
  * Return:
  * $res                 Retorna los datos de la base MySQL.
  */
-function consultarUsuariosModel()
+function ConsultarUsuariosModel()
 {   
     $instancia    = Open();
     
@@ -19,6 +19,16 @@ function consultarUsuariosModel()
     $tipoUsuario  = $_SESSION["TipoUsuario"];
     $sentencia    = "CALL ConsultarUsuarios('$usuario','$tipoUsuario');"; 
     $respuesta    = $instancia -> query($sentencia);
+
+    Close($instancia);
+    return $respuesta;
+}
+
+function ConsultarUsuarioModel($consecutivo){
+    $instancia = Open();
+
+    $sentencia = "CALL ConsultarUsuario($consecutivo);"; 
+    $respuesta = $instancia -> query($sentencia);
 
     Close($instancia);
     return $respuesta;
@@ -34,10 +44,21 @@ function ConsultarTiposUsuarioModel(){
     return $respuesta;
 }
 
-function actualizarUsuarioModel($contrasenna,$cedula,$nombre,$perfil,$consecutivo){
+function ActualizarUsuarioModel($contrasenna,$cedula,$nombre,$perfil,$consecutivo){
     $instancia = Open();
     
     $sentencia = "CALL ActualizarUsuario('$contrasenna','$cedula','$nombre',$perfil,$consecutivo);";
+    
+    $respuesta = $instancia -> query($sentencia);
+
+    Close($instancia);
+    return $respuesta;
+}
+
+function EditarPerfilUsuarioModel($contrasenna,$correoElectronico,$Telefono,$consecutivo){
+    $instancia = Open();
+    
+    $sentencia = "CALL EditarPerfilUsuario('$contrasenna','$correoElectronico',$Telefono,$consecutivo);";
     
     $respuesta = $instancia -> query($sentencia);
 
@@ -59,10 +80,10 @@ function actualizarUsuarioModel($contrasenna,$cedula,$nombre,$perfil,$consecutiv
  * Return:
  * $res                 Retorna los datos de la base MySQL.
  */
-function actualizarDatosModel($consecutivo){
+function ActualizarEstadoUsuarioModel($consecutivo){
     $instancia  = Open();
     
-    $sentencia  = "CALL ActualizarDatos('$consecutivo');";
+    $sentencia  = "CALL ActualizarEstadoUsuario('$consecutivo');";
     echo          $sentencia;
     $res        = $instancia -> query($sentencia);
     
@@ -71,19 +92,19 @@ function actualizarDatosModel($consecutivo){
 }
 
 /**
- * Esta función se encarga de llamar la función de MySQL ConsultarCedula
- * y se le envía el parámetro de cedula. Esta función se encarga de
- * enviar la cédula y consultar en la base de datos si hay coincidencias.
+ * Esta función se encarga de llamar la función de MySQL ConsultarCorreo
+ * y se le envía el parámetro de correoElectronico. Esta función se encarga de
+ * enviar el correo y consultar en la base de datos si hay coincidencias.
  * Al finalizar se cierra la instancia.
  * 
  * Parámetro:
  * 
- * $cedula              Almacena la cédula del usuario.
+ * $correoElectronico   Almacena el correo del usuario.
  * 
  * Return:
  * $res                 Retorna los datos de la base MySQL.
  */
-function buscarUsuarioModel($correoElectronico){
+function ConsultarCorreoModel($correoElectronico){
 
     $instancia  = Open();
 
@@ -94,6 +115,7 @@ function buscarUsuarioModel($correoElectronico){
     return $res; 
 
 }
+
 
 /**
  * Esta función se encarga de llamar la función de MySQL RegistrarUsuarios
@@ -111,7 +133,7 @@ function buscarUsuarioModel($correoElectronico){
  * Return:
  * $res                 Retorna los datos de la base MySQL.
  */
-function registrarModel($nombre, $cedula, $correoElectronico, $telefono, $contrasenna){
+function RegistrarModel($nombre, $cedula, $correoElectronico, $telefono, $contrasenna){
     $instancia  = Open();
     
     $sentencia  = "CALL RegistrarUsuarios('$nombre', '$cedula', '$correoElectronico', '$telefono', '$contrasenna');";

@@ -71,7 +71,7 @@
                                     <div class="row">
                                         <div class="col-4">
                                             <input type="file" class="form-control" placeholder="Ruta de Imagen"
-                                                required id="RutaImagen" name="RutaImagen" value="<?php echo $datos["RutaImagen"] ?>">
+                                                id="RutaImagen" name="RutaImagen" value="<?php echo $datos["RutaImagen"] ?>">
                                         </div>
                                         <div class="col-4">
                                             <input type="text" class="form-control" placeholder="Stock" required

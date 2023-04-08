@@ -83,7 +83,8 @@ function MostrarPrincipal(){
                 if($_SESSION["TipoUsuario"] == 2){
                 echo'
                 <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>
-                <a class="dropdown-item" href="actualizarUsuario.php" style="padding-top:10px; padding-left:25px;">Editar Perfil</a>
+                <a class="dropdown-item" href="actualizarPerfil.php?q=' . $_SESSION["ConsecutivoUsuario"] .'"
+                style="padding-top:10px; padding-left:25px;">Editar Perfil</a>
                 ';
                 }
                 if($_SESSION["TipoUsuario"] == 1){
@@ -185,8 +186,13 @@ function MostrarHeaderAdicionales(){
               <a class="btn btn-secondary dropdown-toggle" style="font-size:12px;" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                href="#" class="d-block">'. $_SESSION["Nombre"] . ' | '. $_SESSION["PerfilUsuario"].'
               </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>';
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">';
+                if($_SESSION["TipoUsuario"] == 2){
+                echo'
+                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>
+                <a class="dropdown-item" href="actualizarPerfil.php" style="padding-top:10px; padding-left:25px;">Editar Perfil</a>
+                ';
+                }
                 if($_SESSION["TipoUsuario"] == 1){
                 echo' 
                 <a class="dropdown-item" href="mantenimientoUsuario.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Usuarios</a>
@@ -290,8 +296,13 @@ function MostrarTienda(){
               <a class="btn btn-secondary dropdown-toggle" style="font-size:12px;" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                href="#" class="d-block">'. $_SESSION["Nombre"] . ' | '. $_SESSION["PerfilUsuario"].'
               </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>';
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">';
+                if($_SESSION["TipoUsuario"] == 2){
+                echo'
+                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>
+                <a class="dropdown-item" href="actualizarPerfil.php" style="padding-top:10px; padding-left:25px;">Editar Perfil</a>
+                ';
+                }
                 if($_SESSION["TipoUsuario"] == 1){
                 echo' 
                 <a class="dropdown-item" href="mantenimientoUsuario.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Usuarios</a>
@@ -394,8 +405,13 @@ function MostrarPoliticas(){
               <a class="btn btn-secondary dropdown-toggle" style="font-size:12px;" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                href="#" class="d-block">'. $_SESSION["Nombre"] . ' | '. $_SESSION["PerfilUsuario"].'
               </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>';
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">';
+                if($_SESSION["TipoUsuario"] == 2){
+                echo'
+                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>
+                <a class="dropdown-item" href="actualizarPerfil.php" style="padding-top:10px; padding-left:25px;">Editar Perfil</a>
+                ';
+                }
                 if($_SESSION["TipoUsuario"] == 1){
                 echo' 
                 <a class="dropdown-item" href="mantenimientoUsuario.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Usuarios</a>
@@ -498,8 +514,13 @@ function MostrarTerminos(){
               <a class="btn btn-secondary dropdown-toggle" style="font-size:12px;" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                href="#" class="d-block">'. $_SESSION["Nombre"] . ' | '. $_SESSION["PerfilUsuario"].'
               </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>';
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">';
+                if($_SESSION["TipoUsuario"] == 2){
+                echo'
+                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>
+                <a class="dropdown-item" href="actualizarPerfil.php" style="padding-top:10px; padding-left:25px;">Editar Perfil</a>
+                ';
+                }
                 if($_SESSION["TipoUsuario"] == 1){
                 echo' 
                 <a class="dropdown-item" href="mantenimientoUsuario.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Usuarios</a>
@@ -602,8 +623,13 @@ function MostrarSobreNosotros(){
               <a class="btn btn-secondary dropdown-toggle" style="font-size:12px;" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                href="#" class="d-block">'. $_SESSION["Nombre"] . ' | '. $_SESSION["PerfilUsuario"].'
               </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>';
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">';
+                if($_SESSION["TipoUsuario"] == 2){
+                echo'
+                <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>
+                <a class="dropdown-item" href="actualizarPerfil.php" style="padding-top:10px; padding-left:25px;">Editar Perfil</a>
+                ';
+                }
                 if($_SESSION["TipoUsuario"] == 1){
                 echo' 
                 <a class="dropdown-item" href="mantenimientoUsuario.php" style="padding-top:10px; padding-left:25px;">Mantenimiento Usuarios</a>
@@ -681,7 +707,7 @@ function MostrarContactUs(){
               <div class="contact-address">
                 <p>San José, Costa Rica </p>
                 <p class="phone">Teléfono: <span>(+506 7215-3137)</span></p>
-                <p class="email">Correo electrónico: <span>(brandon@razer.com)</span></p>
+                <p class="email">Correo electrónico: <span>(RazerAmbienteWeb@outlook.com)</span></p>
               </div>
               <div class="social-icons">
                 <ul>

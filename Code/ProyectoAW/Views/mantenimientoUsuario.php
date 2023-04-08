@@ -41,7 +41,7 @@
                                 <tr class="mantenimiento">
                                     <th>Correo Electrónico</th>
                                     <th>Identificación</th>
-                                    <th>Nombre</th>
+                                    <th>Nombre completo</th>
                                     <th>Tipo Usuario</th>
                                     <th>Estado</th>
                                     <th>Acciones</th>

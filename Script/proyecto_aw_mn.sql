@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3307
--- Tiempo de generación: 04-04-2023 a las 13:48:08
--- Versión del servidor: 10.4.27-MariaDB
+-- Tiempo de generación: 08-04-2023 a las 14:57:47
+-- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -25,7 +25,35 @@ DELIMITER $$
 --
 -- Procedimientos
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarDatos` (IN `pConsecutivo` VARCHAR(70))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarCarrito` (IN `pConsecutivoProducto` BIGINT(20), IN `pConsecutivoUsuario` BIGINT(20), IN `pCantidadProducto` INT(11))   BEGIN
+
+	IF (SELECT count(*) FROM Carrito 
+        WHERE ConsecutivoProducto = pConsecutivoProducto 
+        and ConsecutivoUsuario = pConsecutivoUsuario) > 0 THEN
+		
+        IF(pCantidadProducto = 0) THEN        
+        	DELETE FROM carrito 
+            WHERE ConsecutivoProducto = pConsecutivoProducto 
+            and ConsecutivoUsuario = pConsecutivoUsuario;
+        ELSE
+            UPDATE carrito
+            SET Cantidad = pCantidadProducto
+            WHERE ConsecutivoProducto = pConsecutivoProducto 
+            and ConsecutivoUsuario = pConsecutivoUsuario;
+ 		END IF;
+        
+	ELSE
+    
+    	IF(pCantidadProducto > 0) THEN
+ 			INSERT INTO carrito(ConsecutivoProducto,ConsecutivoUsuario,Cantidad,FechaCarrito)
+        	VALUES(pConsecutivoProducto,pConsecutivoUsuario,pCantidadProducto, NOW());
+		END IF;
+    
+    END IF;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarEstadoUsuario` (IN `pConsecutivo` VARCHAR(70))   BEGIN
 	SELECT
     	ESTADO
     INTO
@@ -38,13 +66,42 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarDatos` (IN `pConsecutivo`
     UPDATE
     	USUARIO
     SET
-    	ESTADO = 0
+    	ESTADO = 2
     WHERE
     	ConsecutivoUsuario = pConsecutivo;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `BuscarUsuario` (IN `pCorreoElectronico` VARCHAR(70))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarProducto` (IN `pNombreProducto` VARCHAR(50), IN `pPrecio` DECIMAL(8,2), IN `pRutaImagen` VARCHAR(500), IN `pStock` INT(11), IN `pConsecutivoProducto` BIGINT(20), IN `pTipoProducto` TINYINT(4), IN `pEstado` TINYINT(4))   BEGIN
+    UPDATE Producto
+    SET Nombre_Producto = pNombreProducto,
+        RutaImagen 		= pRutaImagen,
+        Estado 			= pEstado,
+        Precio 			= pPrecio,
+        RutaImagen 		= pRutaImagen,
+        Stock 			= pStock,
+        TipoProducto 	= pTipoProducto
+    WHERE ConsecutivoProducto = pConsecutivoProducto;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarUsuario` (IN `pContrasenna` VARCHAR(10), IN `pCedula` VARCHAR(20), IN `pNombre` VARCHAR(100), IN `pTipoUsuario` TINYINT(4), IN `pConsecutivoUsuario` BIGINT(20))   BEGIN
+    IF pContrasenna = '' THEN
+
+        SELECT Contrasenna INTO pContrasenna
+        FROM usuario
+        WHERE ConsecutivoUsuario = pConsecutivoUsuario;
+
+    END IF;
+
+    UPDATE usuario
+    SET Contrasenna = pContrasenna,
+        Cedula 		= pCedula,
+        Nombre 		= pNombre,
+        TipoUsuario = pTipoUsuario
+    WHERE ConsecutivoUsuario = pConsecutivoUsuario;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarCorreo` (IN `pCorreoElectronico` VARCHAR(70))   BEGIN
 
 	SELECT CorreoElectronico, Contrasenna
     FROM   usuario
@@ -52,11 +109,78 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `BuscarUsuario` (IN `pCorreoElectron
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarCedula` (IN `pCedula` VARCHAR(20))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarProducto` (IN `pConsecutivoProducto` BIGINT(20))   BEGIN
 
-	SELECT 	Cedula, Contrasenna
-    FROM   	usuario
-    WHERE  	Cedula = pCedula;
+		SELECT 	ConsecutivoProducto,
+    	   		Nombre_Producto,
+           		Estado,
+           		Case when Estado = 1 
+           			 then 'Activo' 
+                     Else 'Inactivo' End 'Estado',
+                TipoProducto,
+                RutaImagen,
+                Precio,
+                Stock,
+                Descripcion
+        FROM Producto P
+        WHERE ConsecutivoProducto = pConsecutivoProducto;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarProductos` ()   BEGIN
+	SELECT
+    	ConsecutivoProducto,
+        Nombre_Producto,
+        RutaImagen,
+        Estado,
+        Case when Estado = 1 
+           			 then 'Activo' 
+                     Else 'Inactivo' End 'Estado',
+        Precio,
+        Stock,
+        TipoProducto,
+        Descripcion
+     FROM
+     	Producto;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarTiposEstado` ()   BEGIN
+	SELECT
+    	TipoEstado, NombreTipoEstado
+    FROM
+    	tipos_estado;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarTiposProducto` ()   BEGIN
+
+	SELECT TipoProducto,
+		   NombreTipoProducto
+	FROM   tipos_producto;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarTiposUsuario` ()   BEGIN
+	SELECT TipoUsuario,
+		   NombreTipoUsuario
+	FROM   tipos_usuarios;	
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarUsuario` (IN `pConsecutivo` BIGINT(20))   BEGIN
+
+		SELECT 	ConsecutivoUsuario,
+    	   		CorreoElectronico,
+           		Estado,
+           		Case when Estado = 1 
+           			 then 'Activo' 
+                     Else 'Inactivo' End 'Estado',
+           		U.TipoUsuario,
+           		T.NombreTipoUsuario,
+                Cedula,
+                Nombre,
+                Telefono
+        FROM usuario U
+        INNER JOIN tipos_usuarios T ON U.TipoUsuario = T.TipoUsuario
+        WHERE ConsecutivoUsuario = pConsecutivo;
 
 END$$
 
@@ -73,7 +197,6 @@ IF(pTipoUsuario = 1) THEN
            		U.TipoUsuario,
            		T.NombreTipoUsuario,
                 Cedula,
-                Apellidos,
                 Nombre
         FROM usuario U
         INNER JOIN tipos_usuarios T ON U.TipoUsuario = T.TipoUsuario;
@@ -89,13 +212,49 @@ IF(pTipoUsuario = 1) THEN
            		U.TipoUsuario,
            		T.NombreTipoUsuario,
                 Cedula,
-                Apellidos,
                 Nombre
         FROM usuario U
         INNER JOIN tipos_usuarios T ON U.TipoUsuario = T.TipoUsuario
         WHERE CorreoElectronico = pCorreoElectronico;
 
 	END IF;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `EditarPerfilUsuario` (IN `pContrasenna` VARCHAR(10), IN `pCorreoElectronico` VARCHAR(70), IN `pTelefono` VARCHAR(8), IN `pConsecutivoUsuario` BIGINT(20))   BEGIN
+
+    IF pContrasenna = '' THEN
+
+        SELECT Contrasenna INTO pContrasenna
+        FROM usuario
+        WHERE ConsecutivoUsuario = pConsecutivoUsuario;
+
+    END IF;
+
+    UPDATE usuario
+    SET Contrasenna 		= pContrasenna,
+        CorreoElectronico  	= pCorreoElectronico,
+        Telefono  			= pTelefono
+    WHERE ConsecutivoUsuario = pConsecutivoUsuario;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InactivarProducto` (IN `pConsecutivoProducto` BIGINT(20))   BEGIN
+	SELECT
+    	ESTADO
+    INTO
+    	@CODESTADO
+    FROM 
+    	Producto
+    WHERE
+    	ConsecutivoProducto = pConsecutivoProducto;
+    
+    UPDATE
+    	Producto
+    SET
+    	ESTADO = 2
+    WHERE
+    	ConsecutivoProducto = pConsecutivoProducto;
 
 END$$
 
@@ -106,7 +265,9 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `IniciarSesion` (IN `pCorreoElectron
             Nombre,
             Estado,
             T.TipoUsuario,
-            T.NombreTipoUsuario 'PerfilUsuario'
+            T.NombreTipoUsuario 'PerfilUsuario',
+            Cedula,
+            Telefono
 	FROM  USUARIO U
     INNER JOIN tipos_usuarios T ON U.TipoUsuario = T.TipoUsuario 
     WHERE 	CorreoElectronico = pCorreoElectronico
@@ -115,8 +276,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `IniciarSesion` (IN `pCorreoElectron
         
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistrarUsuarios` (IN `pNombre` VARCHAR(100), IN `pApellidos` VARCHAR(100), IN `pCedula` VARCHAR(20), IN `pCorreoElectronico` VARCHAR(70), IN `pTelefono` VARCHAR(8), IN `pContrasenna` VARCHAR(10))   BEGIN
-	DECLARE P_Estado BIT(1);
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistrarUsuarios` (IN `pNombre` VARCHAR(100), IN `pCedula` VARCHAR(20), IN `pCorreoElectronico` VARCHAR(70), IN `pTelefono` VARCHAR(8), IN `pContrasenna` VARCHAR(10))   BEGIN
+	DECLARE P_Estado TINYINT(4);
     DECLARE P_TipoUsuario TINYINT(4);
     DECLARE P_ConsecutivoUsuario BIGINT(20);
     
@@ -128,7 +289,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistrarUsuarios` (IN `pNombre` VA
     	ConsecutivoUsuario,
         Cedula,
         Nombre,
-        Apellidos,
     	CorreoElectronico,
         Telefono,
     	Contrasenna,
@@ -138,7 +298,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistrarUsuarios` (IN `pNombre` VA
         P_ConsecutivoUsuario,
         pCedula,
         pNombre,
-        pApellidos,
     	pCorreoElectronico,
         pTelefono,
         pContrasenna,
@@ -200,10 +359,62 @@ CREATE TABLE `encabezado` (
 CREATE TABLE `producto` (
   `ConsecutivoProducto` bigint(20) NOT NULL,
   `Nombre_Producto` varchar(50) NOT NULL,
-  `Descripcion` varchar(500) NOT NULL,
+  `RutaImagen` varchar(500) NOT NULL,
+  `Estado` tinyint(4) NOT NULL,
   `Precio` decimal(8,2) NOT NULL,
-  `rutaImagen` varchar(500) NOT NULL
+  `Stock` int(11) NOT NULL,
+  `TipoProducto` tinyint(4) NOT NULL,
+  `Descripcion` varchar(4000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`ConsecutivoProducto`, `Nombre_Producto`, `RutaImagen`, `Estado`, `Precio`, `Stock`, `TipoProducto`, `Descripcion`) VALUES
+(1, 'Mouse', 'dist\\img\\headset.jpg', 1, 12500.00, 25, 1, ''),
+(4, 'Silver', 'No aplica', 1, 29.99, 0, 2, '<li>Descuentos exclusivos: Los miembros de Razer Silver podrían recibir descuentos exclusivos en productos y accesorios de Razer</li>\r\n<li>Acceso anticipado a ventas y lanzamientos de productos: Los miembros de Razer Silver tendrían acceso anticipado a las ventas y lanzamientos de productos de Razer.</li>\r\n<li>Envío gratuito: Los miembros de Razer Silver podrían recibir envío gratuito en pedidos elegibles.</li>\r\n<li>Soporte técnico prioritario: Los miembros de Razer Silver tendrían acceso a soporte técnico prioritario para cualquier problema técnico que pudieran enfrentar con sus productos de Razer.</li>\r\n<li>Puntos de recompensa Silver: Los miembros de Razer Silver podrían acumular puntos de recompensa Silver al realizar compras que luego pueden canjear por descuentos en futuras compras de productos de Razer</li>'),
+(5, 'Gold', 'No aplica', 1, 39.99, 0, 2, '<li>Descuentos exclusivos: Los miembros de Razer Gold podrían recibir descuentos exclusivos en productos y accesorios de Razer.</li>\r\n<li>Acceso anticipado a ventas y lanzamientos de productos: Los miembros de Razer Gold tendrían acceso anticipado a las ventas y lanzamientos de productos de Razer.</li>\r\n<li>Envío a mitad de precio: Los miembros de Razer Gold podrían recibir envío con descuento en pedidos elegibles.</li>\r\n<li>Soporte técnico prioritario: Los miembros de Razer Gold tendrían acceso a soporte técnico prioritario para cualquier problema técnico que pudieran enfrentar con sus productos de Razer.</li>\r\n<li>Puntos de recompensa Gold: Los miembros de Razer Gold podrían acumular puntos de recompensa Gold al realizar compras que luego pueden canjear por descuentos en futuras compras de productos de Razer.</li>'),
+(6, 'Platinum', 'No aplica', 1, 59.99, 0, 2, '<li>Acceso exclusivo a productos de edición limitada: Los miembros del plan Platinum podrían tener la oportunidad de comprar productos de edición limitada de Razer que no están disponibles para el público en general.</li>\r\n<li>Atención al cliente VIP: Los miembros de Razer Platinum tendrían acceso a un equipo de soporte técnico altamente capacitado y experimentado, disponible las 24 horas del día, los 7 días de la semana, para resolver rápidamente cualquier problema o pregunta.</li>\r\n<li>Envío prioritario: Los miembros de Razer Platinum tendrían acceso a envío prioritario para sus pedidos, lo que les permitiría recibir sus productos más rápido que los clientes de otros planes de membresía.</li>\r\n<li>Experiencias de juego exclusivas: Los miembros de Razer Platinum podrían recibir invitaciones exclusivas para eventos y torneos de juegos en todo el mundo, así como acceso a demostraciones y versiones beta anticipadas de algunos juegos.</li>\r\n<li>Asesoramiento de productos personalizado: Los miembros de Razer Platinum tendrían acceso a un asesor de productos personalizado que les ayudaría a encontrar los productos y accesorios de Razer que mejor se adapten a sus necesidades y preferencias.</li>'),
+(7, 'Bronce', 'dist\\img\\', 1, 9.99, 0, 2, '<li>Descuentos en productos y accesorios de Razer: Los miembros de Razer Bronze podrían recibir descuentos exclusivos en productos y accesorios de Razer.</li>\r\n<li>Acceso anticipado a ventas y lanzamientos de productos: Los miembros de Razer Bronze tendrían acceso anticipado a las ventas y lanzamientos de productos de Razer.</li>\r\n<li>Soporte técnico básico: Los miembros de Razer Bronze tendrían acceso a soporte técnico básico para cualquier problema técnico que pudieran enfrentar con sus productos de Razer.</li>');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipos_estado`
+--
+
+CREATE TABLE `tipos_estado` (
+  `TipoEstado` tinyint(4) NOT NULL,
+  `NombreTipoEstado` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tipos_estado`
+--
+
+INSERT INTO `tipos_estado` (`TipoEstado`, `NombreTipoEstado`) VALUES
+(1, 'Activo'),
+(2, 'Inactivo');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipos_producto`
+--
+
+CREATE TABLE `tipos_producto` (
+  `TipoProducto` tinyint(4) NOT NULL,
+  `NombreTipoProducto` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tipos_producto`
+--
+
+INSERT INTO `tipos_producto` (`TipoProducto`, `NombreTipoProducto`) VALUES
+(1, 'Tienda'),
+(2, 'Plan');
 
 -- --------------------------------------------------------
 
@@ -234,11 +445,10 @@ CREATE TABLE `usuario` (
   `ConsecutivoUsuario` bigint(20) NOT NULL,
   `Cedula` varchar(20) NOT NULL,
   `Nombre` varchar(100) NOT NULL,
-  `Apellidos` varchar(100) NOT NULL,
   `CorreoElectronico` varchar(70) NOT NULL,
   `Telefono` varchar(8) NOT NULL,
   `Contrasenna` varchar(10) NOT NULL,
-  `Estado` bit(1) NOT NULL,
+  `Estado` tinyint(4) NOT NULL,
   `TipoUsuario` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -246,14 +456,10 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`ConsecutivoUsuario`, `Cedula`, `Nombre`, `Apellidos`, `CorreoElectronico`, `Telefono`, `Contrasenna`, `Estado`, `TipoUsuario`) VALUES
-(1, '117020932', 'Brandon', 'Ruiz Miranda', 'brandruiz7@gmail.com', '72153137', 'fidelitas', b'1', 1),
-(2, '111111111', 'Brenda', 'Ruiz', 'brendruiz2@gmail.com', '72153137', 'fidelitas', b'1', 2),
-(3, '111111112', 'Brandon', 'Vindas Retana', 'thenobra@gmail.com', '22222222', 'fidelitas', b'1', 2),
-(4, '111111113', 'Ernesto', 'Alvarado', 'ernesto@prueba.com', '22222223', 'fidelitas', b'1', 2),
-(5, '111111104', 'Breizer', 'Ruiz Miranda', 'breiruiz14@gmail.com', '22112222', 'fidelitas', b'1', 2),
-(6, '111111115', 'Ericka', 'Benavides', 'ericka@davivienda.cr', '22222211', 'fidelitas', b'1', 2),
-(7, '222222221', 'Erica', 'Ramírez', 'erica@davivienda.cr', '22331123', 'fidelitas', b'1', 2);
+INSERT INTO `usuario` (`ConsecutivoUsuario`, `Cedula`, `Nombre`, `CorreoElectronico`, `Telefono`, `Contrasenna`, `Estado`, `TipoUsuario`) VALUES
+(1, '117020932', 'BRANDON JOSE RUIZ MIRANDA', 'brandruiz7@gmail.com', '72153137', 'fidelitas', 1, 1),
+(2, '117020931', 'JAIRO ANTONIO ACEVEDO LACAYO', 'jairo21@gmail.com', '72153131', 'fidelitas', 1, 2),
+(3, '117020930', 'KENDRIK ANDRES BARRAZA ELIZONDO', 'kendrick@gmail.com', '11111112', 'fidelitas', 1, 2);
 
 --
 -- Índices para tablas volcadas
@@ -286,7 +492,21 @@ ALTER TABLE `encabezado`
 -- Indices de la tabla `producto`
 --
 ALTER TABLE `producto`
-  ADD PRIMARY KEY (`ConsecutivoProducto`);
+  ADD PRIMARY KEY (`ConsecutivoProducto`),
+  ADD KEY `fk_tipos_producto` (`TipoProducto`),
+  ADD KEY `fk_estado_producto` (`Estado`);
+
+--
+-- Indices de la tabla `tipos_estado`
+--
+ALTER TABLE `tipos_estado`
+  ADD PRIMARY KEY (`TipoEstado`);
+
+--
+-- Indices de la tabla `tipos_producto`
+--
+ALTER TABLE `tipos_producto`
+  ADD PRIMARY KEY (`TipoProducto`);
 
 --
 -- Indices de la tabla `tipos_usuarios`
@@ -300,7 +520,8 @@ ALTER TABLE `tipos_usuarios`
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`ConsecutivoUsuario`),
   ADD KEY `CorreoElectronico` (`CorreoElectronico`,`TipoUsuario`),
-  ADD KEY `fk_tipos_usuarios` (`TipoUsuario`);
+  ADD KEY `fk_tipos_usuarios` (`TipoUsuario`),
+  ADD KEY `fk_estado_usuario` (`Estado`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -328,7 +549,19 @@ ALTER TABLE `encabezado`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `ConsecutivoProducto` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `ConsecutivoProducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `tipos_estado`
+--
+ALTER TABLE `tipos_estado`
+  MODIFY `TipoEstado` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `tipos_producto`
+--
+ALTER TABLE `tipos_producto`
+  MODIFY `TipoProducto` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tipos_usuarios`
@@ -367,9 +600,17 @@ ALTER TABLE `encabezado`
   ADD CONSTRAINT `fk_encabezado_usuario` FOREIGN KEY (`ConsecutivoUsuario`) REFERENCES `usuario` (`ConsecutivoUsuario`);
 
 --
+-- Filtros para la tabla `producto`
+--
+ALTER TABLE `producto`
+  ADD CONSTRAINT `fk_estado_producto` FOREIGN KEY (`Estado`) REFERENCES `tipos_estado` (`TipoEstado`),
+  ADD CONSTRAINT `fk_tipos_producto` FOREIGN KEY (`TipoProducto`) REFERENCES `tipos_producto` (`TipoProducto`);
+
+--
 -- Filtros para la tabla `usuario`
 --
 ALTER TABLE `usuario`
+  ADD CONSTRAINT `fk_estado_usuario` FOREIGN KEY (`Estado`) REFERENCES `tipos_estado` (`TipoEstado`),
   ADD CONSTRAINT `fk_tipos_usuarios` FOREIGN KEY (`TipoUsuario`) REFERENCES `tipos_usuarios` (`TipoUsuario`);
 COMMIT;
 
