@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3307
--- Tiempo de generación: 08-04-2023 a las 14:57:47
+-- Tiempo de generación: 16-04-2023 a las 23:35:16
 -- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.0
+-- Versión de PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -276,6 +276,30 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `IniciarSesion` (IN `pCorreoElectron
         
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MostrarCarritoTemporal` (IN `pConsecutivoUsuario` BIGINT(20))   BEGIN
+
+	SELECT 	IFNULL(SUM(C.Cantidad),0) 'CantidadTemporal',
+			IFNULL(SUM(C.Cantidad * P.Precio),0)   'MontoTemporal'
+    FROM 	CARRITO	C
+    INNER JOIN PRODUCTO P ON C.ConsecutivoProducto = P.ConsecutivoProducto
+    WHERE C.ConsecutivoUsuario = pConsecutivoUsuario;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MostrarCarritoTotal` (IN `pConsecutivoUsuario` BIGINT(20))   BEGIN
+
+	SELECT  P.Nombre_Producto,
+			C.Cantidad,
+            P.Precio,
+            C.Cantidad * P.Precio 			'SubTotal',
+           (C.Cantidad * P.Precio) * 0.13 	'Impuesto',
+           (C.Cantidad * P.Precio) + (C.Cantidad * P.Precio) * 0.13 'Total'
+    FROM 	CARRITO	C
+    INNER JOIN PRODUCTO P ON C.ConsecutivoProducto = P.ConsecutivoProducto
+    WHERE C.ConsecutivoUsuario = pConsecutivoUsuario;
+
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistrarUsuarios` (IN `pNombre` VARCHAR(100), IN `pCedula` VARCHAR(20), IN `pCorreoElectronico` VARCHAR(70), IN `pTelefono` VARCHAR(8), IN `pContrasenna` VARCHAR(10))   BEGIN
 	DECLARE P_Estado TINYINT(4);
     DECLARE P_TipoUsuario TINYINT(4);
@@ -372,11 +396,14 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`ConsecutivoProducto`, `Nombre_Producto`, `RutaImagen`, `Estado`, `Precio`, `Stock`, `TipoProducto`, `Descripcion`) VALUES
-(1, 'Mouse', 'dist\\img\\headset.jpg', 1, 12500.00, 25, 1, ''),
+(1, 'RAZER KRAKEN - PINK', 'dist\\img\\razer-kraken.png', 1, 12500.00, 25, 1, ''),
 (4, 'Silver', 'No aplica', 1, 29.99, 0, 2, '<li>Descuentos exclusivos: Los miembros de Razer Silver podrían recibir descuentos exclusivos en productos y accesorios de Razer</li>\r\n<li>Acceso anticipado a ventas y lanzamientos de productos: Los miembros de Razer Silver tendrían acceso anticipado a las ventas y lanzamientos de productos de Razer.</li>\r\n<li>Envío gratuito: Los miembros de Razer Silver podrían recibir envío gratuito en pedidos elegibles.</li>\r\n<li>Soporte técnico prioritario: Los miembros de Razer Silver tendrían acceso a soporte técnico prioritario para cualquier problema técnico que pudieran enfrentar con sus productos de Razer.</li>\r\n<li>Puntos de recompensa Silver: Los miembros de Razer Silver podrían acumular puntos de recompensa Silver al realizar compras que luego pueden canjear por descuentos en futuras compras de productos de Razer</li>'),
 (5, 'Gold', 'No aplica', 1, 39.99, 0, 2, '<li>Descuentos exclusivos: Los miembros de Razer Gold podrían recibir descuentos exclusivos en productos y accesorios de Razer.</li>\r\n<li>Acceso anticipado a ventas y lanzamientos de productos: Los miembros de Razer Gold tendrían acceso anticipado a las ventas y lanzamientos de productos de Razer.</li>\r\n<li>Envío a mitad de precio: Los miembros de Razer Gold podrían recibir envío con descuento en pedidos elegibles.</li>\r\n<li>Soporte técnico prioritario: Los miembros de Razer Gold tendrían acceso a soporte técnico prioritario para cualquier problema técnico que pudieran enfrentar con sus productos de Razer.</li>\r\n<li>Puntos de recompensa Gold: Los miembros de Razer Gold podrían acumular puntos de recompensa Gold al realizar compras que luego pueden canjear por descuentos en futuras compras de productos de Razer.</li>'),
 (6, 'Platinum', 'No aplica', 1, 59.99, 0, 2, '<li>Acceso exclusivo a productos de edición limitada: Los miembros del plan Platinum podrían tener la oportunidad de comprar productos de edición limitada de Razer que no están disponibles para el público en general.</li>\r\n<li>Atención al cliente VIP: Los miembros de Razer Platinum tendrían acceso a un equipo de soporte técnico altamente capacitado y experimentado, disponible las 24 horas del día, los 7 días de la semana, para resolver rápidamente cualquier problema o pregunta.</li>\r\n<li>Envío prioritario: Los miembros de Razer Platinum tendrían acceso a envío prioritario para sus pedidos, lo que les permitiría recibir sus productos más rápido que los clientes de otros planes de membresía.</li>\r\n<li>Experiencias de juego exclusivas: Los miembros de Razer Platinum podrían recibir invitaciones exclusivas para eventos y torneos de juegos en todo el mundo, así como acceso a demostraciones y versiones beta anticipadas de algunos juegos.</li>\r\n<li>Asesoramiento de productos personalizado: Los miembros de Razer Platinum tendrían acceso a un asesor de productos personalizado que les ayudaría a encontrar los productos y accesorios de Razer que mejor se adapten a sus necesidades y preferencias.</li>'),
-(7, 'Bronce', 'dist\\img\\', 1, 9.99, 0, 2, '<li>Descuentos en productos y accesorios de Razer: Los miembros de Razer Bronze podrían recibir descuentos exclusivos en productos y accesorios de Razer.</li>\r\n<li>Acceso anticipado a ventas y lanzamientos de productos: Los miembros de Razer Bronze tendrían acceso anticipado a las ventas y lanzamientos de productos de Razer.</li>\r\n<li>Soporte técnico básico: Los miembros de Razer Bronze tendrían acceso a soporte técnico básico para cualquier problema técnico que pudieran enfrentar con sus productos de Razer.</li>');
+(7, 'Bronce', 'dist\\img\\', 1, 9.99, 0, 2, '<li>Descuentos en productos y accesorios de Razer: Los miembros de Razer Bronze podrían recibir descuentos exclusivos en productos y accesorios de Razer.</li>\r\n<li>Acceso anticipado a ventas y lanzamientos de productos: Los miembros de Razer Bronze tendrían acceso anticipado a las ventas y lanzamientos de productos de Razer.</li>\r\n<li>Soporte técnico básico: Los miembros de Razer Bronze tendrían acceso a soporte técnico básico para cualquier problema técnico que pudieran enfrentar con sus productos de Razer.</li>'),
+(8, 'RAZER BLACKWIDOW V4 PRO', 'dist\\img\\razer-blackwidow-v4.png', 1, 120000.00, 45, 1, 'Es un teclado mecánico'),
+(9, 'RAZER BLACKWIDOW V3', 'dist\\img\\razer-blackwidow-v3.jpg', 1, 110000.00, 30, 1, 'Teclado mecánico'),
+(10, 'Razer Basilisk V3 Pro', 'dist\\img\\razer-basilisk-v3-pro.png', 1, 45000.00, 30, 1, 'Mouse 21 DPI');
 
 -- --------------------------------------------------------
 
@@ -531,7 +558,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `ConsecutivoCarrito` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `ConsecutivoCarrito` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `detallefactura`
@@ -549,7 +576,7 @@ ALTER TABLE `encabezado`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `ConsecutivoProducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ConsecutivoProducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `tipos_estado`

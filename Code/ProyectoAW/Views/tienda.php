@@ -1,5 +1,5 @@
 <?php 
-  include 'utilitarios.php';
+  include_once 'utilitarios.php';
   include_once '../Controllers/usuariosController.php';  
   include_once '../Controllers/productosController.php';
 ?>
@@ -40,7 +40,6 @@
                         </div>
                     </section>
                 </div>
-
             </div>
         </div>
     </section>
@@ -69,6 +68,40 @@
     <?php 
       MostrarJS();
     ?>
+    <script>
+    // función ASCII
+    function onlyNumberKey(evt) {
+
+        var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+            return false;
+        return true;
+    }
+
+    function ActualizarCarrito(ConsecutivoProducto, Stock) {
+
+        let CantidadProducto = $("#Cantidad-" + ConsecutivoProducto).val();
+
+        // Agregar validación de stock
+        if (CantidadProducto > Stock) {
+            alert("La cantidad supera el stock del producto");
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: '../Controllers/productosController.php',
+                data: {
+                    'ActualizarCarrito'   : 'ActualizarCarrito',
+                    'ConsecutivoProducto' : ConsecutivoProducto,
+                    'CantidadProducto'    : CantidadProducto
+                },
+                success: function(res) {
+                    alert("Carrito actualizado correctamente");
+                    window.location.href = "principal.php";
+                }
+            });
+        }
+    }
+    </script>
 </body>
 
 </html>

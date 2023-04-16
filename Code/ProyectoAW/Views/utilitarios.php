@@ -1,5 +1,6 @@
 <?php 
 include_once '../Controllers/loginController.php';
+include_once '../Controllers/carritoController.php';
 
 if(session_status()==PHP_SESSION_NONE) {
   session_start();
@@ -36,6 +37,8 @@ function MostrarPrincipal(){
   if($_SESSION["CorreoElectronico"] == null){
     header("Location: ../Views/login.php");
   }
+
+  MostrarCarritoTemporal();
     echo '
     <header id="hero-area6" data-stellar-background-ratio="0.5"> 
     <div class="video-container">
@@ -85,6 +88,8 @@ function MostrarPrincipal(){
                 <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>
                 <a class="dropdown-item" href="actualizarPerfil.php?q=' . $_SESSION["ConsecutivoUsuario"] .'"
                 style="padding-top:10px; padding-left:25px;">Editar Perfil</a>
+                <a class="dropdown-item" href="pagos.php" style="padding-top:10px; padding-left:25px;">Procesar pago   ¢'. number_format($_SESSION["MontoTemporal"],2) .'</a>
+                <a class="dropdown-item" href="facturas.php" style="padding-top:10px; padding-left:25px;">Facturas</a>
                 ';
                 }
                 if($_SESSION["TipoUsuario"] == 1){
@@ -190,7 +195,10 @@ function MostrarHeaderAdicionales(){
                 if($_SESSION["TipoUsuario"] == 2){
                 echo'
                 <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>
-                <a class="dropdown-item" href="actualizarPerfil.php" style="padding-top:10px; padding-left:25px;">Editar Perfil</a>
+                <a class="dropdown-item" href="actualizarPerfil.php?q=' . $_SESSION["ConsecutivoUsuario"] .'"
+                style="padding-top:10px; padding-left:25px;">Editar Perfil</a>
+                <a class="dropdown-item" href="pagos.php" style="padding-top:10px; padding-left:25px;">Procesar pago   ¢'. number_format($_SESSION["MontoTemporal"],2) .'</a>
+                <a class="dropdown-item" href="facturas.php" style="padding-top:10px; padding-left:25px;">Facturas</a>
                 ';
                 }
                 if($_SESSION["TipoUsuario"] == 1){
@@ -300,7 +308,10 @@ function MostrarTienda(){
                 if($_SESSION["TipoUsuario"] == 2){
                 echo'
                 <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>
-                <a class="dropdown-item" href="actualizarPerfil.php" style="padding-top:10px; padding-left:25px;">Editar Perfil</a>
+                <a class="dropdown-item" href="actualizarPerfil.php?q=' . $_SESSION["ConsecutivoUsuario"] .'"
+                style="padding-top:10px; padding-left:25px;">Editar Perfil</a>
+                <a class="dropdown-item" href="pagos.php" style="padding-top:10px; padding-left:25px;">Procesar pago   ¢'. number_format($_SESSION["MontoTemporal"],2) .'</a>
+                <a class="dropdown-item" href="facturas.php" style="padding-top:10px; padding-left:25px;">Facturas</a>
                 ';
                 }
                 if($_SESSION["TipoUsuario"] == 1){
@@ -409,7 +420,10 @@ function MostrarPoliticas(){
                 if($_SESSION["TipoUsuario"] == 2){
                 echo'
                 <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>
-                <a class="dropdown-item" href="actualizarPerfil.php" style="padding-top:10px; padding-left:25px;">Editar Perfil</a>
+                <a class="dropdown-item" href="actualizarPerfil.php?q=' . $_SESSION["ConsecutivoUsuario"] .'"
+                style="padding-top:10px; padding-left:25px;">Editar Perfil</a>
+                <a class="dropdown-item" href="pagos.php" style="padding-top:10px; padding-left:25px;">Procesar pago   ¢'. number_format($_SESSION["MontoTemporal"],2) .'</a>
+                <a class="dropdown-item" href="facturas.php" style="padding-top:10px; padding-left:25px;">Facturas</a>
                 ';
                 }
                 if($_SESSION["TipoUsuario"] == 1){
@@ -518,7 +532,10 @@ function MostrarTerminos(){
                 if($_SESSION["TipoUsuario"] == 2){
                 echo'
                 <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>
-                <a class="dropdown-item" href="actualizarPerfil.php" style="padding-top:10px; padding-left:25px;">Editar Perfil</a>
+                <a class="dropdown-item" href="actualizarPerfil.php?q=' . $_SESSION["ConsecutivoUsuario"] .'"
+                style="padding-top:10px; padding-left:25px;">Editar Perfil</a>
+                <a class="dropdown-item" href="pagos.php" style="padding-top:10px; padding-left:25px;">Procesar pago   ¢'. number_format($_SESSION["MontoTemporal"],2) .'</a>
+                <a class="dropdown-item" href="facturas.php" style="padding-top:10px; padding-left:25px;">Facturas</a>
                 ';
                 }
                 if($_SESSION["TipoUsuario"] == 1){
@@ -627,7 +644,10 @@ function MostrarSobreNosotros(){
                 if($_SESSION["TipoUsuario"] == 2){
                 echo'
                 <a class="dropdown-item" href="servicios.php" style="padding-top:10px; padding-left:25px;">Servicios</a>
-                <a class="dropdown-item" href="actualizarPerfil.php" style="padding-top:10px; padding-left:25px;">Editar Perfil</a>
+                <a class="dropdown-item" href="actualizarPerfil.php?q=' . $_SESSION["ConsecutivoUsuario"] .'"
+                style="padding-top:10px; padding-left:25px;">Editar Perfil</a>
+                <a class="dropdown-item" href="pagos.php" style="padding-top:10px; padding-left:25px;">Procesar pago   ¢'. number_format($_SESSION["MontoTemporal"],2) .'</a>
+                <a class="dropdown-item" href="facturas.php" style="padding-top:10px; padding-left:25px;">Facturas</a>
                 ';
                 }
                 if($_SESSION["TipoUsuario"] == 1){

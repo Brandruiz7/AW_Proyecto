@@ -1,5 +1,5 @@
 <?php 
-  include 'utilitarios.php';
+  include_once 'utilitarios.php';
   include_once '../Controllers/usuariosController.php';  
 ?>
 <!DOCTYPE html>

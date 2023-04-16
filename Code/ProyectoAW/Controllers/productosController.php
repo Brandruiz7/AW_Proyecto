@@ -150,28 +150,27 @@ function MostrarProductos(){
                     <div class="col-md-4 col-sm-6 col-12 pricing-table2">
                         <div>
                             <span class="info-box-icon">
-                                <img style="width:300px; height:300px;"src="'. $fila["RutaImagen"] .'" />           
+                                <img style="width:300px; height:300px;"src="'. $fila["RutaImagen"] .'" /> <br><br>          
                             </span>
                             <div class="info-box-content">
-                                <span class="info-box-text">'. $fila["Nombre_Producto"] .'   -   ₡'. number_format($fila["Precio"]) .'</span>
-                                <span class="progress-description"> Unidades: '. $fila["Stock"] .'</span>
-                                <div class="progress">
-                                    <div class="progress-bar" style="width: 100%;"></div>
-                                </div>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Cantidad" required id="Cantidad-'. $fila["ConsecutivoProducto"] . '">
-                                    <div class="input-group-append">
+                                <span class="info-box-text" style="font-size:25px;">'. $fila["Nombre_Producto"] .'   -   ₡'. number_format($fila["Precio"]) .'</span><br>
+                                <span class="progress-description"> Unidades: '. $fila["Stock"] .'</span><br><br>';
+                                
+                                if(session_status() != PHP_SESSION_NONE){
+                                echo'
+                                <div class="input-group mb-3" style="width:100%";>
+                                    <input style="margin-left:15px;" type="text" class="form-control" placeholder="Cantidad" onkeypress="return onlyNumberKey(event)" maxlength="2" required id="Cantidad-'. $fila["ConsecutivoProducto"] . '">
+                                    <div class="input-group-append" style="width:15%">
                                         <div class="input-group-text" onclick="ActualizarCarrito('. $fila["ConsecutivoProducto"] . ',' . $fila["Stock"] . ')">
-                                            <span style="font-size:12pt; font-weight:bold;"> + </span>
+                                            <span style="font-size:24px; font-weight:bold;"> + </span>
                                         </div>
                                     </div>
-                                </div>
+                                </div>';
+                                }
+                            echo'
                             </div>
                         </div>
-                    </div>
-                        
-                        
-                    ';
+                    </div>';
                 }
             } 
         }
@@ -212,8 +211,6 @@ function MostrarPlanes(){
     }
 
 }
-
-
 
 
 if(isset($_POST["ActualizarCarrito"])){

@@ -1,5 +1,5 @@
 <?php 
-include '../Controllers/usuariosController.php';
+include_once '../Controllers/usuariosController.php';
 ?>
 
 <!DOCTYPE html>
