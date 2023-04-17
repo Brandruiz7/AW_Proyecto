@@ -1,5 +1,8 @@
-# AmbienteWeb_Proyecto
+# Página web al estilo Razer
 
-El presente proyecto constara de la realización de una página web para una empresa ficticia, cuyo objetivo de esta permita la venta de un software especializado en diseño gráfico.
-En un mundo cada vez más digital, la necesidad de contar con diseños atractivos y efectivos es esencial para cualquier empresa u organización. Sin embargo, muchas veces los programas de diseño profesionales son costosos y requieren conocimientos técnicos avanzados.
-Es aquí donde entra en juego nuestro software de diseño gráfico. Ofrecemos una interfaz intuitiva y fácil de usar, que permite a los usuarios crear diseños de alta calidad sin deber tener conocimientos técnicos. Además, ofrecemos una amplia variedad de herramientas y recursos, incluyendo plantillas, iconos, fuentes y otros elementos con la finalidad de ayudar a los usuarios a crear diseños únicos y atractivos.
+
+Esta página web es una muestra de diseño al estilo Razer, una de las marcas líderes en el mercado de los videojuegos y los periféricos para PC. El sitio web cuenta con un diseño moderno y elegante, con una paleta de colores negra y verde vibrante que refleja la estética distintiva de la marca.
+
+El sitio web presenta una página de inicio impresionante que muestra los productos destacados de Razer, incluyendo laptops, teclados, ratones y auriculares para juegos. La navegación es intuitiva y fácil de usar, con menús claros y accesibles para los distintos productos y categorías.
+
+Además, el sitio web cuenta con una sección de blogs. También se incluyen páginas de soporte y asistencia técnica para ayudar a los clientes a resolver problemas o encontrar respuestas a preguntas frecuentes.
