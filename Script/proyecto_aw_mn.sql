@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3307
--- Tiempo de generación: 16-04-2023 a las 23:35:16
+-- Tiempo de generación: 17-04-2023 a las 14:37:22
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -558,7 +558,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `ConsecutivoCarrito` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ConsecutivoCarrito` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `detallefactura`
@@ -639,6 +639,18 @@ ALTER TABLE `producto`
 ALTER TABLE `usuario`
   ADD CONSTRAINT `fk_estado_usuario` FOREIGN KEY (`Estado`) REFERENCES `tipos_estado` (`TipoEstado`),
   ADD CONSTRAINT `fk_tipos_usuarios` FOREIGN KEY (`TipoUsuario`) REFERENCES `tipos_usuarios` (`TipoUsuario`);
+
+DELIMITER $$
+--
+-- Eventos
+--
+CREATE DEFINER=`root`@`localhost` EVENT `VaciarCarrito` ON SCHEDULE EVERY 3 DAY STARTS '2023-04-17 06:16:32' ON COMPLETION NOT PRESERVE ENABLE DO DELETE carrito
+FROM carrito
+JOIN usuario ON carrito.ConsecutivoUsuario = usuario.ConsecutivoUsuario
+WHERE carrito.FechaCarrito < DATE_SUB(NOW(), INTERVAL 3 DAY)
+AND usuario.Estado = 1$$
+
+DELIMITER ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
