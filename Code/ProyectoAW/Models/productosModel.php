@@ -23,6 +23,17 @@ function ActualizarCarritoModel($ConsecutivoProducto, $CantidadProducto){
     Close($instancia);
 }
 
+function ActualizarCarritoPlanModel($ConsecutivoProducto){
+    $instancia = Open();
+
+    $usuario   = $_SESSION["ConsecutivoUsuario"];   
+
+    $sentencia = "CALL ActualizarCarritoPlan($ConsecutivoProducto, $usuario);"; 
+    $instancia -> query($sentencia);
+
+    Close($instancia);
+}
+
 function InactivarProductoModel($consecutivo){
     $instancia  = Open();
     
@@ -71,6 +82,16 @@ function ConsultarTiposEstadoProductoModel(){
     $instancia = Open();
 
     $sentencia = "CALL ConsultarTiposEstado();"; 
+    $respuesta = $instancia -> query($sentencia);
+
+    Close($instancia);
+    return $respuesta;
+}
+
+function RegistrarProductosModel($NombreProducto,$Precio,$RutaImagen, $Stock,$TipoProducto,$Descripcion){
+    $instancia = Open();
+
+    $sentencia = "CALL RegistrarProductos('$NombreProducto',$Precio,'$RutaImagen', $Stock,$TipoProducto,'$Descripcion');"; 
     $respuesta = $instancia -> query($sentencia);
 
     Close($instancia);

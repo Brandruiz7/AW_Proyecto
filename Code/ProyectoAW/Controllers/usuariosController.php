@@ -281,4 +281,53 @@ function enviarCorreo($destinatario, $asunto, $cuerpo)
     $mail -> send();
 }
 
+/**
+ * Esta función se encarga de enviar el pdf a los clientes. Es una propiedad de phpMailer.
+ */
+function enviarPDF($destinatario, $asunto, $cuerpo, $contenido_adjunto)
+{
+    require '../PHPMailer/src/PHPMailer.php';
+    require '../PHPMailer/src/SMTP.php';
+
+    $mail = new PHPMailer();
+    $mail -> CharSet = 'UTF-8';
+
+    $mail -> IsSMTP();
+    $mail -> Host = 'smtp.office365.com'; // smtp.gmail.com     
+    $mail -> SMTPSecure = 'tls';
+    $mail -> Port = 587; // 465 // 25                               
+    $mail -> SMTPAuth = true;
+    $mail -> Username = 'RazerAmbienteWeb@outlook.com';               
+    $mail -> Password = 'fidelitas1';  
+    
+    $mail -> SetFrom('RazerAmbienteWeb@outlook.com', "Razer Team");
+    $mail -> Subject = $asunto;
+    $mail -> MsgHTML($cuerpo);   
+    $mail -> AddAddress($destinatario, 'UsuarioRazer');
+
+    // Agregar el archivo PDF como un adjunto
+    $mail -> addStringAttachment($contenido_adjunto, 'factura.pdf', 'base64', 'application/pdf');
+
+    $mail -> send();
+}
+
+function MostrarTestimonios(){
+    $res = ConsultarTestimoniosModel();
+
+    if($res -> num_rows > 0){
+        while($fila = mysqli_fetch_array($res)){
+            echo'
+                <div class="testimonial-item">
+                    <img src="'.$fila["Ruta"].'" alt="Client Testimonoal" />
+                    <div class="testimonial-text">
+                        '.$fila["Testimonio"].'
+                        <h3>'.$fila["Nombre"].'</h3>
+                        <span>'.$fila["Nombre_TipoCliente"].'</span>
+                    </div>
+                </div>  
+            ';
+        }
+    }
+}
+
 ?>

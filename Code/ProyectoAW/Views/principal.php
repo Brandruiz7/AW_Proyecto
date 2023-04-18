@@ -4,7 +4,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php 
+    <?php 
       MostrarHead();
    ?>
 
@@ -41,145 +41,87 @@
                 responsabilidad social, y ha lanzado varios programas para reducir su impacto ambiental y apoyar a
                 organizaciones benéficas en todo el mundo.
             </p>
-
-        </div>
         </div>
     </section>
     <!-- Services Section End -->
 
-
-
-    <!-- Team section Start -->
-    <section id="team" class="section" style="background-color: #000000;">
+    <!-- Blog Section -->
+    <section id="blog" class="section" style="background-color: #000000;">
+        <!-- Container Starts -->
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Nuestro equipo</h2>
-                <hr class="lines">
-                <p class="section-subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat,
-                    dignissimos! <br> Lorem ipsum dolor sit amet, consectetur.</p>
+                <h2 class="section-title">¿Por qué comprar en Razer.com?</h2>
+                <hr class="lines"><br><br>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-xs-12">
-                    <div class="single-team">
-                        <img src="dist/img/team/team1.jpg" alt="">
-                        <div class="team-details">
-                            <div class="team-inner">
-                                <h4 class="team-title">Jhon Doe</h4>
-                                <p>Chief Technical Officer</p>
-                                <ul class="social-list">
-                                    <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                </ul>
-                            </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 blog-item">
+                    <!-- Blog Item Starts -->
+                    <div class="blog-item-wrapper">
+                        <div class="blog-item-img">
+                            <a href="single-post.html">
+                                <img src="dist/img/blog/img1.jpg" alt="">
+                            </a>
+                        </div>
+                        <br>
+                        <div class="blog-item-text">
+                            <h3>
+                                <p style="text-align:center; font-size:30px; line-height:120%;">Sé el primero</p>
+                            </h3>
+                            <p style="color: #fff; text-align:center; line-height:30px;">
+                                Razer.com es el único lugar donde puedes comprar nuestro equipo Razer más esperado
+                                inmediatamente después de su lanzamiento.
+                            </p>
                         </div>
                     </div>
+                    <!-- Blog Item Wrapper Ends-->
                 </div>
-                <div class="col-lg-3 col-md-6 col-xs-12">
-                    <div class="single-team">
-                        <img src="dist/img/team/team2.jpg" alt="">
-                        <div class="team-details">
-                            <div class="team-inner">
-                                <h4 class="team-title">Paul Kowalsy</h4>
-                                <p>CEO & Co-Founder</p>
-                                <ul class="social-list">
-                                    <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                </ul>
-                            </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 blog-item">
+                    <!-- Blog Item Starts -->
+                    <div class="blog-item-wrapper">
+                        <div class="blog-item-img">
+                            <a href="single-post.html">
+                                <img src="dist/img/blog/img2.jpg" alt="">
+                            </a>
+                        </div>
+                        <br>
+                        <div class="blog-item-text">
+                            <h3>
+                                <p style="text-align:center; font-size:30px; line-height:120%;">La mayor gama de equipos Razer</p>
+                            </h3>
+                            <p style="color: #fff; text-align:center; line-height:30px;">
+                                Como tienda en línea oficial de Razer, tenemos una enorme colección de productos que no
+                                podrás encontrar en ningún otro lugar.
+                            </p>
                         </div>
                     </div>
+                    <!-- Blog Item Wrapper Ends-->
                 </div>
-                <div class="col-lg-3 col-md-6 col-xs-12">
-                    <div class="single-team">
-                        <img src="dist/img/team/team3.jpg" alt="">
-                        <div class="team-details">
-                            <div class="team-inner">
-                                <h4 class="team-title">Emilly Williams</h4>
-                                <p>Business Manager</p>
-                                <ul class="social-list">
-                                    <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                </ul>
-                            </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 blog-item">
+                    <!-- Blog Item Starts -->
+                    <div class="blog-item-wrapper">
+                        <div class="blog-item-img">
+                            <a href="single-post.html">
+                                <img src="dist/img/blog/img3.png" alt="">
+                            </a>
+                        </div>
+                        <br>
+                        <div class="blog-item-text">
+                            <h3>
+                                <p style="text-align:center; font-size:30px; line-height:120%;">Equipos y recompensas exclusivas Razer</p>
+                            </h3>
+                            <p style="color: #fff; text-align:center; line-height:30px;">
+                                Accede a equipos Razer de edición limitada que solo están disponibles en Razer.com.
+                            </p>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-xs-12">
-                    <div class="single-team">
-                        <img class="img-fulid" src="dist/img/team/team4.jpg" alt="">
-                        <div class="team-details">
-                            <div class="team-inner">
-                                <h4 class="team-title">Patricia Green</h4>
-                                <p>Graphic Designer</p>
-                                <ul class="social-list">
-                                    <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Blog Item Wrapper Ends-->
                 </div>
             </div>
         </div>
     </section>
-    <!-- Team section End -->
-
-    <!-- testimonial Section Start -->
-    <div id="testimonial" class="section" data-stellar-background-ratio="0.1">
-        <div class="container">
-            <div class="row justify-content-md-center">
-                <div class="col-md-12">
-                    <div class="touch-slider owl-carousel owl-theme">
-                        <div class="testimonial-item">
-                            <img src="dist/img/testimonial/customer1.jpg" alt="Client Testimonoal" />
-                            <div class="testimonial-text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. send do <br> adipisicing
-                                    ciusmod tempor incididunt ut labore et</p>
-                                <h3>Jone Deam</h3>
-                                <span>Fondor of Jalmori</span>
-                            </div>
-                        </div>
-                        <div class="testimonial-item">
-                            <img src="dist/img/testimonial/customer2.jpg" alt="Client Testimonoal" />
-                            <div class="testimonial-text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. send do <br> adipisicing
-                                    ciusmod tempor incididunt ut labore et</p>
-                                <h3>Oidila Matik</h3>
-                                <span>President Lexo Inc</span>
-                            </div>
-                        </div>
-                        <div class="testimonial-item">
-                            <img src="dist/img/testimonial/customer3.jpg" alt="Client Testimonoal" />
-                            <div class="testimonial-text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. send do <br> adipisicing
-                                    ciusmod tempor incididunt ut labore et</p>
-                                <h3>Alex Dattilo</h3>
-                                <span>CEO Optima Inc</span>
-                            </div>
-                        </div>
-                        <div class="testimonial-item">
-                            <img src="dist/img/testimonial/customer4.jpg" alt="Client Testimonoal" />
-                            <div class="testimonial-text">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. send do <br> adipisicing
-                                    ciusmod tempor incididunt ut labore et</p>
-                                <h3>Paul Kowalsy</h3>
-                                <span>CEO & Founder</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- testimonial Section Start -->
+    <!-- blog Section End -->
 
     <!-- Counter Section Start -->
     <div class="counters section" data-stellar-background-ratio="0.5">
@@ -234,98 +176,21 @@
     </div>
     <!-- Counter Section End -->
 
-    <!-- Blog Section -->
-    <section id="blog" class="section" style="background-color: #000000;">
-        <!-- Container Starts -->
+    <!-- testimonial Section Start -->
+    <div id="testimonial" class="section" data-stellar-background-ratio="0.1" style="background-color: black;">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Nuestro Blog</h2>
-                <hr class="lines">
-                <p class="section-subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat,
-                    dignissimos! <br> Lorem ipsum dolor sit amet, consectetur.</p>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 blog-item">
-                    <!-- Blog Item Starts -->
-                    <div class="blog-item-wrapper">
-                        <div class="blog-item-img">
-                            <a href="single-post.html">
-                                <img src="dist/img/blog/img1.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="blog-item-text">
-                            <div class="meta-tags">
-                                <span class="date"><i class="lnr  lnr-clock"></i>2 Days Ago</span>
-                                <span class="comments"><a href="#"><i class="lnr lnr-bubble"></i> 24 Comments</a></span>
-                            </div>
-                            <h3>
-                                <a href="single-post.html">How often should you tweet?</a>
-                            </h3>
-                            <p style="color: #fff;">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua...
-                            </p>
-
-                        </div>
+            <div class="row justify-content-md-center">
+                <div class="col-md-12">
+                    <div class="touch-slider owl-carousel owl-theme">
+                        <?php
+                            MostrarTestimonios();
+                        ?>
                     </div>
-                    <!-- Blog Item Wrapper Ends-->
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 blog-item">
-                    <!-- Blog Item Starts -->
-                    <div class="blog-item-wrapper">
-                        <div class="blog-item-img">
-                            <a href="single-post.html">
-                                <img src="dist/img/blog/img2.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="blog-item-text">
-                            <div class="meta-tags">
-                                <span class="date"><i class="lnr  lnr-clock"></i>2 Days Ago</span>
-                                <span class="comments"><a href="#"><i class="lnr lnr-bubble"></i> 24 Comments</a></span>
-                            </div>
-                            <h3>
-                                <a href="single-post.html">Content is still king</a>
-                            </h3>
-                            <p style="color: #fff;">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua...
-                            </p>
-
-                        </div>
-                    </div>
-                    <!-- Blog Item Wrapper Ends-->
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 blog-item">
-                    <!-- Blog Item Starts -->
-                    <div class="blog-item-wrapper">
-                        <div class="blog-item-img">
-                            <a href="single-post.html">
-                                <img src="dist/img/blog/img3.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="blog-item-text">
-                            <div class="meta-tags">
-                                <span class="date"><i class="lnr  lnr-clock"></i>2 Days Ago</span>
-                                <span class="comments"><a href="#"><i class="lnr lnr-bubble"></i> 24 Comments</a></span>
-                            </div>
-                            <h3>
-                                <a href="single-post.html">Social media at work</a>
-                            </h3>
-                            <p style="color: #fff;">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua...
-                            </p>
-
-                        </div>
-                    </div>
-                    <!-- Blog Item Wrapper Ends-->
                 </div>
             </div>
         </div>
-    </section>
-    <!-- blog Section End -->
+    </div>
+    <!-- testimonial Section Start -->
 
     <!-- Contact Section Start and Footer-->
     <?php 
@@ -333,18 +198,6 @@
       MostrarFooter();
     ?>
     <!-- Footer Section End -->
-
-    <!-- Go To Top Link -->
-    <a href="#" class="back-to-top">
-        <i class="lnr lnr-arrow-up"></i>
-    </a>
-
-    <div id="loader">
-        <div class="spinner">
-            <div class="double-bounce1"></div>
-            <div class="double-bounce2"></div>
-        </div>
-    </div>
 
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <?php 

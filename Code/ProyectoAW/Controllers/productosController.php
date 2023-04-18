@@ -136,6 +136,26 @@ if(isset($_POST["btnActualizarProducto"])){
     }
 }
 
+if(isset($_POST["btnRegistrarProducto"])){
+
+    $Adjunto = "dist/img/" . $_FILES["RutaImagen"]["name"];
+    $NombreProducto         = $_POST["NombreProducto"];
+    $Precio                 = $_POST["CostoProducto"];
+    $RutaImagen             = addslashes("dist\img\\" . $_FILES["RutaImagen"]["name"]);
+    $Stock                  = $_POST["Stock"];
+    $TipoProducto           = $_POST["Perfil"];
+    $Descripcion            = $_POST["Descripcion"];
+    move_uploaded_file($_FILES["RutaImagen"]["tmp_name"], $Adjunto);
+
+    $res = RegistrarProductosModel($NombreProducto,$Precio,$RutaImagen, $Stock,$TipoProducto,$Descripcion);
+    
+    if($res == true){
+        header("Location: ../Views/mantenimientoProducto.php");
+    }
+}
+
+
+
 // Esta función se encargará de mostrar los productos que hay en la base
 function MostrarProductos(){
     $respuesta = ConsultarProductosModel();
@@ -193,14 +213,18 @@ function MostrarPlanes(){
                         <div class="pricing-table">
                             <div class="pricing-details">
                                 <h2>'. $fila["Nombre_Producto"] .'</h2>
-                                <span>$'. $fila["Precio"] .'</span>
+                                <span>₡'. number_format($fila["Precio"]) .'</span>
                                 <ul style="text-align:justify;">
                                 '. $fila["Descripcion"] .'
                                 </ul>
-                            </div>
-                            <div class="plan-button">
-                                <a href="#" class="btn btn-common">Comprar</a>
-                            </div>
+                            </div>';
+                            if(session_status() != PHP_SESSION_NONE){
+                                echo'
+                                <div onclick="ActualizarCarritoPlan('. $fila["ConsecutivoProducto"] . ')">
+                                    <span class="btn btn-common" style="font-size:12px; font-weight:bold;"> Comprar</span>
+                                </div>';
+                            }
+                            echo'    
                         </div>
                     </div>           
                     ';
@@ -219,6 +243,13 @@ if(isset($_POST["ActualizarCarrito"])){
     $CantidadProducto       =   $_POST["CantidadProducto"];
 
     ActualizarCarritoModel($ConsecutivoProducto,$CantidadProducto);
+}
+
+if(isset($_POST["ActualizarCarritoPlan"])){
+
+    $ConsecutivoProducto    =   $_POST["ConsecutivoProducto"];
+
+    ActualizarCarritoPlanModel($ConsecutivoProducto);
 }
 
 // Permite inactivar un registro mientras se presione el btnInactivar

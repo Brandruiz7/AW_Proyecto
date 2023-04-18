@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3307
--- Tiempo de generación: 17-04-2023 a las 14:37:22
+-- Tiempo de generación: 18-04-2023 a las 21:05:18
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -50,6 +50,13 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarCarrito` (IN `pConsecutiv
 		END IF;
     
     END IF;
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarCarritoPlan` (IN `pConsecutivoProducto` BIGINT(20), IN `pConsecutivoUsuario` BIGINT(20))   BEGIN
+
+ 	INSERT INTO carrito(ConsecutivoProducto,ConsecutivoUsuario,Cantidad,FechaCarrito)
+    VALUES(pConsecutivoProducto,pConsecutivoUsuario,1, NOW());
 
 END$$
 
@@ -142,6 +149,17 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarProductos` ()   BEGIN
         Descripcion
      FROM
      	Producto;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarTestimonios` ()   BEGIN
+	SELECT
+    	ConsecutivoTestimonio,
+        Nombre,
+        Nombre_TipoCliente,
+        Testimonio,
+        Ruta
+    FROM
+    	TESTIMONIOS;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ConsultarTiposEstado` ()   BEGIN
@@ -300,6 +318,33 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `MostrarCarritoTotal` (IN `pConsecut
 
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistrarProductos` (IN `pNombreProducto` VARCHAR(100), IN `pPrecio` DECIMAL(8,2), IN `pRutaImagen` VARCHAR(500), IN `pStock` INT(11), IN `pTipoProducto` TINYINT(4), IN `pDescripcion` VARCHAR(400))   BEGIN
+	DECLARE P_Estado TINYINT(4);
+    DECLARE P_ConsecutivoProducto BIGINT(20);
+    
+    SET P_ConsecutivoProducto = (SELECT IFNULL(MAX(ConsecutivoProducto) ,0) +1 FROM PRODUCTO);
+    SET P_Estado = 1;
+    
+    INSERT INTO PRODUCTO(
+    	ConsecutivoProducto,
+        Nombre_Producto,
+        RutaImagen,
+    	Estado,
+        Precio,
+    	Stock,
+    	TipoProducto,
+    	Descripcion)
+   	VALUES(
+        P_ConsecutivoProducto,
+        pNombreProducto,
+        pRutaImagen,
+    	P_Estado,
+        pPrecio,
+        pStock,
+        pTipoProducto,
+        pDescripcion);
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistrarUsuarios` (IN `pNombre` VARCHAR(100), IN `pCedula` VARCHAR(20), IN `pCorreoElectronico` VARCHAR(70), IN `pTelefono` VARCHAR(8), IN `pContrasenna` VARCHAR(10))   BEGIN
 	DECLARE P_Estado TINYINT(4);
     DECLARE P_TipoUsuario TINYINT(4);
@@ -345,6 +390,17 @@ CREATE TABLE `carrito` (
   `FechaCarrito` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `carrito`
+--
+
+INSERT INTO `carrito` (`ConsecutivoCarrito`, `ConsecutivoProducto`, `ConsecutivoUsuario`, `Cantidad`, `FechaCarrito`) VALUES
+(11, 1, 1, 1, '2023-04-18 10:56:21'),
+(12, 4, 2, 1, '2023-04-18 10:57:19'),
+(13, 1, 2, 2, '2023-04-18 10:59:02'),
+(14, 4, 2, 1, '2023-04-18 10:59:49'),
+(15, 5, 2, 1, '2023-04-18 11:00:13');
+
 -- --------------------------------------------------------
 
 --
@@ -382,7 +438,7 @@ CREATE TABLE `encabezado` (
 
 CREATE TABLE `producto` (
   `ConsecutivoProducto` bigint(20) NOT NULL,
-  `Nombre_Producto` varchar(50) NOT NULL,
+  `Nombre_Producto` varchar(100) NOT NULL,
   `RutaImagen` varchar(500) NOT NULL,
   `Estado` tinyint(4) NOT NULL,
   `Precio` decimal(8,2) NOT NULL,
@@ -397,13 +453,40 @@ CREATE TABLE `producto` (
 
 INSERT INTO `producto` (`ConsecutivoProducto`, `Nombre_Producto`, `RutaImagen`, `Estado`, `Precio`, `Stock`, `TipoProducto`, `Descripcion`) VALUES
 (1, 'RAZER KRAKEN - PINK', 'dist\\img\\razer-kraken.png', 1, 12500.00, 25, 1, ''),
-(4, 'Silver', 'No aplica', 1, 29.99, 0, 2, '<li>Descuentos exclusivos: Los miembros de Razer Silver podrían recibir descuentos exclusivos en productos y accesorios de Razer</li>\r\n<li>Acceso anticipado a ventas y lanzamientos de productos: Los miembros de Razer Silver tendrían acceso anticipado a las ventas y lanzamientos de productos de Razer.</li>\r\n<li>Envío gratuito: Los miembros de Razer Silver podrían recibir envío gratuito en pedidos elegibles.</li>\r\n<li>Soporte técnico prioritario: Los miembros de Razer Silver tendrían acceso a soporte técnico prioritario para cualquier problema técnico que pudieran enfrentar con sus productos de Razer.</li>\r\n<li>Puntos de recompensa Silver: Los miembros de Razer Silver podrían acumular puntos de recompensa Silver al realizar compras que luego pueden canjear por descuentos en futuras compras de productos de Razer</li>'),
-(5, 'Gold', 'No aplica', 1, 39.99, 0, 2, '<li>Descuentos exclusivos: Los miembros de Razer Gold podrían recibir descuentos exclusivos en productos y accesorios de Razer.</li>\r\n<li>Acceso anticipado a ventas y lanzamientos de productos: Los miembros de Razer Gold tendrían acceso anticipado a las ventas y lanzamientos de productos de Razer.</li>\r\n<li>Envío a mitad de precio: Los miembros de Razer Gold podrían recibir envío con descuento en pedidos elegibles.</li>\r\n<li>Soporte técnico prioritario: Los miembros de Razer Gold tendrían acceso a soporte técnico prioritario para cualquier problema técnico que pudieran enfrentar con sus productos de Razer.</li>\r\n<li>Puntos de recompensa Gold: Los miembros de Razer Gold podrían acumular puntos de recompensa Gold al realizar compras que luego pueden canjear por descuentos en futuras compras de productos de Razer.</li>'),
-(6, 'Platinum', 'No aplica', 1, 59.99, 0, 2, '<li>Acceso exclusivo a productos de edición limitada: Los miembros del plan Platinum podrían tener la oportunidad de comprar productos de edición limitada de Razer que no están disponibles para el público en general.</li>\r\n<li>Atención al cliente VIP: Los miembros de Razer Platinum tendrían acceso a un equipo de soporte técnico altamente capacitado y experimentado, disponible las 24 horas del día, los 7 días de la semana, para resolver rápidamente cualquier problema o pregunta.</li>\r\n<li>Envío prioritario: Los miembros de Razer Platinum tendrían acceso a envío prioritario para sus pedidos, lo que les permitiría recibir sus productos más rápido que los clientes de otros planes de membresía.</li>\r\n<li>Experiencias de juego exclusivas: Los miembros de Razer Platinum podrían recibir invitaciones exclusivas para eventos y torneos de juegos en todo el mundo, así como acceso a demostraciones y versiones beta anticipadas de algunos juegos.</li>\r\n<li>Asesoramiento de productos personalizado: Los miembros de Razer Platinum tendrían acceso a un asesor de productos personalizado que les ayudaría a encontrar los productos y accesorios de Razer que mejor se adapten a sus necesidades y preferencias.</li>'),
-(7, 'Bronce', 'dist\\img\\', 1, 9.99, 0, 2, '<li>Descuentos en productos y accesorios de Razer: Los miembros de Razer Bronze podrían recibir descuentos exclusivos en productos y accesorios de Razer.</li>\r\n<li>Acceso anticipado a ventas y lanzamientos de productos: Los miembros de Razer Bronze tendrían acceso anticipado a las ventas y lanzamientos de productos de Razer.</li>\r\n<li>Soporte técnico básico: Los miembros de Razer Bronze tendrían acceso a soporte técnico básico para cualquier problema técnico que pudieran enfrentar con sus productos de Razer.</li>'),
+(4, 'Silver', 'No aplica', 1, 15000.00, 0, 2, '<li>Descuentos exclusivos: Los miembros de Razer Silver podrían recibir descuentos exclusivos en productos y accesorios de Razer</li>\r\n<li>Acceso anticipado a ventas y lanzamientos de productos: Los miembros de Razer Silver tendrían acceso anticipado a las ventas y lanzamientos de productos de Razer.</li>\r\n<li>Envío gratuito: Los miembros de Razer Silver podrían recibir envío gratuito en pedidos elegibles.</li>\r\n<li>Soporte técnico prioritario: Los miembros de Razer Silver tendrían acceso a soporte técnico prioritario para cualquier problema técnico que pudieran enfrentar con sus productos de Razer.</li>\r\n<li>Puntos de recompensa Silver: Los miembros de Razer Silver podrían acumular puntos de recompensa Silver al realizar compras que luego pueden canjear por descuentos en futuras compras de productos de Razer</li>'),
+(5, 'Gold', 'No aplica', 1, 22000.00, 0, 2, '<li>Descuentos exclusivos: Los miembros de Razer Gold podrían recibir descuentos exclusivos en productos y accesorios de Razer.</li>\r\n<li>Acceso anticipado a ventas y lanzamientos de productos: Los miembros de Razer Gold tendrían acceso anticipado a las ventas y lanzamientos de productos de Razer.</li>\r\n<li>Envío a mitad de precio: Los miembros de Razer Gold podrían recibir envío con descuento en pedidos elegibles.</li>\r\n<li>Soporte técnico prioritario: Los miembros de Razer Gold tendrían acceso a soporte técnico prioritario para cualquier problema técnico que pudieran enfrentar con sus productos de Razer.</li>\r\n<li>Puntos de recompensa Gold: Los miembros de Razer Gold podrían acumular puntos de recompensa Gold al realizar compras que luego pueden canjear por descuentos en futuras compras de productos de Razer.</li>'),
+(6, 'Platinum', 'No aplica', 1, 35000.00, 0, 2, '<li>Acceso exclusivo a productos de edición limitada: Los miembros del plan Platinum podrían tener la oportunidad de comprar productos de edición limitada de Razer que no están disponibles para el público en general.</li>\r\n<li>Atención al cliente VIP: Los miembros de Razer Platinum tendrían acceso a un equipo de soporte técnico altamente capacitado y experimentado, disponible las 24 horas del día, los 7 días de la semana, para resolver rápidamente cualquier problema o pregunta.</li>\r\n<li>Envío prioritario: Los miembros de Razer Platinum tendrían acceso a envío prioritario para sus pedidos, lo que les permitiría recibir sus productos más rápido que los clientes de otros planes de membresía.</li>\r\n<li>Experiencias de juego exclusivas: Los miembros de Razer Platinum podrían recibir invitaciones exclusivas para eventos y torneos de juegos en todo el mundo, así como acceso a demostraciones y versiones beta anticipadas de algunos juegos.</li>\r\n<li>Asesoramiento de productos personalizado: Los miembros de Razer Platinum tendrían acceso a un asesor de productos personalizado que les ayudaría a encontrar los productos y accesorios de Razer que mejor se adapten a sus necesidades y preferencias.</li>'),
+(7, 'Bronce', 'dist\\img\\', 1, 5000.00, 0, 2, '<li>Descuentos en productos y accesorios de Razer: Los miembros de Razer Bronze podrían recibir descuentos exclusivos en productos y accesorios de Razer.</li>\r\n<li>Acceso anticipado a ventas y lanzamientos de productos: Los miembros de Razer Bronze tendrían acceso anticipado a las ventas y lanzamientos de productos de Razer.</li>\r\n<li>Soporte técnico básico: Los miembros de Razer Bronze tendrían acceso a soporte técnico básico para cualquier problema técnico que pudieran enfrentar con sus productos de Razer.</li>'),
 (8, 'RAZER BLACKWIDOW V4 PRO', 'dist\\img\\razer-blackwidow-v4.png', 1, 120000.00, 45, 1, 'Es un teclado mecánico'),
 (9, 'RAZER BLACKWIDOW V3', 'dist\\img\\razer-blackwidow-v3.jpg', 1, 110000.00, 30, 1, 'Teclado mecánico'),
-(10, 'Razer Basilisk V3 Pro', 'dist\\img\\razer-basilisk-v3-pro.png', 1, 45000.00, 30, 1, 'Mouse 21 DPI');
+(10, 'Razer Basilisk V3 Pro', 'dist\\img\\razer-basilisk-v3-pro.png', 1, 45000.00, 30, 1, 'Mouse 21 DPI'),
+(12, 'Razer Enki Pro - Automobili Lamborghini Edition', 'dist\\img\\Razer_Enki_Pro_Automobili_Lamborghini_Edition.png', 1, 750000.00, 10, 1, 'Silla Profesional'),
+(13, 'Razer Wolverine V2 Pro - Black', 'dist\\img\\Razer_Wolverine_V2_Pro_-_Black.png', 1, 150000.00, 20, 1, 'Control ps4');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `testimonios`
+--
+
+CREATE TABLE `testimonios` (
+  `ConsecutivoTestimonio` bigint(20) NOT NULL,
+  `Nombre` varchar(100) NOT NULL,
+  `Nombre_TipoCliente` varchar(50) NOT NULL,
+  `Testimonio` varchar(300) NOT NULL,
+  `Ruta` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `testimonios`
+--
+
+INSERT INTO `testimonios` (`ConsecutivoTestimonio`, `Nombre`, `Nombre_TipoCliente`, `Testimonio`, `Ruta`) VALUES
+(1, 'Vince Zampella', 'CEO y cofundador de Respawn', '<p>Razer se ha convertido en la mejor opción de compra para organizar nuestros torneos presenciales. Definitivamente, los mejores.\r\n</p>', 'dist\\img\\testimonial\\Vince_Zampella.jpg'),
+(2, 'Lee Sang-Hyeok (Faker)', 'Jugador profesional en LOL - T1', '<p>En la liga LCK, siempre compiten los mejores y por supuesto que estará agradecida de competir de la mano de la mejor empresa en tecnología</p>', 'dist\\img\\testimonial\\Faker.jpg'),
+(3, 'David Gate Hernández', 'Cliente - Platinum', '<p>Fue una recomendación de un amigo comprar productos Razer y ahora estoy encantado de la calidad que ofrecen y necesito actualizar mi lugar de trabajo\r\n</p>', 'dist\\img\\testimonial\\customer1.jpg'),
+(4, 'Steve Brian Stone', 'Cliente', '<p>\r\nNo soy de escribir reseñas, pero la empresa se merece un reconocimiento por la calidad que ofrece en sus productos.\r\n</p>', 'dist\\img\\testimonial\\customer2.jpg'),
+(5, 'Andy Solís Solís', 'Cliente ', '<p>\r\nLa calidad se nota desde el momento en que abres la caja donde viene cada uno de sus productos, es impresionate.\r\n</p>', 'dist\\img\\testimonial\\customer4.jpg');
 
 -- --------------------------------------------------------
 
@@ -524,6 +607,12 @@ ALTER TABLE `producto`
   ADD KEY `fk_estado_producto` (`Estado`);
 
 --
+-- Indices de la tabla `testimonios`
+--
+ALTER TABLE `testimonios`
+  ADD PRIMARY KEY (`ConsecutivoTestimonio`);
+
+--
 -- Indices de la tabla `tipos_estado`
 --
 ALTER TABLE `tipos_estado`
@@ -558,7 +647,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `ConsecutivoCarrito` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ConsecutivoCarrito` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `detallefactura`
@@ -576,7 +665,13 @@ ALTER TABLE `encabezado`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `ConsecutivoProducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ConsecutivoProducto` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT de la tabla `testimonios`
+--
+ALTER TABLE `testimonios`
+  MODIFY `ConsecutivoTestimonio` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `tipos_estado`

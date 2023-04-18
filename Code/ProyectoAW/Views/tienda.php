@@ -23,11 +23,10 @@
             <div class="section-header">
                 <h2 class="section-title">ACÉRCATE AL MUNDO DE LOS PROFESIONALES</h2>
                 <hr class="lines">
-                <p class="section-subtitle">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat,
-                    dignissimos!
-                    <br>
-                    Lorem ipsum dolor sit amet, consectetur.
+                <p class="section-subtitle" style="text-align: justify;">
+                    ÚLTIMOS LANZAMIENTOS
+                    Echa un vistazo a nuestros últimos lanzamientos para conseguir las actualizaciones más recientes
+                    para tu equipo. RAZER RATONES, TECLADOS, AURICULARES, ORDENADORES PORTÁTILES Y MUCHO MÁS
                 </p>
                 <div class="content-wrapper">
                     <section class="content-header">
@@ -51,18 +50,6 @@
       MostrarFooter();
     ?>
     <!-- Footer Section End -->
-
-    <!-- Go To Top Link -->
-    <a href="#" class="back-to-top">
-        <i class="lnr lnr-arrow-up"></i>
-    </a>
-
-    <div id="loader">
-        <div class="spinner">
-            <div class="double-bounce1"></div>
-            <div class="double-bounce2"></div>
-        </div>
-    </div>
 
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <?php 
@@ -90,9 +77,9 @@
                 type: 'POST',
                 url: '../Controllers/productosController.php',
                 data: {
-                    'ActualizarCarrito'   : 'ActualizarCarrito',
-                    'ConsecutivoProducto' : ConsecutivoProducto,
-                    'CantidadProducto'    : CantidadProducto
+                    'ActualizarCarrito': 'ActualizarCarrito',
+                    'ConsecutivoProducto': ConsecutivoProducto,
+                    'CantidadProducto': CantidadProducto
                 },
                 success: function(res) {
                     alert("Carrito actualizado correctamente");

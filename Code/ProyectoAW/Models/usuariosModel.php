@@ -143,4 +143,14 @@ function RegistrarModel($nombre, $cedula, $correoElectronico, $telefono, $contra
     return $res;
 }
 
+function ConsultarTestimoniosModel(){
+    $instancia = Open();
+
+    $sentencia = "CALL ConsultarTestimonios();"; 
+    $respuesta = $instancia -> query($sentencia);
+
+    Close($instancia);
+    return $respuesta;
+}
+
 ?> 

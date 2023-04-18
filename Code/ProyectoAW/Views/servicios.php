@@ -1,5 +1,6 @@
 <?php 
   include_once 'utilitarios.php';
+  include_once '../Controllers/usuariosController.php'; 
   include_once '../Controllers/productosController.php';  
 ?>
 <!DOCTYPE html>
@@ -31,10 +32,9 @@
                     Use PIN dorados para comprar de nuestra lista de juegos en constante expansión en Gold Webshop.
                     Proteja su equipo con RazerCare y use Razer ID para acceder a los mejores servicios que Razer tiene
                     para ofrecer.
-                    <br>
+                    <br><br>
                     Desbloquea tu máximo potencial de juego con Razer Services ahora.
-                    <br>
-                    <br>
+                    <br><br>
                     Obtenga una ventaja competitiva y aproveche nuestro soporte, experiencia y comunidad con su Razer
                     ID. Integrado con los servicios y el software de Razer, puede obtener acceso a toneladas de
                     herramientas con su ID de Razer, incluida la compra del mejor equipo para jugadores en nuestro
@@ -51,8 +51,6 @@
             <div class="section-header">
                 <h2 class="section-title">Precios por suscripción</h2>
                 <hr class="lines">
-                <p class="section-subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat,
-                    dignissimos! <br> Lorem ipsum dolor sit amet, consectetur.</p>
             </div>
 
             <div class="row pricing-tables">
@@ -71,22 +69,30 @@
     ?>
     <!-- Footer Section End -->
 
-    <!-- Go To Top Link -->
-    <a href="#" class="back-to-top">
-        <i class="lnr lnr-arrow-up"></i>
-    </a>
-
-    <div id="loader">
-        <div class="spinner">
-            <div class="double-bounce1"></div>
-            <div class="double-bounce2"></div>
-        </div>
-    </div>
-
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <?php 
       MostrarJS();
     ?>
+
+<script>
+
+    function ActualizarCarritoPlan(ConsecutivoProducto) {
+
+        $.ajax({
+                type: 'POST',
+                url: '../Controllers/productosController.php',
+                data: {
+                    'ActualizarCarritoPlan': 'ActualizarCarritoPlan',
+                    'ConsecutivoProducto': ConsecutivoProducto,
+                },
+                success: function(res) {
+                    alert("Carrito actualizado correctamente");
+                    window.location.href = "principal.php";
+                }
+            });
+        
+    }
+    </script>
 </body>
 
 </html>
