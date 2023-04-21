@@ -12,7 +12,7 @@ include_once '../Controllers/usuariosController.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <link rel="stylesheet" href="dist/css/login.css" />
     <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-
+    <link rel="icon" type="image/x-icon" href="dist/img/logo-nav.png">
     <title>Iniciar Sesión</title>
 </head>
 
@@ -29,6 +29,10 @@ include_once '../Controllers/usuariosController.php';
             </div>
             <br />
             <button class="btn btn-primary btn-block" disable id="btnRecuperar" name="btnRecuperar">Recuperar</button>
+            <div class="signup">
+                ¿Recordaste la contraseña?
+                <a href="login.php">Regresa al Login</a>
+            </div>
         </form>
     </div>
 

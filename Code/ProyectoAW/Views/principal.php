@@ -176,22 +176,6 @@
     </div>
     <!-- Counter Section End -->
 
-    <!-- testimonial Section Start -->
-    <div id="testimonial" class="section" data-stellar-background-ratio="0.1" style="background-color: black;">
-        <div class="container">
-            <div class="row justify-content-md-center">
-                <div class="col-md-12">
-                    <div class="touch-slider owl-carousel owl-theme">
-                        <?php
-                            MostrarTestimonios();
-                        ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- testimonial Section Start -->
-
     <!-- Contact Section Start and Footer-->
     <?php 
       MostrarContactUs();

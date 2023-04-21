@@ -22,8 +22,7 @@
     <section id="services" class="section" style="background-color: #000000;">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s">Productos en el
-                    carrito</h2>
+                <h2 class="section-title wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s">Detalle de Factura</h2>
             </div>
             <div class="content-wrapper">
                 <section class="content-header">
@@ -31,34 +30,22 @@
                         <table class="table table-hover" style="color:white;">
                             <thead>
                                 <tr>
-                                    <th>Producto</th>
+                                    <th># N° Factura</th>
+                                    <th>Nombre de producto</th>
                                     <th>Cantidad</th>
-                                    <th>¢ Precio</th>
+                                    <th>Precio</th>
                                     <th>¢ SubTotal</th>
                                     <th>¢ Impuesto</th>
                                     <th>¢ Total</th>
+                                    <th>Fecha de compra</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                    MostrarCarritoTotal();
+                                    VerDetalleFacturas($_GET["q"]);
                                 ?>
                             </tbody>
                         </table>
-                        <br><br>
-                        <?php              
-                            if($_SESSION["MontoTemporal"] != 0){
-                                echo '
-                                <form action="facturaGenerada.php" method="POST">
-                                    <div class="section-header">
-                                        <input type="submit" value="Procesar Pago" class="btn2 btn-warning" id="btnProcesarPago"
-                                            name="btnProcesarPago" style="font-size: 18px;">
-                                        </input>
-                                    </div>
-                                </form>';
-                            }
-
-                        ?>
                     </div>
                 </section>
             </div>

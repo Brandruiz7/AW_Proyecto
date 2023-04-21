@@ -100,8 +100,6 @@
                 Al crear tu propia política de privacidad, asegúrate de personalizarla para que se ajuste a tus
                 prácticas comerciales específicas y cumpla con las leyes aplicables en tu país y región.
             </p>
-
-        </div>
         </div>
     </section>
     <!-- Services Section End -->

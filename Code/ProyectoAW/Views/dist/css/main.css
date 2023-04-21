@@ -172,6 +172,21 @@ a:not([href]):not([tabindex]):hover {
   display: inline-block;
 }
 
+.btn2 {
+  font-size: 18px;
+  padding: 11px 40px;
+  border-radius: 40px;
+  font-weight: 400;
+  color: #ffffff;
+  background: #ffc107;
+  text-transform: uppercase;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+  display: inline-block;
+}
+
 .btn:focus,
 .btn:active {
   box-shadow: none;

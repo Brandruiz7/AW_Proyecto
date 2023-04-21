@@ -2,6 +2,7 @@
   include_once 'utilitarios.php';
   include_once '../Controllers/usuariosController.php'; 
   include_once '../Controllers/carritoController.php';
+  include_once('../Models/pagosModel.php');
   ob_start(); 
 ?>
 <!DOCTYPE html>
@@ -458,6 +459,8 @@
 
     // Enviar el correo electrónico con el contenido del archivo PDF como el cuerpo
     enviarPDF($_SESSION["CorreoElectronico"],'Compra en línea', $cuerpo, $contenido_pdf);
+
+    ConfirmarPagoModel();
 
     header("Location: ../Views/principal.php");
 

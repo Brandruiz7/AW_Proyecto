@@ -12,8 +12,6 @@ include_once '../Controllers/loginController.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <link rel="stylesheet" href="dist/css/login.css" />
     <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-
-
     <link rel="icon" type="image/x-icon" href="dist/img/logo-nav.png">
 
     <title>Razer | Iniciar Sesión</title>

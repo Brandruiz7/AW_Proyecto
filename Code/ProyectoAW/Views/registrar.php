@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <link rel="stylesheet" href="dist/css/login.css" />
     <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-
+    <link rel="icon" type="image/x-icon" href="dist/img/logo-nav.png">
     <title>Razer | Registrarse</title>
 </head>
 
@@ -29,7 +29,7 @@
             </div>
             <div class="field">
                 <span class="fas fa-user"></span>
-                <input type="text" required placeholder="Nombre" disable id="Nombre" name="nombre">
+                <input type="text" required placeholder="Nombre" disable id="Nombre" name="Nombre">
             </div>
             <br>
             <div class="field">

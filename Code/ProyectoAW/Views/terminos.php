@@ -79,12 +79,10 @@
                 someten a la jurisdicción exclusiva de los tribunales de San José.
 
                 Si tiene alguna pregunta sobre estos términos y condiciones, por favor contáctenos en
-                pruebaPAW@outlook.com.
+                RazerAmbienteWeb@outlook.com.
 
                 Fecha de la última actualización: 23 de Marzo de 2023.
             </p>
-
-        </div>
         </div>
     </section>
     <!-- Services Section End -->

@@ -1,8 +1,7 @@
 <?php
     include_once 'conexionModel.php';
 
-function MostrarCarritoTemporalModel()
-{
+function MostrarCarritoTemporalModel(){
     $instancia = Open();
     $ConsecutivoUsuario = $_SESSION["ConsecutivoUsuario"];
 
@@ -13,8 +12,7 @@ function MostrarCarritoTemporalModel()
     return $res;
 }
 
-function MostrarCarritoTotalModel()
-{
+function MostrarCarritoTotalModel(){
     $instancia = Open();
     $ConsecutivoUsuario = $_SESSION["ConsecutivoUsuario"];
 

@@ -1,12 +1,13 @@
 <?php 
   include_once 'utilitarios.php';
-  include_once '../Controllers/usuariosController.php';  
+  include_once '../Controllers/usuariosController.php'; 
+  $datos = ConsultarUsuario($_GET["q"]);  
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php 
+    <?php 
       MostrarHead();
-   ?>
+    ?>
 
 <body>
 
@@ -27,10 +28,9 @@
             <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"
                 style="text-align: justify;">
                 <br>
-                1. Introducción
-                Bienvenido a Mate, una página web de venta de licencias de software de diseño. Al acceder y utilizar
-                esta página web, aceptas los términos y condiciones de uso que se describen a continuación. Por favor,
-                lee estos términos y condiciones detenidamente antes de utilizar la página web de Mate.
+                Esta página está designada para poder actualizar a los usuarios que tiene registrada la marca de la
+                serpiente de tres cabezas. Por favor asegúrese de realizar los cambios siguiendo la normativa interna de
+                la institución.
                 <br>
                 <br>
             <div class="content-wrapper">
@@ -43,14 +43,14 @@
                                 <form action="" method="post">
 
                                     <input type="hidden" id="Consecutivo" name="Consecutivo"
-                                        value="<?php echo $_SESSION["ConsecutivoUsuario"] ?>">
+                                        value="<?php echo $datos["ConsecutivoUsuario"] ?>">
 
                                     <div class="row">
                                         <div class="col-6">
                                             <input type="email" class="form-control" placeholder="Correo Electrónico"
                                                 required id="correoElectronico" name="correoElectronico"
                                                 onblur="validarCorreo();" readOnly="true"
-                                                value=<?php echo $_SESSION["CorreoElectronico"] ?>>
+                                                value=<?php echo $datos["CorreoElectronico"] ?>>
                                         </div>
                                         <div class="col-6">
                                             <input type="password" class="form-control" placeholder="Contraseña"
@@ -64,19 +64,18 @@
                                         <div class="col-4">
                                             <input type="text" class="form-control" placeholder="Identificación"
                                                 required id="Identificacion" name="Identificacion" id="Identificación"
-                                                onkeyUp="buscarNombreApi();" value="<?php echo $_SESSION["Cedula"] ?>">
+                                                onkeyUp="buscarNombreApi();" value="<?php echo $datos["Cedula"] ?>">
                                         </div>
                                         <div class="col-4">
                                             <input type="text" class="form-control" placeholder="Nombre" required
-                                                id="Nombre" name="Nombre" readOnly="true"
-                                                value="<?php echo $_SESSION["Nombre"] ?>">
+                                                id="Nombre" name="Nombre" readOnly="true">
                                         </div>
                                         <div class="col-4">
                                             <select class="form-control" placeholder="Perfil" required id="Perfil"
                                                 name="Perfil">
                                                 <?php
-                                                ConsultarTiposUsuario($_SESSION["TipoUsuario"]);
-                                                ?>
+                                                        ConsultarTiposUsuario($datos["TipoUsuario"]);
+                                                        ?>
                                             </select>
                                         </div>
                                     </div>
@@ -89,14 +88,10 @@
                             </div>
                         </div>
                     </div>
+                </section>
             </div>
             </p>
         </div>
-        </div>
-
-    </section>
-    </div>
-
     </section>
     <!-- Services Section End -->
 

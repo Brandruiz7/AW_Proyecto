@@ -20,7 +20,6 @@ function MostrarCarritoTotal(){
 
     if($res -> num_rows > 0){
         $totalizado = 0;
-
         while($fila = mysqli_fetch_array($res)){
             $totalizado = $totalizado + $fila["Total"];
 

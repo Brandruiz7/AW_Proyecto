@@ -28,10 +28,9 @@
             <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"
                 style="text-align: justify;">
                 <br>
-                1. Introducción
-                Bienvenido a Mate, una página web de venta de licencias de software de diseño. Al acceder y utilizar
-                esta página web, aceptas los términos y condiciones de uso que se describen a continuación. Por favor,
-                lee estos términos y condiciones detenidamente antes de utilizar la página web de Mate.
+                Esta página está designada para poder actualizar a los usuarios que tiene registrada la marca de la
+                serpiente de tres cabezas. Por favor asegúrese de realizar los cambios siguiendo los espacios que se le 
+                solicitan a continuación.
                 <br>
                 <br>
             <div class="content-wrapper">
@@ -41,12 +40,9 @@
                             <div class="card-body login-card-body">
                                 <h4 class="login-box-msg" style="color:#66b933; padding-bottom:50px;">Actualizar
                                     Información</h4>
-
                                 <form action="" method="post">
-
                                     <input type="hidden" id="Consecutivo" name="Consecutivo"
                                         value="<?php echo $datos["ConsecutivoUsuario"] ?>">
-
                                     <div class="row">
                                         <div class="col-6">
                                             <p>Su cédula es</p>
@@ -58,9 +54,7 @@
                                                 value="<?php echo $datos["Cedula"] ?>">
                                         </div>
                                     </div>
-
                                     <br>
-
                                     <div class="row">
                                         <div class="col-6">
                                             <p>Nombre registrado con la cédula</p>
@@ -71,9 +65,7 @@
                                                 style="text-align:center;" value="<?php echo $datos["Nombre"] ?>">
                                         </div>
                                     </div>
-
                                     <br>
-
                                     <div class="row">
                                         <div class="col-6">
                                             <p>Actualice su correo</p>
@@ -85,9 +77,7 @@
                                                 value=<?php echo $datos["CorreoElectronico"] ?>>
                                         </div>
                                     </div>
-
                                     <br>
-
                                     <div class="row">
                                         <div class="col-6">
                                             <p>Si desea cambiar su contraseña, escríbala en el siguiente espacio. Si no
@@ -98,13 +88,12 @@
                                                 id="contrasenna" name="contrasenna" style="text-align:center;">
                                         </div>
                                         <div class="col-3">
-                                            <input type="password" class="form-control" placeholder="Confirmar contraseña"
-                                                id="confirmarContrasenna" name="confirmarContrasenna" style="text-align:center;">
+                                            <input type="password" class="form-control"
+                                                placeholder="Confirmar contraseña" id="confirmarContrasenna"
+                                                name="confirmarContrasenna" style="text-align:center;">
                                         </div>
                                     </div>
-
                                     <br>
-
                                     <div class="row">
                                         <div class="col-6">
                                             <p>Actualice su número de teléfono</p>
@@ -115,24 +104,17 @@
                                                 value=<?php echo $datos["Telefono"] ?>>
                                         </div>
                                     </div>
-
                                     <br>
                                     <input type="submit" class="btn btn-primary btn-block" value="Actualizar"
                                         id="btnActualizarPerfil" name="btnActualizarPerfil">
-
                                 </form>
-
                             </div>
                         </div>
                     </div>
+                </section>
             </div>
             </p>
         </div>
-        </div>
-
-    </section>
-    </div>
-
     </section>
     <!-- Services Section End -->
 

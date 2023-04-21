@@ -176,7 +176,7 @@ if(isset($_POST['btnRegistrar'])){
      * posteriormente ser enviados por medio de parámetros a registrarModel que 
      * se encargará de hacer la interacción con la base de datos.
      */
-    $nombre             =   $_POST['nombre'];
+    $nombre             =   $_POST['Nombre'];
     $cedula             =   $_POST['Identificacion'];
     $correoElectronico  =   $_POST['correoElectronico'];
     $telefono           =   $_POST['telefono'];
@@ -226,7 +226,7 @@ if(isset($_POST['btnNotificar'])){
     $nombre              =  $_POST["nameC"];
     $correoElectronico   =  $_POST["correoC"];
     $mensaje             =  $_POST["message"];
-    $correoOficial       =  "RazerAmbienteWeb@outlook.com";
+    $correoOficial       =  "RazerAmbienteWeb2@outlook.com";
 
     // Para que el mensaje sea envíado con un formato específico se envía como HTML para una mejor comprensión
     $cuerpo = '<html><body>';
@@ -257,7 +257,7 @@ function enviarCorreo($destinatario, $asunto, $cuerpo)
     $mail -> SMTPSecure = 'tls';
     $mail -> Port = 587; // 465 // 25                               
     $mail -> SMTPAuth = true;
-    $mail -> Username = 'RazerAmbienteWeb@outlook.com';               
+    $mail -> Username = 'RazerAmbienteWeb2@outlook.com';               
     $mail -> Password = 'fidelitas1';  
     
     /**  
@@ -273,7 +273,7 @@ function enviarCorreo($destinatario, $asunto, $cuerpo)
         echo "Error al cargar el archivo.";
     }
     
-    $mail -> SetFrom('RazerAmbienteWeb@outlook.com', "Razer Team");
+    $mail -> SetFrom('RazerAmbienteWeb2@outlook.com', "Razer Team");
     $mail -> Subject = $asunto;
     $mail -> MsgHTML($cuerpo);   
     $mail -> AddAddress($destinatario, 'UsuarioRazer');
@@ -297,10 +297,10 @@ function enviarPDF($destinatario, $asunto, $cuerpo, $contenido_adjunto)
     $mail -> SMTPSecure = 'tls';
     $mail -> Port = 587; // 465 // 25                               
     $mail -> SMTPAuth = true;
-    $mail -> Username = 'RazerAmbienteWeb@outlook.com';               
+    $mail -> Username = 'RazerAmbienteWeb2@outlook.com';               
     $mail -> Password = 'fidelitas1';  
     
-    $mail -> SetFrom('RazerAmbienteWeb@outlook.com', "Razer Team");
+    $mail -> SetFrom('RazerAmbienteWeb2@outlook.com', "Razer Team");
     $mail -> Subject = $asunto;
     $mail -> MsgHTML($cuerpo);   
     $mail -> AddAddress($destinatario, 'UsuarioRazer');

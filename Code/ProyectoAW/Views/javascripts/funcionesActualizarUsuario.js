@@ -7,7 +7,7 @@ function buscarNombreApi(){
     $.ajax({
         type            : 'GET',
         datetype        : 'json',
-        url: 'https://apis.gometa.org/cedulas/' + identificacion,
+        url: 'https://api.hacienda.go.cr/fe/ae?identificacion=' + identificacion,
         success: function(res){
             $("#Nombre").val(res.nombre);
         }

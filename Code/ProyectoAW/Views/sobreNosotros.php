@@ -78,8 +78,6 @@
                 Razer Silver, los usuarios ahora disfrutan de más formas de ganar y canjear Silver en categorías como
                 hardware, juegos y entretenimiento de Razer.
             </p>
-
-        </div>
         </div>
     </section>
     <!-- Services Section End -->
@@ -88,25 +86,17 @@
     <section id="team" class="section" style="background-color: #000000;">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Nuestro equipo</h2>
+                <h2 class="section-title">EQUIPO DIRECTIVO</h2>
                 <hr class="lines">
-                <p class="section-subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat,
-                    dignissimos! <br> Lorem ipsum dolor sit amet, consectetur.</p>
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-xs-12">
                     <div class="single-team">
-                        <img src="dist/img/team/team1.jpg" alt="">
+                        <img src="dist/img/team/MIN_LIANG_TAN.jpg" alt="">
                         <div class="team-details">
                             <div class="team-inner">
-                                <h4 class="team-title">Jhon Doe</h4>
-                                <p>Chief Technical Officer</p>
-                                <ul class="social-list">
-                                    <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                </ul>
+                                <h4 class="team-title">MIN-LIANG TAN</h4>
+                                <p>Cofundador y CEO</p>
                             </div>
                         </div>
                     </div>
@@ -116,48 +106,30 @@
                         <img src="dist/img/team/team2.jpg" alt="">
                         <div class="team-details">
                             <div class="team-inner">
-                                <h4 class="team-title">Paul Kowalsy</h4>
-                                <p>CEO & Co-Founder</p>
-                                <ul class="social-list">
-                                    <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                </ul>
+                                <h4 class="team-title">LI MENG LEE</h4>
+                                <p>Director de Estrategia</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-xs-12">
                     <div class="single-team">
-                        <img src="dist/img/team/team3.jpg" alt="">
+                        <img src="dist/img/team/1617112914414.jpeg" alt="">
                         <div class="team-details">
                             <div class="team-inner">
-                                <h4 class="team-title">Emilly Williams</h4>
-                                <p>Business Manager</p>
-                                <ul class="social-list">
-                                    <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                </ul>
+                                <h4 class="team-title">WEI-PIN CHOO</h4>
+                                <p>Director del Departamento Legal y de Cumplimiento Normativo</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-xs-12">
                     <div class="single-team">
-                        <img class="img-fulid" src="dist/img/team/team4.jpg" alt="">
+                        <img class="img-fulid" src="dist/img/team/HRM-Razer-6.jpg" alt="">
                         <div class="team-details">
                             <div class="team-inner">
-                                <h4 class="team-title">Patricia Green</h4>
-                                <p>Graphic Designer</p>
-                                <ul class="social-list">
-                                    <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                </ul>
+                                <h4 class="team-title">PATRICIA LIU</h4>
+                                <p>Directora de Personal</p>
                             </div>
                         </div>
                     </div>

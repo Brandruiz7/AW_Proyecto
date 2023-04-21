@@ -63,7 +63,7 @@ function MostrarPrincipal(){
               <a class="nav-link page-scroll" href="#hero-area6">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link page-scroll" href="#blog">Blog</a>
+              <a class="nav-link page-scroll" href="#blog">Beneficios</a>
             </li>
             <li class="nav-item">
               <a class="nav-link page-scroll" href="#contact">Contáctenos</a>
@@ -72,7 +72,7 @@ function MostrarPrincipal(){
             <a class="nav-link page-scroll" href="tienda.php">Tienda</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link page-scroll" href="https://support.razer.com/?c=eu">Soporte</a>
+            <a class="nav-link page-scroll" href="soporte.php">Soporte</a>
             </li>
           </ul>
             <div class="dropdown show">
@@ -86,7 +86,7 @@ function MostrarPrincipal(){
                 <a class="dropdown-item" href="actualizarPerfil.php?q=' . $_SESSION["ConsecutivoUsuario"] .'"
                 style="padding-top:10px; padding-left:25px;">Editar Perfil</a>
                 <a class="dropdown-item" href="pagos.php" style="padding-top:10px; padding-left:25px;">Procesar pago   ¢'. number_format($_SESSION["MontoTemporal"],2) .'</a>
-                <a class="dropdown-item" href="facturas.php" style="padding-top:10px; padding-left:25px;">Facturas</a>
+                <a class="dropdown-item" href="verFacturas.php" style="padding-top:10px; padding-left:25px;">Facturas</a>
                 ';
                 }
                 if($_SESSION["TipoUsuario"] == 1){
@@ -127,7 +127,7 @@ function MostrarPrincipal(){
           <a class="page-scroll" href="tienda.php">Tienda</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link page-scroll" href="https://support.razer.com/?c=eu">Soporte</a>
+          <a class="nav-link page-scroll" href="soporte.php">Soporte</a>
           </li>
           <li class="nav-item">
             <a class="nav-link page-scroll" href="servicios.php">Servicios</a>
@@ -179,7 +179,7 @@ function MostrarHeaderAdicionales(){
               <a class="nav-link page-scroll" href="tienda.php">Tienda</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link page-scroll" href="https://support.razer.com/?c=eu">Soporte</a>
+            <a class="nav-link page-scroll" href="soporte.php">Soporte</a>
             </li>
           </ul>
             <div class="dropdown show">
@@ -193,7 +193,7 @@ function MostrarHeaderAdicionales(){
                 <a class="dropdown-item" href="actualizarPerfil.php?q=' . $_SESSION["ConsecutivoUsuario"] .'"
                 style="padding-top:10px; padding-left:25px;">Editar Perfil</a>
                 <a class="dropdown-item" href="pagos.php" style="padding-top:10px; padding-left:25px;">Procesar pago   ¢'. number_format($_SESSION["MontoTemporal"],2) .'</a>
-                <a class="dropdown-item" href="facturas.php" style="padding-top:10px; padding-left:25px;">Facturas</a>
+                <a class="dropdown-item" href="verFacturas.php" style="padding-top:10px; padding-left:25px;">Facturas</a>
                 ';
                 }
                 if($_SESSION["TipoUsuario"] == 1){
@@ -234,7 +234,7 @@ function MostrarHeaderAdicionales(){
             <a class="nav-link page-scroll" href="servicios.php">Productos</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link page-scroll" href="https://support.razer.com/?c=eu">Soporte</a>
+          <a class="nav-link page-scroll" href="soporte.php">Soporte</a>
           </li>
           <form action="" method="POST">
           <li class="nav-item d-none d-sm-inline-block">
@@ -293,7 +293,7 @@ function MostrarTienda(){
             <a class="nav-link page-scroll" href="tienda.php">Tienda</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link page-scroll" href="https://support.razer.com/?c=eu">Soporte</a>
+              <a class="nav-link page-scroll" href="soporte.php">Soporte</a>
             </li>
           </ul>
             <div class="dropdown show">
@@ -307,7 +307,7 @@ function MostrarTienda(){
                 <a class="dropdown-item" href="actualizarPerfil.php?q=' . $_SESSION["ConsecutivoUsuario"] .'"
                 style="padding-top:10px; padding-left:25px;">Editar Perfil</a>
                 <a class="dropdown-item" href="pagos.php" style="padding-top:10px; padding-left:25px;">Procesar pago   ¢'. number_format($_SESSION["MontoTemporal"],2) .'</a>
-                <a class="dropdown-item" href="facturas.php" style="padding-top:10px; padding-left:25px;">Facturas</a>
+                <a class="dropdown-item" href="verFacturas.php" style="padding-top:10px; padding-left:25px;">Facturas</a>
                 ';
                 }
                 if($_SESSION["TipoUsuario"] == 1){
@@ -348,7 +348,7 @@ function MostrarTienda(){
             <a class="nav-link page-scroll" href="servicios.php">Productos</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link page-scroll" href="https://support.razer.com/?c=eu">Soporte</a>
+          <a class="nav-link page-scroll" href="soporte.php">Soporte</a>
           </li>
           <form action="" method="POST">
           <li class="nav-item d-none d-sm-inline-block">
@@ -406,7 +406,7 @@ function MostrarPoliticas(){
               <a class="nav-link page-scroll" href="tienda.php">Tienda</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link page-scroll" href="https://support.razer.com/?c=eu">Soporte</a>
+            <a class="nav-link page-scroll" href="soporte.php">Soporte</a>
             </li>
           </ul>
             <div class="dropdown show">
@@ -420,7 +420,7 @@ function MostrarPoliticas(){
                 <a class="dropdown-item" href="actualizarPerfil.php?q=' . $_SESSION["ConsecutivoUsuario"] .'"
                 style="padding-top:10px; padding-left:25px;">Editar Perfil</a>
                 <a class="dropdown-item" href="pagos.php" style="padding-top:10px; padding-left:25px;">Procesar pago   ¢'. number_format($_SESSION["MontoTemporal"],2) .'</a>
-                <a class="dropdown-item" href="facturas.php" style="padding-top:10px; padding-left:25px;">Facturas</a>
+                <a class="dropdown-item" href="verFacturas.php" style="padding-top:10px; padding-left:25px;">Facturas</a>
                 ';
                 }
                 if($_SESSION["TipoUsuario"] == 1){
@@ -461,7 +461,7 @@ function MostrarPoliticas(){
             <a class="nav-link page-scroll" href="servicios.php">Productos</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link page-scroll" href="https://support.razer.com/?c=eu">Soporte</a>
+          <a class="nav-link page-scroll" href="soporte.php">Soporte</a>
           </li>
           <form action="" method="POST">
           <li class="nav-item d-none d-sm-inline-block">
@@ -519,7 +519,7 @@ function MostrarTerminos(){
               <a class="nav-link page-scroll" href="tienda.php">Tienda</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link page-scroll" href="https://support.razer.com/?c=eu">Soporte</a>
+            <a class="nav-link page-scroll" href="soporte.php">Soporte</a>
             </li>
           </ul>
             <div class="dropdown show">
@@ -533,7 +533,7 @@ function MostrarTerminos(){
                 <a class="dropdown-item" href="actualizarPerfil.php?q=' . $_SESSION["ConsecutivoUsuario"] .'"
                 style="padding-top:10px; padding-left:25px;">Editar Perfil</a>
                 <a class="dropdown-item" href="pagos.php" style="padding-top:10px; padding-left:25px;">Procesar pago   ¢'. number_format($_SESSION["MontoTemporal"],2) .'</a>
-                <a class="dropdown-item" href="facturas.php" style="padding-top:10px; padding-left:25px;">Facturas</a>
+                <a class="dropdown-item" href="verFacturas.php" style="padding-top:10px; padding-left:25px;">Facturas</a>
                 ';
                 }
                 if($_SESSION["TipoUsuario"] == 1){
@@ -574,7 +574,7 @@ function MostrarTerminos(){
             <a class="nav-link page-scroll" href="servicios.php">Productos</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link page-scroll" href="https://support.razer.com/?c=eu">Soporte</a>
+          <a class="nav-link page-scroll" href="soporte.php">Soporte</a>
           </li>
           <form action="" method="POST">
           <li class="nav-item d-none d-sm-inline-block">
@@ -635,7 +635,7 @@ function MostrarSobreNosotros(){
               <a class="nav-link page-scroll" href="tienda.php">Tienda</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link page-scroll" href="https://support.razer.com/?c=eu">Soporte</a>
+            <a class="nav-link page-scroll" href="soporte.php">Soporte</a>
             </li>
           </ul>
             <div class="dropdown show">
@@ -649,7 +649,7 @@ function MostrarSobreNosotros(){
                 <a class="dropdown-item" href="actualizarPerfil.php?q=' . $_SESSION["ConsecutivoUsuario"] .'"
                 style="padding-top:10px; padding-left:25px;">Editar Perfil</a>
                 <a class="dropdown-item" href="pagos.php" style="padding-top:10px; padding-left:25px;">Procesar pago   ¢'. number_format($_SESSION["MontoTemporal"],2) .'</a>
-                <a class="dropdown-item" href="facturas.php" style="padding-top:10px; padding-left:25px;">Facturas</a>
+                <a class="dropdown-item" href="verFacturas.php" style="padding-top:10px; padding-left:25px;">Facturas</a>
                 ';
                 }
                 if($_SESSION["TipoUsuario"] == 1){
@@ -690,7 +690,7 @@ function MostrarSobreNosotros(){
             <a class="nav-link page-scroll" href="servicios.php">Productos</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link page-scroll" href="https://support.razer.com/?c=eu">Soporte</a>
+          <a class="nav-link page-scroll" href="soporte.php">Soporte</a>
           </li>
           <form action="" method="POST">
           <li class="nav-item d-none d-sm-inline-block">
@@ -730,7 +730,7 @@ function MostrarContactUs(){
               <div class="contact-address">
                 <p>San José, Costa Rica </p>
                 <p class="phone">Teléfono: <span>(+506 7215-3137)</span></p>
-                <p class="email">Correo electrónico: <span>(RazerAmbienteWeb@outlook.com)</span></p>
+                <p class="email">Correo electrónico: <span>(RazerAmbienteWeb2@outlook.com)</span></p>
               </div>
               <div class="social-icons">
                 <ul>

@@ -31,34 +31,20 @@
                         <table class="table table-hover" style="color:white;">
                             <thead>
                                 <tr>
-                                    <th>Producto</th>
-                                    <th>Cantidad</th>
-                                    <th>¢ Precio</th>
+                                    <th># N° Factura</th>
+                                    <th>Fecha de Compra</th>
                                     <th>¢ SubTotal</th>
                                     <th>¢ Impuesto</th>
                                     <th>¢ Total</th>
+                                    <th>Ver detalle</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                    MostrarCarritoTotal();
+                                    VerFacturas();
                                 ?>
                             </tbody>
                         </table>
-                        <br><br>
-                        <?php              
-                            if($_SESSION["MontoTemporal"] != 0){
-                                echo '
-                                <form action="facturaGenerada.php" method="POST">
-                                    <div class="section-header">
-                                        <input type="submit" value="Procesar Pago" class="btn2 btn-warning" id="btnProcesarPago"
-                                            name="btnProcesarPago" style="font-size: 18px;">
-                                        </input>
-                                    </div>
-                                </form>';
-                            }
-
-                        ?>
                     </div>
                 </section>
             </div>

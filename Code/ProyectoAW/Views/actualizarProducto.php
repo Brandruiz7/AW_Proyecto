@@ -28,10 +28,9 @@
             <p class="section-subtitle wow fadeIn" data-wow-duration="1000ms" data-wow-delay="0.3s"
                 style="text-align: justify;">
                 <br>
-                1. Introducción
-                Bienvenido a Mate, una página web de venta de licencias de software de diseño. Al acceder y utilizar
-                esta página web, aceptas los términos y condiciones de uso que se describen a continuación. Por favor,
-                lee estos términos y condiciones detenidamente antes de utilizar la página web de Mate.
+                Esta página está designada para poder actualizar a los productos que tiene registrada la marca de la
+                serpiente de tres cabezas. Por favor asegúrese de realizar los cambios siguiendo la normativa interna de
+                la institución.
                 <br>
                 <br>
             <div class="content-wrapper">
@@ -53,8 +52,8 @@
                                                 value=<?php echo $datos["Nombre_Producto"] ?>>
                                         </div>
                                         <div class="col-4">
-                                            <input type="text" class="form-control" placeholder="Precio"
-                                                id="Precio" name="Precio" value="<?php echo $datos["Precio"] ?>">
+                                            <input type="text" class="form-control" placeholder="Precio" id="Precio"
+                                                name="Precio" value="<?php echo $datos["Precio"] ?>">
                                         </div>
                                         <div class="col-4">
                                             <select class="form-control" placeholder="Estado" required id="Estado"
@@ -71,7 +70,8 @@
                                     <div class="row">
                                         <div class="col-4">
                                             <input type="file" class="form-control" placeholder="Ruta de Imagen"
-                                                id="RutaImagen" name="RutaImagen" value="<?php echo $datos["RutaImagen"] ?>">
+                                                id="RutaImagen" name="RutaImagen"
+                                                value="<?php echo $datos["RutaImagen"] ?>">
                                         </div>
                                         <div class="col-4">
                                             <input type="text" class="form-control" placeholder="Stock" required
@@ -95,14 +95,10 @@
                             </div>
                         </div>
                     </div>
+                </section>
             </div>
             </p>
         </div>
-        </div>
-
-    </section>
-    </div>
-
     </section>
     <!-- Services Section End -->
 

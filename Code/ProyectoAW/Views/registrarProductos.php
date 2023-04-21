@@ -39,7 +39,6 @@
                             <div class="card-body login-card-body">
                                 <h4 class="login-box-msg" style="color:#66b933; padding-bottom:50px;">Registro de
                                     información</h4>
-
                                 <form action="" method="post" enctype="multipart/form-data">
                                     <div class="row">
                                         <div class="col-6">
@@ -51,22 +50,18 @@
                                                 name="NombreProducto">
                                         </div>
                                     </div>
-
                                     <br>
-
                                     <div class="row">
                                         <div class="col-6">
                                             <p>Costo</p>
                                         </div>
                                         <div class="col-6">
                                             <input class="form-control" onkeypress="return onlyNumberKey(event)"
-                                                placeholder="Ingrese el costo del producto" required
-                                                id="CostoProducto" name="CostoProducto" style="text-align:center;">
+                                                placeholder="Ingrese el costo del producto" required id="CostoProducto"
+                                                name="CostoProducto" style="text-align:center;">
                                         </div>
                                     </div>
-
                                     <br>
-
                                     <div class="row">
                                         <div class="col-6">
                                             <p>Por favor ingrese una imagen del producto de ser necesario. Recuerde que
@@ -88,46 +83,40 @@
                                             </select>
                                         </div>
                                     </div>
-
                                     <br>
-
                                     <div class="row">
                                         <div class="col-6">
                                             <p>Ingrese la cantidad de producto que hay en inventario</p>
                                         </div>
                                         <div class="col-6">
-                                            <input onkeypress="return onlyNumberKey(event)" class="form-control" placeholder="Stock" required
-                                                id="Stock" name="Stock" style="text-align:center;">
-                                        </div> 
+                                            <input onkeypress="return onlyNumberKey(event)" class="form-control"
+                                                placeholder="Stock" required id="Stock" name="Stock"
+                                                style="text-align:center;">
+                                        </div>
                                     </div>
-
                                     <div class="row">
                                         <div class="col-6">
                                             <p>Agregue una descripción del producto o la información del plan</p>
                                         </div>
                                         <div class="col-6">
-                                            <input type="text" class="form-control" placeholder="Descripción del producto"
-                                                style="text-align:center;" required id="Descripcion"
-                                                name="Descripcion">
+                                            <input type="text" class="form-control"
+                                                placeholder="Descripción del producto" style="text-align:center;"
+                                                required id="Descripcion" name="Descripcion">
                                         </div>
                                     </div>
-
                                     <br>
                                     <input type="submit" class="btn btn-primary btn-block" value="Registrar Producto"
                                         id="btnRegistrarProducto" name="btnRegistrarProducto">
-
                                 </form>
 
                             </div>
                         </div>
                     </div>
+                </section>
             </div>
             </p>
         </div>
-        </div>
-
     </section>
-    </div>
 
     </section>
     <!-- Services Section End -->
@@ -144,7 +133,7 @@
       MostrarJS();
     ?>
 
-<script>
+    <script>
     // función ASCII
     function onlyNumberKey(evt) {
 
