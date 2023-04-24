@@ -2,6 +2,16 @@
 
 include_once 'conexionModel.php';
 
+
+/**
+ * Esta función se encarga de llamar la función de MySQL ConsultarProductos. Con ello
+ * se devuelven los datos todos los datos que están registrados en la tabla producto.
+ * 
+ * @return              $res                    Retorna los datos de la base MySQL.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
+ */
 function ConsultarProductosModel(){
     $instancia = Open();
 
@@ -12,6 +22,19 @@ function ConsultarProductosModel(){
     return $respuesta;
 }
 
+/**
+ * Esta función se encarga de llamar la función de MySQL ActualizarCarrito
+ * y se le envían los parámetros de ConsecutivoProducto y CantidadProducto
+ * para verificar si los datos se encuentran registrados en la base. Al finalizar se 
+ * cierra la instancia.
+ * 
+ * @param int           $ConsecutivoProducto    Almacena el consecutivo del producto.
+ * @param int           $CantidadProducto       Almacena la cantidad de producto.
+ * @return              $res                    Retorna los datos de la base MySQL.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
+ */
 function ActualizarCarritoModel($ConsecutivoProducto, $CantidadProducto){
     $instancia = Open();
 
@@ -23,6 +46,18 @@ function ActualizarCarritoModel($ConsecutivoProducto, $CantidadProducto){
     Close($instancia);
 }
 
+/**
+ * Esta función se encarga de llamar la función de MySQL ActualizarCarritoPlan
+ * y se le envían los parámetros de ConsecutivoProducto y el ConsecutivoUsuario 
+ * para verificar si los datos se encuentran registrados en la base. 
+ * Al finalizar se cierra la instancia.
+ * 
+ * @param int           $ConsecutivoProducto    Almacena el consecutivo del Producto.
+ * @return              $res                    Retorna los datos de la base MySQL.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
+ */
 function ActualizarCarritoPlanModel($ConsecutivoProducto){
     $instancia = Open();
 
@@ -34,10 +69,21 @@ function ActualizarCarritoPlanModel($ConsecutivoProducto){
     Close($instancia);
 }
 
-function InactivarProductoModel($consecutivo){
+/**
+ * Esta función se encarga de llamar la función de MySQL InactivarProducto
+ * y se le envían los parámetros de ConsecutivoProducto para verificar si los datos 
+ * se encuentran registrados en la base. Al finalizar se cierra la instancia.
+ * 
+ * @param string        $ConsecutivoProducto    Almacena el consecutivo del Producto.
+ * @return              $res                    Retorna los datos de la base MySQL.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
+ */
+function InactivarProductoModel($ConsecutivoProducto){
     $instancia  = Open();
     
-    $sentencia  = "CALL InactivarProducto('$consecutivo');";
+    $sentencia  = "CALL InactivarProducto('$ConsecutivoProducto');";
     echo          $sentencia;
     $res        = $instancia -> query($sentencia);
     
@@ -45,6 +91,16 @@ function InactivarProductoModel($consecutivo){
     return $res;
 }
 
+/**
+ * Esta función se encarga de llamar la función de MySQL ConsultarTiposProducto
+ * y con ello se devuelven los datos de la tabla tipos de producto y devuelve las
+ * coincidencias.
+ * 
+ * @return              $res                    Retorna los datos de la base MySQL.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
+ */
 function ConsultarTiposProductoModel(){
     $instancia = Open();
 
@@ -55,6 +111,23 @@ function ConsultarTiposProductoModel(){
     return $respuesta;
 }
 
+/**
+ * Esta función se encarga de llamar la función de MySQL ActualizarProducto
+ * y se le envían los parámetros para verificar si los datos se encuentran 
+ * registrados en la base. Al finalizar se cierra la instancia.
+ * 
+ * @param string        $NombreProducto         Almacena el nombre del producto.
+ * @param int           $Precio                 Almacena el precio dle producto.
+ * @param string        $RutaImagen             Almacena el almacena la ruta de imagen.
+ * @param int           $Stock                  Almacena el cantidad disponible.
+ * @param int           $ConsecutivoProducto    Almacena el consecutivo del producto.
+ * @param int           $TipoProducto           Almacena el consecutivo del tipo de producto.
+ * @param int           $Estado                 Almacena el consecutivo del estado.
+ * @return              $res                    Retorna los datos de la base MySQL.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
+ */
 function ActualizarProductoModel($NombreProducto,$Precio,$RutaImagen, $Stock,$ConsecutivoProducto, $TipoProducto,$Estado){
     $instancia = Open();
     
@@ -66,18 +139,36 @@ function ActualizarProductoModel($NombreProducto,$Precio,$RutaImagen, $Stock,$Co
     return $respuesta;
 }
 
-function ConsultarProductoModel($consecutivo)
-{   
+/**
+ * Esta función se encarga de llamar la función de MySQL ConsultarProducto
+ * y se le envía el parámetro de ConsecutivoProducto para verificar si los 
+ * datos se encuentran registrados en la base. Al finalizar se cierra la instancia.
+ * 
+ * @param string        $ConsecutivoProducto    Almacena el consecutivo del producto.
+ * @return              $res                    Retorna los datos de la base MySQL.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
+ */
+function ConsultarProductoModel($ConsecutivoProducto){   
     $instancia = Open();
 
-    // Usuario va en comillas por ser un varchar
-    $sentencia = "CALL ConsultarProducto($consecutivo);"; 
+    $sentencia = "CALL ConsultarProducto($ConsecutivoProducto);"; 
     $respuesta = $instancia -> query($sentencia);
 
     Close($instancia);
     return $respuesta;
 }
 
+/**
+ * Esta función se encarga de llamar la función de MySQL ConsultarTiposEstado. Con
+ * ello se devuelven los datos que tienen coincidencia en el carrito con el usuario.
+ * 
+ * @return              $res                    Retorna los datos de la base MySQL.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
+ */
 function ConsultarTiposEstadoProductoModel(){
     $instancia = Open();
 
@@ -88,6 +179,22 @@ function ConsultarTiposEstadoProductoModel(){
     return $respuesta;
 }
 
+/**
+ * Esta función se encarga de llamar la función de MySQL RegistrarProductos
+ * y se le envían los parámetros para verificar si los datos se encuentran 
+ * registrados en la base. Al finalizar se cierra la instancia.
+ * 
+ * @param string        $NombreProducto         Almacena el nombre del producto.
+ * @param int           $Precio                 Almacena el precio dle producto.
+ * @param string        $RutaImagen             Almacena el almacena la ruta de imagen.
+ * @param int           $Stock                  Almacena el cantidad disponible.
+ * @param int           $TipoProducto           Almacena el consecutivo del tipo de producto.
+ * @param string        $Descripcion            Almacena la descripción del producto.
+ * @return              $res                    Retorna los datos de la base MySQL.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
+ */
 function RegistrarProductosModel($NombreProducto,$Precio,$RutaImagen, $Stock,$TipoProducto,$Descripcion){
     $instancia = Open();
 

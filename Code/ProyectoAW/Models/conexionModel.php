@@ -4,6 +4,8 @@
  * Esta función se encarga de realizar una conexión con la base de datos MySQL
  * donde se envían los datos generales que permitan una conexión segura y directa.
  * 
+ * @return              $res                    Retorna los datos de la base MySQL.
+ * 
  * @author              Brandon Ruiz Miranda
  * @version             1.1
  */
@@ -20,6 +22,7 @@ function Open(){
  * Cerrar la instancia de la base
  * 
  * @param string        Recibe la instancia de la sesión activa.
+ * 
  * @author              Brandon Ruiz Miranda
  * @version             1.1
  */ 

@@ -8,8 +8,10 @@ include_once 'conexionModel.php';
  * verificar la sesión y retornar todos los usuarios que se encuentran en la
  * base de datos. Al finalizar se cierra la instancia.
  * 
- * Return:
- * $res                 Retorna los datos de la base MySQL.
+ * @return              $res                    Retorna los datos de la base MySQL.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
  */
 function ConsultarUsuariosModel()
 {   
@@ -24,16 +26,38 @@ function ConsultarUsuariosModel()
     return $respuesta;
 }
 
-function ConsultarUsuarioModel($consecutivo){
+/**
+ * Esta función se encarga de llamar la función de MySQL ConsultarUsuario
+ * y se le envía el parámetro de ConsecutivoUsuario para verificar si los
+ * datos se encuentran registrados en la base. 
+ * Al finalizar se cierra la instancia.
+ * 
+ * @param int           $ConsecutivoUsuario     Almacena el consecutivo del Usuario.
+ * @return              $res                    Retorna los datos de la base MySQL.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
+ */
+function ConsultarUsuarioModel($ConsecutivoUsuario){
     $instancia = Open();
 
-    $sentencia = "CALL ConsultarUsuario($consecutivo);"; 
+    $sentencia = "CALL ConsultarUsuario($ConsecutivoUsuario);"; 
     $respuesta = $instancia -> query($sentencia);
 
     Close($instancia);
     return $respuesta;
 }
 
+/**
+ * Esta función se encarga de llamar la función de MySQL ConsultarTiposUsuario
+ * para verificar si los datos se encuentran registrados en la base. 
+ * Al finalizar se cierra la instancia.
+ * 
+ * @return              $res                    Retorna los datos de la base MySQL.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
+ */
 function ConsultarTiposUsuarioModel(){
     $instancia = Open();
 
@@ -44,10 +68,26 @@ function ConsultarTiposUsuarioModel(){
     return $respuesta;
 }
 
-function ActualizarUsuarioModel($contrasenna,$cedula,$nombre,$perfil,$consecutivo){
+/**
+ * Esta función se encarga de llamar la función de MySQL ActualizarUsuario
+ * y se le envían los parámetros para verificar si los datos se encuentran 
+ * registrados en la base. 
+ * Al finalizar se cierra la instancia.
+ * 
+ * @param string        $contrasenna            Almacena la contraseña.
+ * @param int           $cedula                 Almacena la cédula del usuario.
+ * @param string        $nombre                 Almacena el nombre del usuario.
+ * @param int           $perfil                 Almacena el consecutivo del tipo de usuario.
+ * @param int           $ConsecutivoUsuario     Almacena el consecutivo del Usuario.
+ * @return              $res                    Retorna los datos de la base MySQL.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
+ */
+function ActualizarUsuarioModel($contrasenna,$cedula,$nombre,$perfil,$ConsecutivoUsuario){
     $instancia = Open();
     
-    $sentencia = "CALL ActualizarUsuario('$contrasenna','$cedula','$nombre',$perfil,$consecutivo);";
+    $sentencia = "CALL ActualizarUsuario('$contrasenna','$cedula','$nombre',$perfil,$ConsecutivoUsuario);";
     
     $respuesta = $instancia -> query($sentencia);
 
@@ -55,6 +95,21 @@ function ActualizarUsuarioModel($contrasenna,$cedula,$nombre,$perfil,$consecutiv
     return $respuesta;
 }
 
+/**
+ * Esta función se encarga de llamar la función de MySQL EditarPerfilUsuario
+ * y se le envían los parámetros para verificar si los datos se encuentran 
+ * registrados en la base. 
+ * Al finalizar se cierra la instancia.
+ * 
+ * @param string        $contrasenna            Almacena la contraseña.
+ * @param string        $correoElectronico      Almacena el correo electrónico del usuario.
+ * @param string        $Telefono               Almacena el número de teléfono del usuario.
+ * @param int           $ConsecutivoUsuario     Almacena el consecutivo del Usuario.
+ * @return              $res                    Retorna los datos de la base MySQL.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
+ */
 function EditarPerfilUsuarioModel($contrasenna,$correoElectronico,$Telefono,$consecutivo){
     $instancia = Open();
     
@@ -68,22 +123,21 @@ function EditarPerfilUsuarioModel($contrasenna,$correoElectronico,$Telefono,$con
 
 
 /**
- * Esta función se encarga de llamar la función de MySQL ActualizarDatos
- * y se le envía el parámetro de consecutivo. Con ello, el usuario que 
- * contiene el consecutivo enviado se actualiza de activo a inactivo.
+ * Esta función se encarga de llamar la función de MySQL ActualizarEstadoUsuario
+ * y se le envía el parámetro ConsecutivoUsuario para verificar si los datos se 
+ * encuentran registrados en la base y actualiza el esto del usuario.
  * Al finalizar se cierra la instancia.
  * 
- * Parámetro:
+ * @param int           $ConsecutivoUsuario     Almacena el consecutivo del Producto.
+ * @return              $res                    Retorna los datos de la base MySQL.
  * 
- * $consecutivo         Almacena el consecutivo del usuario.
- * 
- * Return:
- * $res                 Retorna los datos de la base MySQL.
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
  */
-function ActualizarEstadoUsuarioModel($consecutivo){
+function ActualizarEstadoUsuarioModel($ConsecutivoUsuario){
     $instancia  = Open();
     
-    $sentencia  = "CALL ActualizarEstadoUsuario('$consecutivo');";
+    $sentencia  = "CALL ActualizarEstadoUsuario('$ConsecutivoUsuario');";
     echo          $sentencia;
     $res        = $instancia -> query($sentencia);
     
@@ -93,16 +147,15 @@ function ActualizarEstadoUsuarioModel($consecutivo){
 
 /**
  * Esta función se encarga de llamar la función de MySQL ConsultarCorreo
- * y se le envía el parámetro de correoElectronico. Esta función se encarga de
- * enviar el correo y consultar en la base de datos si hay coincidencias.
+ * y se le envían los parámetros de correoElectronico para verificar si 
+ * los datos se encuentran registrados en la base. 
  * Al finalizar se cierra la instancia.
  * 
- * Parámetro:
+ * @param int           $correoElectronico      Almacena el correo electrónico del usuario.
+ * @return              $res                    Retorna los datos de la base MySQL.
  * 
- * $correoElectronico   Almacena el correo del usuario.
- * 
- * Return:
- * $res                 Retorna los datos de la base MySQL.
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
  */
 function ConsultarCorreoModel($correoElectronico){
 
@@ -122,16 +175,16 @@ function ConsultarCorreoModel($correoElectronico){
  * y se le envian varios parámetros para poder registrar un nuevo usuario en 
  * la base de datos. Una vez concluido, se cierra la instancia.
  * 
- * Parámetro:
  * 
- * $nombre              Almacena el nombre del usuario.
- * $cedula              Almacena la cédula del usuario.
- * $correoElectronico   Almacena el correo del usuario.
- * $telefono            Almacena el teléfono del usuario.
- * $contrasenna         Almacena la contrasena del usuario.
+ * @param  string       $nombre                 Almacena el nombre del usuario.
+ * @param  int          $cedula                 Almacena la cédula del usuario.
+ * @param  string       $correoElectronico      Almacena el correo del usuario.
+ * @param  string       $telefono               Almacena el teléfono del usuario.
+ * @param  string       $contrasenna            Almacena la contrasena del usuario.
+ * @return              $res                    Retorna los datos de la base MySQL.
  * 
- * Return:
- * $res                 Retorna los datos de la base MySQL.
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
  */
 function RegistrarModel($nombre, $cedula, $correoElectronico, $telefono, $contrasenna){
     $instancia  = Open();
@@ -143,6 +196,15 @@ function RegistrarModel($nombre, $cedula, $correoElectronico, $telefono, $contra
     return $res;
 }
 
+/**
+ * Esta función se encarga de llamar la función de MySQL ConsultarTestimonios. Con ello
+ * se devuelven los datos todos los datos que están registrados en la tabla testimonios.
+ * 
+ * @return              $res                    Retorna los datos de la base MySQL.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
+ */
 function ConsultarTestimoniosModel(){
     $instancia = Open();
 
