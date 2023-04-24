@@ -6,6 +6,9 @@
  * 
  * Si recibe un OK significa que hay coincidencia y se inactiva el 
  * botón btnRegistrar, caso contrario se activa.
+ * 
+ * @author        Brandon Ruiz Miranda
+ * @version       1.1
  */
 function validarCorreo(){
 

@@ -2,6 +2,9 @@
  * Esta función verifica si los campos de login.php están completos.
  * Primero se encarga de traer los datos de correoElectronico y 
  * contrasenna, si están completos habilita el botón btnIniciarSesion.
+ * 
+ * @author        Brandon Ruiz Miranda
+ * @version       1.1
  */
 function habilitarCampos(){
 

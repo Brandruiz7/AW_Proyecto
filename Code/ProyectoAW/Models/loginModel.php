@@ -8,13 +8,12 @@ include 'conexionModel.php';
  * si los datos se encuentran registrados en la base. Al finalizar se 
  * cierra la instancia.
  * 
- * Parámetros:
+ * @param string        $correoElectronico      Almacena el correo electrónico.
+ * @param string        $contrasenna            Almacena la contraseña.
+ * @return              $res                    Retorna los datos de la base MySQL.
  * 
- * $correoElectronico   Almacena el correo electrónico.
- * $contrasenna         Almacena la contraseña.
- * 
- * Return:
- * $res                 Retorna los datos de la base MySQL.
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
  */
 function iniciarSesionModel($correoElectronico,$contrasenna){
 
@@ -25,7 +24,7 @@ function iniciarSesionModel($correoElectronico,$contrasenna){
 
     Close($instancia);
     
-    return $res;  //Los datos de la persona 
+    return $res;
 
 }
 

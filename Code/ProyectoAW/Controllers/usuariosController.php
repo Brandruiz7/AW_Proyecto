@@ -282,7 +282,8 @@ function enviarCorreo($destinatario, $asunto, $cuerpo)
 }
 
 /**
- * Esta función se encarga de enviar el pdf a los clientes. Es una propiedad de phpMailer.
+ * Esta función se encarga de enviar el pdf a los clientes. Para ello, se utiliza una serie 
+ * de parámetros 
  */
 function enviarPDF($destinatario, $asunto, $cuerpo, $contenido_adjunto)
 {
@@ -311,6 +312,11 @@ function enviarPDF($destinatario, $asunto, $cuerpo, $contenido_adjunto)
     $mail -> send();
 }
 
+/**
+ * Esta función permite que en la página se carguen los testimonios
+ * de las personas. Estos están almacenados en la base de datos, lo que
+ * significa que pueden ser actualizados desde allí. **
+ */
 function MostrarTestimonios(){
     $res = ConsultarTestimoniosModel();
 

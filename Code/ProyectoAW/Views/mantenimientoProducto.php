@@ -1,12 +1,37 @@
 <?php 
+/**
+ * Explicación general de la vista:
+ * 
+ * mantenimientoProducto.php es una vista cuya idea es brindar un resumen general de los productos 
+ * y esta vista cuenta con lo siguiente:
+ * **
+ * **   - Nombre del producto.
+ * **   - Precio del producto.
+ * **   - Ruta de la imagen del producto.
+ * **   - Stock.
+ * **   - Estado.
+ * **   - Acciones (Actualizar | Eliminar).
+ * **
+ * Ahora, en el caso que la persona le dé clic al botón actualizar se enviará el consecutivo 
+ * del producto a la página actualizarProducto. También hay un modal que se activa cuando se da
+ * clic a eliminar, ese mismo almacenará el consecutivo y en caso de confirmar será enviado a 
+ * la base de datos para ser procesado y para manejar un orden en el proyecto se agrega un 
+ * "include_once" que apunta al del controlador productos respectivo que almacenará las 
+ * funciones que validan la información.
+ * 
+ * En el caso de utilitarios.php, almacenará código reutilizable.
+ * 
+ * @author          Brandon Ruiz Miranda
+ * @version         1.1
+ */
   include_once 'utilitarios.php';
   include_once '../Controllers/productosController.php';  
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php 
+    <?php 
       MostrarHead();
-   ?>
+    ?>
 
 <body>
 

@@ -1,6 +1,9 @@
 /**
  * Esta función se encarga de validar que los campos contrasenna y confirmarContrasenna
  * coincidan, si no coinciden se muestra un mensaje en pantalla.
+ * 
+ * @author          Brandon Ruiz Miranda
+ * @version         1.1
  */
 function validatePassword() {
 

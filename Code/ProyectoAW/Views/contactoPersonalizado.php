@@ -1,10 +1,29 @@
 <?php 
+/**
+ * Explicación general de la vista:
+ * 
+ * contactoPersonalizado.php es una vista cuya idea es brindar un resumen general del soporte y 
+ * esta vista cuenta con lo siguiente:
+ * **
+ * **   - Introducción breve del la página.
+ * **   - Un código QR que redirecciona al WhatsApp.
+ * **   - Un enlace de WhatsApp con el link del administrador
+ * **
+ * Ahora, en el caso que la persona le dé clic al enlace se mostrará una alerta de salida del 
+ * sitio y para manejar un orden en el proyecto se agrega un "include_once" que apunta al
+ * del controlador usuarios respectivo que almacenará las funciones que validan la información.
+ * 
+ * En el caso de utilitarios.php, almacenará código reutilizable.
+ * 
+ * @author          Brandon Ruiz Miranda
+ * @version         1.1
+ */
   include_once 'utilitarios.php';
   include_once '../Controllers/usuariosController.php';  
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php 
+    <?php 
       MostrarHead();
    ?>
 
@@ -48,11 +67,17 @@
                 Hamburgo y Shanghái. Razer tiene 19 oficinas en todo el mundo y es reconocida como la marca líder para
                 los jugadores en EE. UU., Europa y China.
                 <br><br>
+                Es por ello que la marca ofrece a sus clientes la oportunidad de obtener asistencia personalizada en
+                caso de encontrar un problema en nuestros equipos electrónicos o en la renumeración de las monedas que
+                maneje la marca RAZER en ese momento, entiéndase como (GOLD, PLATA, PLATINO) y cualquier otra añadida.
+                <br><br>
             <div class="section-header section-title wow fadeIn">
                 <img src="dist/img/asistencia.png" style="max-height: 200px; margin-bottom: 1rem;">
+                <br><br>
                 <p>
                     En caso de no poder escanear el código haga clic en Ir a WhatsApp
                 </p>
+                <br>
                 <a href="https://wa.link/52ipcu" class="btn btn-primary3" onclick=alerta(); style="width:20%;">
                     Ir a WhatsApp
                 </a>

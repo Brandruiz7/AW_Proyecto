@@ -69,10 +69,10 @@ function MostrarPrincipal(){
               <a class="nav-link page-scroll" href="#contact">Contáctenos</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link page-scroll" href="tienda.php">Tienda</a>
+              <a class="nav-link page-scroll" href="tienda.php">Tienda</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link page-scroll" href="soporte.php">Soporte</a>
+              <a class="nav-link page-scroll" href="soporte.php">Soporte</a>
             </li>
           </ul>
             <div class="dropdown show">

@@ -3,6 +3,9 @@
  * Para ello obtiene el valor que se encuentra en consecutivoUsuario,
  * y se envía a usuarioController solo cuando se presiona el botón 
  * btnInactivar, por medio del parámetro Consecutivo.
+ * 
+ * @author        Brandon Ruiz Miranda
+ * @version       1.1
  */
 function confirmarInactivacion() {
 

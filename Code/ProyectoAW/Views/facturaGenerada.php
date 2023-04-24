@@ -1,4 +1,25 @@
 <?php 
+/**
+ * Explicación general de la vista:
+ * 
+ * facturaGenerada.php es una vista cuya idea es funcionar como pivot para capturar la vista
+ * generada (ob_start();) y enviarla por correo al cliente.
+ * 
+ * Para ello, se incluyen los estilos que son necesarios para darle formato al PDF y al final 
+ * se captura los datos del body en ob_get_clean();, después se usa los parámetros de dompdf 
+ * para darle formato como el tamaño de hoja y demás. Después se recibe el dato del nombre
+ * en sesión para darle un estilo más personalizado, se crea un cuerpo del correo y se adjunta
+ * el archivo que contiene el html en formato PDF.
+ * 
+ * Ahora, para manejar un orden en el proyecto se agrega un "include_once" que apunta al
+ * del controlador usuarios y carrito respectivamente que almacenará las funciones que 
+ * validan la información. Además de incluye el model que almacena la función de pago.
+ * 
+ * En el caso de utilitarios.php, almacenará código reutilizable.
+ * 
+ * @author          Brandon Ruiz Miranda
+ * @version         1.1
+ */
   include_once 'utilitarios.php';
   include_once '../Controllers/usuariosController.php'; 
   include_once '../Controllers/carritoController.php';

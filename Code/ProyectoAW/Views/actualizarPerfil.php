@@ -1,13 +1,40 @@
 <?php 
+/**
+ * Explicación general de la vista:
+ * 
+ * actualizarPerfil.php es una vista especial que solo tiene acceso el cliente.
+ * La idea es brindar un resumen general de los datos y es por ello que tiene lo siguiente:
+ * **
+ * **   - Cédula.
+ * **   - Nombre completo registrado.
+ * **   - Correo electrónico.
+ * **   - Contraseña y confirmar contraseña.
+ * **   - Número de teléfono.
+ * **
+ * Ahora, para manejar un orden en el proyecto se agrega un "include_once"  que apunta al
+ * del controlador usuarios respectivo que almacenará las funciones que validan la información
+ * del usuario conectado y el tipo de usuario que es. También recibe los datos que se han modificado
+ * y los envía en POST cuando se da clic en el botón de actualizar.
+ * 
+ * Los datos que se muestran en la página se consultan en la base de datos y se almacena en un array 
+ * en la variable $datos, de esa manera se puede obtener la información del cliente y se distribuye 
+ * en los value de los respectivos input. Esto es gracias a la recuperación del consecutivo que ha 
+ * sido mandado de mantenimientoUsuario.php
+ * 
+ * En el caso de utilitarios.php, almacenará código reutilizable.
+ * 
+ * @author          Brandon Ruiz Miranda
+ * @version         1.4
+ */
   include_once 'utilitarios.php';
   include_once '../Controllers/usuariosController.php';  
   $datos = ConsultarUsuario($_GET["q"]); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php 
+    <?php 
       MostrarHead();
-   ?>
+    ?>
 
 <body>
 
@@ -74,7 +101,7 @@
                                             <input type="email" class="form-control" placeholder="Correo Electrónico"
                                                 required id="correoElectronico" name="correoElectronico"
                                                 style="text-align:center;" disabled
-                                                value=<?php echo $datos["CorreoElectronico"] ?>>
+                                                value="<?php echo $datos["CorreoElectronico"] ?>">
                                         </div>
                                     </div>
                                     <br>
@@ -101,7 +128,7 @@
                                         <div class="col-6">
                                             <input type="text" class="form-control" placeholder="Número telefónico"
                                                 required id="Telefono" name="Telefono" style="text-align:center;"
-                                                value=<?php echo $datos["Telefono"] ?>>
+                                                value="<?php echo $datos["Telefono"] ?>">
                                         </div>
                                     </div>
                                     <br>

@@ -1,4 +1,15 @@
 <?php 
+/**
+ * Explicación general de la vista:
+ * 
+ * Login.php se encargará de manejar el inicio de sesión de los usuarios. 
+ * 
+ * Para manejar un orden en el proyecto se agrega un "include_once"  que apunta al
+ * del controlador login respectivo que almacenará las funciones que validan la información.
+ * 
+ * @author          Brandon Ruiz Miranda
+ * @version         1.2
+ */
 include_once '../Controllers/loginController.php';
 ?>
 
@@ -21,7 +32,7 @@ include_once '../Controllers/loginController.php';
     <div class="container">
         <div class="text">Iniciar Sesión</div>
 
-        <!-- El form debe tener un action vacío y método de tipo POST -->
+        <!-- La función de JavaScript verifica ciertas condiciones y si se cumplen el botón Iniciar Sesión se activa-->
         <form action="" method="post">
             <div class="field">
                 <span class="fas fa-user"></span>

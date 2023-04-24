@@ -3,6 +3,9 @@
  * y enviarlo por medio de un Ajax para hacer una consulta a la base de
  * datos. Si el dato devuelve un OK significa que no hay coincidencias
  * y el botón btnRecuperar se inactiva, en caso contrario se activa.
+ * 
+ * @author          Brandon Ruiz Miranda
+ * @version         1.1
  */
 function ValidarCorreo()
 {

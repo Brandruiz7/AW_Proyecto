@@ -1,13 +1,40 @@
 <?php 
+/**
+ * Explicación general de la vista:
+ * 
+ * actualizarProducto.php es una vista especial que solo tiene acceso el administrador.
+ * La idea es brindar un resumen general de los datos y es por ello que tiene lo siguiente:
+ * **
+ * **   - Nombre del producto.
+ * **   - Nombre completo registrado.
+ * **   - Correo electrónico.
+ * **   - Contraseña y confirmar contraseña.
+ * **   - Número de teléfono.
+ * **
+ * Ahora, para manejar un orden en el proyecto se agrega un "include_once"  que apunta al
+ * del controlador productos respectivo que almacenará las funciones que validan la información
+ * del producto mostrado y el tipo de que es. También recibe los datos que se han modificado
+ * y los envía en POST cuando se da clic en el botón de actualizar.
+ * 
+ * Los datos que se muestran en la página se consultan en la base de datos y se almacena en un array 
+ * en la variable $datos, de esa manera se puede obtener la información del cliente y se distribuye 
+ * en los value de los respectivos input. Esto es gracias a la recuperación del consecutivo que ha 
+ * sido mandado de mantenimientoProducto.php
+ * 
+ * En el caso de utilitarios.php, almacenará código reutilizable.
+ * 
+ * @author          Brandon Ruiz Miranda
+ * @version         1.5
+ */
   include_once 'utilitarios.php';
   include_once '../Controllers/productosController.php';
   $datos = ConsultarProducto($_GET["q"]);
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php 
+    <?php 
       MostrarHead();
-   ?>
+    ?>
 
 <body>
 
@@ -39,17 +66,14 @@
                         <div class="card">
                             <div class="card-body login-card-body">
                                 <h4 class="login-box-msg" style="color:#66b933">Actualizar Información de Producto</h4>
-
                                 <form action="" method="post" enctype="multipart/form-data">
-
                                     <input type="hidden" id="ConsecutivoProducto" name="ConsecutivoProducto"
                                         value="<?php echo $datos["ConsecutivoProducto"] ?>">
-
                                     <div class="row">
                                         <div class="col-4">
                                             <input type="text" class="form-control" placeholder="Nombre del producto"
-                                                required id="NombreProducto" name="NombreProducto"
-                                                value=<?php echo $datos["Nombre_Producto"] ?>>
+                                               readonly required id="NombreProducto" name="NombreProducto"
+                                                value="<?php echo $datos["Nombre_Producto"] ?>">
                                         </div>
                                         <div class="col-4">
                                             <input type="text" class="form-control" placeholder="Precio" id="Precio"
@@ -64,9 +88,7 @@
                                             </select>
                                         </div>
                                     </div>
-
                                     <br>
-
                                     <div class="row">
                                         <div class="col-4">
                                             <input type="file" class="form-control" placeholder="Ruta de Imagen"
@@ -91,7 +113,6 @@
                                         id="btnActualizarProducto" name="btnActualizarProducto">
 
                                 </form>
-
                             </div>
                         </div>
                     </div>

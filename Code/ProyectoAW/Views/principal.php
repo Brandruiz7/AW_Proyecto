@@ -1,4 +1,25 @@
 <?php 
+/**
+ * Explicación general de la vista:
+ * 
+ * principal.php se encargará del primer contacto que tendrá el Cliente/Adminitrador.
+ * La idea es generar un impacto positivo y es por ello que tiene información como:
+ * **
+ * **   - Un video que muestra el logo de la empresa.
+ * **   - Breve reseña.
+ * **   - ¿Por qué deberían elegirnos?
+ * **   - Cantidad de compras u afiliaciones totales. (Contador)
+ * **
+ * Ahora, para manejar un orden en el proyecto se agrega un "include_once"  que apunta al
+ * del controlador usuarios respectivo que almacenará las funciones que validan la información
+ * del usuario conectado y el tipo de usuario que es. Además permite en la sección de contáctenos
+ * mandar un correo al administrador con un mensaje para que se pongan en contacto con el cliente.
+ * 
+ * En el caso de utilitarios.php, almacenará código reutilizable.
+ * 
+ * @author          Brandon Ruiz Miranda
+ * @version         3.3
+ */
   include_once 'utilitarios.php';
   include_once '../Controllers/usuariosController.php';  
 ?>
@@ -17,7 +38,7 @@
     <!-- Header Section End -->
 
 
-    <!-- Services Section Start -->
+    <!-- Reseña Section Start -->
     <section id="services" class="section" style="background-color: #000000;">
         <div class="container">
             <hr class="lines wow zoomIn" data-wow-delay="0.3s">
@@ -43,11 +64,10 @@
             </p>
         </div>
     </section>
-    <!-- Services Section End -->
+    <!-- Reseña Section End -->
 
-    <!-- Blog Section -->
+    <!-- ¿Por qué deberían elegirnos? Section -->
     <section id="blog" class="section" style="background-color: #000000;">
-        <!-- Container Starts -->
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">¿Por qué comprar en Razer.com?</h2>
@@ -55,7 +75,6 @@
             </div>
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 blog-item">
-                    <!-- Blog Item Starts -->
                     <div class="blog-item-wrapper">
                         <div class="blog-item-img">
                             <a href="single-post.html">
@@ -73,11 +92,9 @@
                             </p>
                         </div>
                     </div>
-                    <!-- Blog Item Wrapper Ends-->
                 </div>
 
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 blog-item">
-                    <!-- Blog Item Starts -->
                     <div class="blog-item-wrapper">
                         <div class="blog-item-img">
                             <a href="single-post.html">
@@ -95,11 +112,9 @@
                             </p>
                         </div>
                     </div>
-                    <!-- Blog Item Wrapper Ends-->
                 </div>
 
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 blog-item">
-                    <!-- Blog Item Starts -->
                     <div class="blog-item-wrapper">
                         <div class="blog-item-img">
                             <a href="single-post.html">
@@ -116,14 +131,13 @@
                             </p>
                         </div>
                     </div>
-                    <!-- Blog Item Wrapper Ends-->
                 </div>
             </div>
         </div>
     </section>
-    <!-- blog Section End -->
+    <!-- ¿Por qué deberían elegirnos? Section End -->
 
-    <!-- Counter Section Start -->
+    <!-- Contador Section -->
     <div class="counters section" data-stellar-background-ratio="0.5">
         <div class="container">
             <div class="row">
@@ -174,7 +188,7 @@
             </div>
         </div>
     </div>
-    <!-- Counter Section End -->
+    <!-- Contador Section -->
 
     <!-- Contact Section Start and Footer-->
     <?php 
