@@ -23,53 +23,6 @@ function ConsultarProductosModel(){
 }
 
 /**
- * Esta función se encarga de llamar la función de MySQL ActualizarCarrito
- * y se le envían los parámetros de ConsecutivoProducto y CantidadProducto
- * para verificar si los datos se encuentran registrados en la base. Al finalizar se 
- * cierra la instancia.
- * 
- * @param int           $ConsecutivoProducto    Almacena el consecutivo del producto.
- * @param int           $CantidadProducto       Almacena la cantidad de producto.
- * @return              $res                    Retorna los datos de la base MySQL.
- * 
- * @author              Brandon Ruiz Miranda
- * @version             1.1
- */
-function ActualizarCarritoModel($ConsecutivoProducto, $CantidadProducto){
-    $instancia = Open();
-
-    $usuario   = $_SESSION["ConsecutivoUsuario"];   
-
-    $sentencia = "CALL ActualizarCarrito($ConsecutivoProducto, $usuario , $CantidadProducto);"; 
-    $instancia -> query($sentencia);
-
-    Close($instancia);
-}
-
-/**
- * Esta función se encarga de llamar la función de MySQL ActualizarCarritoPlan
- * y se le envían los parámetros de ConsecutivoProducto y el ConsecutivoUsuario 
- * para verificar si los datos se encuentran registrados en la base. 
- * Al finalizar se cierra la instancia.
- * 
- * @param int           $ConsecutivoProducto    Almacena el consecutivo del Producto.
- * @return              $res                    Retorna los datos de la base MySQL.
- * 
- * @author              Brandon Ruiz Miranda
- * @version             1.1
- */
-function ActualizarCarritoPlanModel($ConsecutivoProducto){
-    $instancia = Open();
-
-    $usuario   = $_SESSION["ConsecutivoUsuario"];   
-
-    $sentencia = "CALL ActualizarCarritoPlan($ConsecutivoProducto, $usuario);"; 
-    $instancia -> query($sentencia);
-
-    Close($instancia);
-}
-
-/**
  * Esta función se encarga de llamar la función de MySQL InactivarProducto
  * y se le envían los parámetros de ConsecutivoProducto para verificar si los datos 
  * se encuentran registrados en la base. Al finalizar se cierra la instancia.

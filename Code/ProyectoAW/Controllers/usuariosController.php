@@ -1,29 +1,42 @@
 <?php
-
+/**
+ * Explicación general del controlador:
+ * 
+ * usuariosController.php es un controlador de las funciones de los usuarios que están registrados
+ * en la página. En él encontrará las funcionalidades como:
+ * *
+ * *    - Consultar todos los usuarios que hay en la tienda.
+ * *    - Consultar las características de un usuario en específico.
+ * *    - Consultar los tipos de usuarios que ofrece el administrador.
+ * *    - Consultar el estado de los usuarios para ver si están activos o inactivos.
+ * *    - CRUD de usuarios de la tienda.
+ * *    - Funciones que permiten enviar correos a los clientes.
+ * *
+ * Se utiliza include_once para mandar a llamar a las funciones del modelo correspondiente
+ * y la idea es que pueda ser utilizado solo si el usuario ha iniciado sesión.
+ * 
+ * @author          Brandon Ruiz Miranda
+ * @version         1.8
+ */
 include_once '../Models/usuariosModel.php';
 
 /**
- * Se encarga de consultar los usuarios que hay en la base de datos. La idea es
- * que por medio de consultarUsuariosModel, se haga la consulta en la base y 
- * devuelva las coincidencias que existan. Pero esto solo se podrá hacer si ya el usuario
- * se encuentra con la sesión iniciada, porque en el modelo se solicitan las varibles
- * de sesión que se encuentran en loginController.php
+ * Esta función se encarga de mandar una solicitud a la base de datos para conocer cuáles son los
+ * usuarios que están registrados. Si la solicitud devuelve más de cero filas significa que encontró
+ * coincidencias y es por ello que se almacenan en la variable $fila y se procesan los datos según
+ * sus nombre en la base de datos. Además dependiendo si es usuario es Administrador / Cliente o el 
+ * producto se encuentre activo o inactivo, puede ver un enlace de actualizar o eliminar. 
+ * 
+ * En el caso de que presione el botón de actualizar se activa una función que envía el consecutivo
+ * a la página actualizarUsuario.php, se recibe por medio de un script y se asigna.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.5
  */
 function consultarUsuarios(){
 
     $res = ConsultarUsuariosModel();
 
-    /**
-     * Funcionamiento del if:
-     * 
-     * Este if verifica si el resultado de la consulta anterior tuvo más de cero
-     * filas como respuesta. Si es correcto, entra al if y después a un while que devolverá
-     * todas las coincidencias de cada uno de los usuarios que se encuentran registrados en la
-     * base de datos y se imprimen en pantalla con un echo.
-     * 
-     * Si no retorna filas, significa que no hubo coincidencias y redirecciona se muestra el 
-     * mensaje por medio de un echo.
-     */
     if($res -> num_rows > 0){
         while($fila = mysqli_fetch_array($res)){
             echo    "<tr>";
@@ -32,23 +45,6 @@ function consultarUsuarios(){
             echo    "<td>" . $fila["Nombre"] .              "</td>";
             echo    "<td>" . $fila["NombreTipoUsuario"].    "</td>";
             echo    "<td>" . $fila["Estado"].               "</td>";
-            
-            /**
-             * Funcionamiento del IF:
-             * 
-             * Este if recibe la variable de sesión de usuario que ha iniciado sesión 
-             * y le muestra los datos según el tipo de usuario (Administrador o cliente). 
-             * Después se hace una validación, si el estado del usuario recuperado 
-             * anteriormente es Activo, entonce debe mostrar un echo que permita 
-             * actualizar y eliminar lógicamente un registro. En caso contrario solo actualizar.
-             * 
-             * Nota: ?q=" . $fila["ConsecutivoUsuario"] . " es para buscar el usuario con el 
-             * consecutivo sin cargar la página
-             * 
-             * Con el onclick='setConsecutivoUsuario(this.dataset.id) se envía el consecutivo
-             * por medio de la función que está en el sitio donde se llame el <script>
-             * 
-             */
             if($_SESSION["TipoUsuario"] == 1){
                 if($fila["Estado"] == "Activo"){
                     echo    "<td>
@@ -73,24 +69,43 @@ function consultarUsuarios(){
     }
 }
 
+/**
+ * Esta función se encarga de mandar una solicitud a la base de datos para conocer cuáles son los 
+ * datos del usuario que tiene el consecutivo que ha sido enviado por parámetro.
+ * 
+ * @return array                @res                    Devuelve los datos según el consecutivo del 
+ *                                                      usuario
+ * 
+ * @author                      Brandon Ruiz Miranda
+ * @version                     1.1
+ */
 function ConsultarUsuario($consecutivo){
     $res = ConsultarUsuarioModel($consecutivo);
     return mysqli_fetch_array($res);
 }
 
-function ConsultarTiposUsuario($tipoUsuario)
-{
+/**
+ * Esta función se encarga de mandar una solicitud a la base de datos para conocer cuáles son los
+ * tipos de usuario. Si la solicitud devuelve más de cero filas significa que encontró
+ * coincidencias y es por ello que se almacenan en la variable $fila y se procesan los datos según
+ * sus nombre en la base de datos.
+ * 
+ * Además, en el option se le agrega en value el consecutivo del tipo de usuario y se le muestra
+ * al usuario el nombre del tipo. De esta manera cuando se envía una solicitud el valor que se 
+ * obtiene es el consecutivo del producto. Se le agrega un selected para que cuando se abra el 
+ * desplegable seleccione de una vez el dato que coincide con el registrado.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
+ */
+function ConsultarTiposUsuario($tipoUsuario){
     $respuesta = ConsultarTiposUsuarioModel();
 
-    if($respuesta -> num_rows > 0)
-    {
-        while($fila = mysqli_fetch_array($respuesta))
-        {
+    if($respuesta -> num_rows > 0){
+        while($fila = mysqli_fetch_array($respuesta)){
             if($tipoUsuario == $fila["TipoUsuario"]){
-            // El primero es el código interno y el otro es lo que el usuario ve
             echo "<option selected value=" . $fila["TipoUsuario"] . ">" . $fila["NombreTipoUsuario"] . "</option>";
             }else{
-            // El primero es el código interno y el otro es lo que el usuario ve
             echo "<option value=" . $fila["TipoUsuario"] . ">" . $fila["NombreTipoUsuario"] . "</option>";                
             }
 
@@ -98,6 +113,14 @@ function ConsultarTiposUsuario($tipoUsuario)
     }
 }
 
+/**
+ * Este if - isset se encarga de mandar una solicitud a la base de datos para poder actualizar los datos
+ * del usuario. Por medio del método POST, se recolecta la información de los inputs correspondientes
+ * y se almacenan en variables locales.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
+ */
 if(isset($_POST["btnActualizar"])){
     $contrasenna    =   $_POST["contrasenna"];
     $cedula         =   $_POST["Identificacion"];
@@ -112,6 +135,14 @@ if(isset($_POST["btnActualizar"])){
     }
 }
 
+/**
+ * Este if - isset se encarga de mandar una solicitud a la base de datos para poder actualizar los datos
+ * del Estado. Por medio del método POST, se recolecta la información de los inputs correspondientes
+ * y se almacenan en variables locales.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
+ */
 if(isset($_POST["btnActualizarPerfil"])){
     $contrasenna        =   $_POST["contrasenna"];
     $correoElectronico  =   $_SESSION["CorreoElectronico"];
@@ -127,14 +158,16 @@ if(isset($_POST["btnActualizarPerfil"])){
 }
 
 /**
- * Permite inactivar un registro mientras se presione el botón btnInactivar. La idea
- * es que si se recibe un consecutivo entre al if y lo envíe por medio de parámetro en 
- * ActualizarEstadoUsuarioModel y el usuario se inactive lógicamente en la base de datos.
+ * Este if - isset se encarga de mandar una solicitud a la base de datos para inactivar 
+ * lógicamente un registro de la base de datos cuando se presiona el botón de 
+ * inactivar producto.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
  */
 if(isset($_POST["btnInactivar"])){
     
     if(isset($_POST["Consecutivo"])){
-
         $res = ActualizarEstadoUsuarioModel($_POST["Consecutivo"]);
         if($res){
             echo "El usuario se desactivó";
@@ -146,9 +179,12 @@ if(isset($_POST["btnInactivar"])){
 }
 
 /**
- * Se ejecuta cuando se envía la consulta por medio del Ajax en el Js funcionesRegistro.js
- * el dato viaja a la base de datos por medio de buscarUsuarioModel. Si devuelve filas
- * significa que el correo registrado ya tiene datos.
+ * Este if - isset se encarga de mandar una solicitud a la base de datos para inactivar 
+ * lógicamente un registro de la base de datos cuando se presiona el botón de 
+ * inactivar producto.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
  */
 if(isset($_POST["buscarUsuario"])){
 
@@ -163,19 +199,16 @@ if(isset($_POST["buscarUsuario"])){
 }
 
 /**
- * Se ejecuta cuando se presione el botón btnRegistrar, este if - isset se encarga de 
- * se enviar una solicitud a registrarModel. Si el registro develve un true, significa
- * que el registro del nuevo usuario se hizo sin problemas y se redireccion al usuario
- * a la página de login.php
+ * Este if - isset se encarga de mandar una solicitud a la base de datos para poder registrar los datos
+ * del usuario. Por medio del método POST, se recolecta la información de los inputs correspondientes
+ * y se almacenan en variables locales.
+ * 
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
  */
-
 if(isset($_POST['btnRegistrar'])){
 
-    /**
-     * Se almacenan los datos que se encuentran en la vista regitrar.php para 
-     * posteriormente ser enviados por medio de parámetros a registrarModel que 
-     * se encargará de hacer la interacción con la base de datos.
-     */
     $nombre             =   $_POST['Nombre'];
     $cedula             =   $_POST['Identificacion'];
     $correoElectronico  =   $_POST['correoElectronico'];
@@ -190,20 +223,31 @@ if(isset($_POST['btnRegistrar'])){
 }
 
 /**
- * Se activa cuando se presiona el botón btnRecuperar, este if - isset permite
- * que el cliente recupere la contraseña ya que es enviada por parámetro de 
- * $datosUsuario por correo al cliente que lo solicita. NO es lo correcto, ya que
- * hay que cumplir con una serie de requisitos previos en producción para hacerlo
- * de la mejor manera posible.
+ * Este if - isset se encarga de mandar una solicitud a la base de datos para poder consultar el correo
+ * del usuario. Por medio del método POST, se recolecta la información de los inputs correspondientes
+ * y se almacenan en variables locales.
+ * 
+ * Después genera un cuerpo de correo 
+ * 
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
  */
-if(isset($_POST["btnRecuperar"]))
-{
+if(isset($_POST["btnRecuperar"])){
     $correoElectronico  =   $_POST["correoElectronico"];
-    $res                =   BuscarUsuariosModel($correoElectronico);
+    $res                =   ConsultarCorreoModel($correoElectronico);
 
     if($res -> num_rows > 0){
         $datosUsuario = mysqli_fetch_array($res);
-        $cuerpo = "Su contraseña actual es: " . $datosUsuario["Contrasenna"];
+
+        $cuerpo = '<html><body>';
+        $cuerpo .= '<p>Se ha solicitado la recuperación de la contraseña</p>';
+        $cuerpo .= "Su contraseña actual es: " . $datosUsuario["Contrasenna"];
+        $cuerpo .= '<p>Gracias por confiar en nosotros</p>';
+        $cuerpo .= '<p>Si no recuerda haber realizado esta solicitud, por favor ponerse en contacto con servicio al cliente en cuanto pueda.</p>';
+        $cuerpo .= '<p>No responder el correo, este mensaje fue generado automáticamente por el sistema.</p>';
+        $cuerpo .= '</body></html>';
+
 
         enviarCorreo($correoElectronico, 'Recuperar Contraseña',$cuerpo);
         header("Location: ../Views/login.php");
@@ -211,24 +255,21 @@ if(isset($_POST["btnRecuperar"]))
 }
 
 /**
- * Se ejecuta cuando se presiona el botón btnNotificar, este se utiliza para enviar un mensaje de un 
- * usuario por medio del campo Contactenos que se encuentra en el Front-End.
+ * Este if - isset se encarga de mandar una solicitud a la base de datos para poder notificar a la
+ * empresa que se ha enviado un correo de parte del usuario. Para ello se coloca el correo de la empresa
+ * y se recuperan los datos por medio del método POST y se le envía un cuerpo de mensaje con un 
+ * encabezado por medio de una función.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
  */
 if(isset($_POST['btnNotificar'])){
 
-    /**
-     * Se traen los campos que se encuentran en la sección de contáctenos. Esos campos son: nombre de la
-     * persona que quiere ponerse en contacto con la empresa, el correo electrónico y el mensaje que 
-     * quiere enviar.
-     * 
-     * Después todos se almacena en una variable para posteriormente ser enviada al correo empresarial.
-     */
     $nombre              =  $_POST["nameC"];
     $correoElectronico   =  $_POST["correoC"];
     $mensaje             =  $_POST["message"];
     $correoOficial       =  "RazerAmbienteWeb2@outlook.com";
 
-    // Para que el mensaje sea envíado con un formato específico se envía como HTML para una mejor comprensión
     $cuerpo = '<html><body>';
     $cuerpo .= '<p>Estimado encargado,</p>';
     $cuerpo .= '<p>El cliente: ' . $nombre . ', con el correo: ' . $correoElectronico . ', te ha escrito el siguiente mensaje:</p>';
@@ -242,10 +283,14 @@ if(isset($_POST['btnNotificar'])){
 }
 
 /**
- * Esta función se encarga de enviar el correo a los clientes. Es una propiedad de phpMailer.
+ * Función que se encarga de enviar correo a la empresa o cuando el cliente necesita recuperar
+ * la contraseña utilizando la librería de PHPMailer. Hay una función adicional en el caso de que
+ * en un futuro se quiera agregar adjuntos para enviar al cliente.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
  */
-function enviarCorreo($destinatario, $asunto, $cuerpo)
-{
+function enviarCorreo($destinatario, $asunto, $cuerpo){
     require '../PHPMailer/src/PHPMailer.php';
     require '../PHPMailer/src/SMTP.php';
 
@@ -282,11 +327,13 @@ function enviarCorreo($destinatario, $asunto, $cuerpo)
 }
 
 /**
- * Esta función se encarga de enviar el pdf a los clientes. Para ello, se utiliza una serie 
- * de parámetros 
+ * Función que se encarga de enviar correo al cliente con la factura que ha sido generada
+ * la contraseña utilizando la librería de PHPMailer. También agregar el contenido del adjunto. 
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
  */
-function enviarPDF($destinatario, $asunto, $cuerpo, $contenido_adjunto)
-{
+function enviarPDF($destinatario, $asunto, $cuerpo, $contenido_adjunto){
     require '../PHPMailer/src/PHPMailer.php';
     require '../PHPMailer/src/SMTP.php';
 
@@ -306,16 +353,17 @@ function enviarPDF($destinatario, $asunto, $cuerpo, $contenido_adjunto)
     $mail -> MsgHTML($cuerpo);   
     $mail -> AddAddress($destinatario, 'UsuarioRazer');
 
-    // Agregar el archivo PDF como un adjunto
     $mail -> addStringAttachment($contenido_adjunto, 'factura.pdf', 'base64', 'application/pdf');
 
     $mail -> send();
 }
 
 /**
- * Esta función permite que en la página se carguen los testimonios
- * de las personas. Estos están almacenados en la base de datos, lo que
- * significa que pueden ser actualizados desde allí. **
+ * Esta función se encarga de mostrar los testimonios de los usuarios. Si obtiene coincidencias se 
+ * agregan a la variable $fila y se procesa el array según los nombres en la base de datos.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
  */
 function MostrarTestimonios(){
     $res = ConsultarTestimoniosModel();

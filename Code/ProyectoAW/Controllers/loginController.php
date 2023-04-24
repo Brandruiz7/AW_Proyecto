@@ -1,5 +1,19 @@
 <?php
-
+/**
+ * Explicación general del controlador:
+ * 
+ * loginController.php es un controlador de las funciones de inicio de sesión. 
+ * En él encontrará las funcionalidades como:
+ * *
+ * *    - Comprobar el inicio de sesión.
+ * *    - Cerrar sesión.
+ * *
+ * Se utiliza include_once para mandar a llamar a las funciones del modelo correspondiente
+ * y la idea es que pueda ser utilizado solo si el usuario ha iniciado sesión.
+ * 
+ * @author          Brandon Ruiz Miranda
+ * @version         1.1
+ */
 include '../Models/loginModel.php';
 
 if(session_status()==PHP_SESSION_NONE) {
@@ -7,33 +21,22 @@ if(session_status()==PHP_SESSION_NONE) {
 }
 
 /**
- * Reconoce si se presionó o no el botón btnIniciarSesion. Si es así,
- * se envía una consulta a iniciarSesion Model con los parámetros, la idea
- * es verificar si el correo y la contraseña están en la base para poder
- * iniciar sesión.
+ * Este if - isset se encarga de mandar una solicitud al modelo para consultar si los datos
+ * POST de correo y contraseña ingresados en la página de login.php corresponden a un 
+ * usuario que está registrado en la Base de datos MySQL cuando se presiona le botón de 
+ * Iniciar sesión. Si la consulta obtuvo más de cero coincidencias significa que sí está 
+ * registrado el usuario y los datos se procesan en un array según los nombres 
+ * respectivos en el proceso (Ver Procesos en base de datos) y se almacenan en variables 
+ * de sesión. Si obtiene coincidencias ingresa a la página principal si no regresa al login.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
  */
 if(isset($_POST["btnIniciarSesion"])){
-    /**
-     * Se reciben los datos de los campos en login.php y se almacenan en
-     * las variables $correoElectronico y $contrasenna. Después se envían
-     * por medio de parámetros
-     */
     $correoElectronico      = $_POST["correoElectronico"]; 
     $contrasenna            = $_POST["contrasenna"];
     $res                    = iniciarSesionModel($correoElectronico, $contrasenna);
 
-    /**
-     * Funcionamiento del if:
-     * 
-     * Este if verifica si el resultado de la consulta anterior tuvo más de cero
-     * filas como respuesta. Si es correcto, entra al if y se crea una variable
-     * $datosUsuario que irá almacenando todas las flas en un array. Después se crean
-     * variables de sesión en las que se almacenan datos que se creen necesarios para 
-     * otros sectores del proyecto. Después el usuario es redirigido a la página principal.
-     * 
-     * Si no retorna filas, significa que no hubo coincidencias y redirecciona al usuario a 
-     * la vista de login.php
-     */
     if($res -> num_rows > 0){
         $datosUsuario = mysqli_fetch_array($res);
         $_SESSION["ConsecutivoUsuario"] =   $datosUsuario["ConsecutivoUsuario"];
@@ -50,8 +53,11 @@ if(isset($_POST["btnIniciarSesion"])){
 }
 
 /**
- * Permite destruir la sesión mietras se presione el btnCerrarSesion, una vez
- * presionado el botón el usuario regresa a la página de login.php
+ * Este if - isset se encarga de destruir la sesión, es decir, se encarga de 
+ * cerrar sesión y volver al login cuando se presiona el botón Cerrar Sesión
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
  */
 if(isset($_POST['btnCerrarSesion'])){
     session_destroy();

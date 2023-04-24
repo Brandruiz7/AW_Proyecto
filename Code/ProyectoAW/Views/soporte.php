@@ -130,11 +130,6 @@
     <?php 
       MostrarJS();
     ?>
-    <script>
-    function alerta() {
-        alert("Esta página te redireccionará fuera del sitio")
-    }
-    </script>
 </body>
 
 </html>
