@@ -67,7 +67,6 @@ function MostrarCarritoTotal(){
         echo "<td style='text-align:right' colspan='5'> <br><br> Total:</td>";
         echo "<td style='text-align:left'> <br><br>"  . number_format($totalizado, 2) . "</td>";
         echo "</tr>";
-
     }
 }
 

@@ -1,4 +1,19 @@
 <?php 
+/**
+ * Explicación general de la vista:
+ * 
+ * terminos.php es una vista cuya idea es mostrar los términos y condiciones de la 
+ * empresa.
+ *  
+ * Ahora, para manejar un orden en el proyecto se agrega un "include_once" que apunta 
+ * al del controlador usuarios respectivo que almacenará las funciones que validan la
+ * información.
+ * 
+ * En el caso de utilitarios.php, almacenará código reutilizable.
+ * 
+ * @author          Brandon Ruiz Miranda
+ * @version         1.1
+ */
   include_once 'utilitarios.php';
   include_once '../Controllers/usuariosController.php';  
 ?>
@@ -86,8 +101,7 @@
         </div>
     </section>
     <!-- Services Section End -->
-
-
+    
     <!-- Contact Section Start and Footer-->
     <?php 
       MostrarContactUs();

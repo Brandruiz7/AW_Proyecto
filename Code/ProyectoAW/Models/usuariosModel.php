@@ -13,8 +13,7 @@ include_once 'conexionModel.php';
  * @author              Brandon Ruiz Miranda
  * @version             1.1
  */
-function ConsultarUsuariosModel()
-{   
+function ConsultarUsuariosModel(){   
     $instancia    = Open();
     
     $usuario      = $_SESSION["CorreoElectronico"];
@@ -69,6 +68,25 @@ function ConsultarTiposUsuarioModel(){
 }
 
 /**
+ * Esta función se encarga de llamar la función de MySQL ConsultarTiposEstado. Con
+ * ello se devuelven los datos que tienen coincidencia en el carrito con el usuario.
+ * 
+ * @return              $res                    Retorna los datos de la base MySQL.
+ * 
+ * @author              Brandon Ruiz Miranda
+ * @version             1.1
+ */
+function ConsultarTiposEstadoUsuarioModel(){
+    $instancia = Open();
+
+    $sentencia = "CALL ConsultarTiposEstado();"; 
+    $respuesta = $instancia -> query($sentencia);
+
+    Close($instancia);
+    return $respuesta;
+}
+
+/**
  * Esta función se encarga de llamar la función de MySQL ActualizarUsuario
  * y se le envían los parámetros para verificar si los datos se encuentran 
  * registrados en la base. 
@@ -77,6 +95,7 @@ function ConsultarTiposUsuarioModel(){
  * @param string        $contrasenna            Almacena la contraseña.
  * @param int           $cedula                 Almacena la cédula del usuario.
  * @param string        $nombre                 Almacena el nombre del usuario.
+ * @param int           $estado                 Almacena el consecutivo del estado.
  * @param int           $perfil                 Almacena el consecutivo del tipo de usuario.
  * @param int           $ConsecutivoUsuario     Almacena el consecutivo del Usuario.
  * @return              $res                    Retorna los datos de la base MySQL.
@@ -84,10 +103,10 @@ function ConsultarTiposUsuarioModel(){
  * @author              Brandon Ruiz Miranda
  * @version             1.1
  */
-function ActualizarUsuarioModel($contrasenna,$cedula,$nombre,$perfil,$ConsecutivoUsuario){
+function ActualizarUsuarioModel($contrasenna,$cedula,$nombre,$estado,$perfil,$ConsecutivoUsuario){
     $instancia = Open();
     
-    $sentencia = "CALL ActualizarUsuario('$contrasenna','$cedula','$nombre',$perfil,$ConsecutivoUsuario);";
+    $sentencia = "CALL ActualizarUsuario('$contrasenna','$cedula','$nombre',$estado,$perfil,$ConsecutivoUsuario);";
     
     $respuesta = $instancia -> query($sentencia);
 

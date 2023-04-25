@@ -2,8 +2,8 @@
 /**
  * Explicación general del controlador:
  * 
- * pagosController.php es un controlador de las funciones de los pagos que se realizan en la página. 
- * En él encontrará las funcionalidades como:
+ * pagosController.php es un controlador de las funciones de los pagos que se realizan en 
+ * la página. En él encontrará las funcionalidades como:
  * *
  * *    - Ver el encabezado de facturas registradas por el usuario.
  * *    - Ver las facturas registradas por el usuario.
@@ -21,10 +21,11 @@ if (session_status() == PHP_SESSION_NONE){
 }
     
 /**
- * Esta función se encarga de mandar una solicitud a la base de datos para conocer cuáles son las
- * facturas que tiene registradas el usuario que ha iniciado sesión. Los datos si tiene más de cero
- * coincidencias significa que sí tiene datos en el encabezado de factura y dichos datos se procesan
- * según el nombre respectivo en la base de datos en una tabla.
+ * Esta función se encarga de mandar una solicitud a la base de datos para conocer cuáles 
+ * son las facturas que tiene registradas el usuario que ha iniciado sesión. Los datos si
+ * tiene más de cero coincidencias significa que sí tiene datos en el encabezado de 
+ * factura y dichos datos se procesan según el nombre respectivo en la base de datos en 
+ * una tabla.
  * 
  * @author              Brandon Ruiz Miranda
  * @version             1.1
@@ -47,11 +48,12 @@ function VerFacturas(){
 }
 
 /**
- * Esta función se encarga de mandar una solicitud a la base de datos para conocer el detalle de las
- * facturas que tiene registradas el usuario que ha iniciado sesión. En este caso se le envía como 
- * parámetro el consecutivo del encabezado porque puede que el usuario tenga varias facturas. 
- * Después, los datos si tiene más de cero coincidencias significa que sí tiene datos en el encabezado
- * de factura y dichos datos se procesan según el nombre respectivo en la base de datos en una tabla.
+ * Esta función se encarga de mandar una solicitud a la base de datos para conocer el 
+ * detalle de las facturas que tiene registradas el usuario que ha iniciado sesión. En
+ * este caso se le envía como parámetro el consecutivo del encabezado porque puede que
+ * el usuario tenga varias facturas. Después, los datos si tiene más de cero coincidencias
+ * significa que sí tiene datos en el encabezado de factura y dichos datos se procesan
+ * según el nombre respectivo en la base de datos en una tabla.
  * 
  * @author              Brandon Ruiz Miranda
  * @version             1.1

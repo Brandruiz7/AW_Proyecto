@@ -12,8 +12,9 @@
  * **
  * Ahora, para manejar un orden en el proyecto se agrega un "include_once"  que apunta al
  * del controlador usuarios respectivo que almacenará las funciones que validan la información
- * del usuario conectado y el tipo de usuario que es. Además permite en la sección de contáctenos
- * mandar un correo al administrador con un mensaje para que se pongan en contacto con el cliente.
+ * del usuario conectado y el tipo de usuario que es. Además permite en la sección de 
+ * contáctenos mandar un correo al administrador con un mensaje para que se pongan en contacto
+ * con el cliente.
  * 
  * En el caso de utilitarios.php, almacenará código reutilizable.
  * 
@@ -27,7 +28,7 @@
 <html lang="en">
     <?php 
       MostrarHead();
-   ?>
+    ?>
 
 <body>
 
@@ -36,7 +37,6 @@
       MostrarPrincipal();
     ?>
     <!-- Header Section End -->
-
 
     <!-- Reseña Section Start -->
     <section id="services" class="section" style="background-color: #000000;">
@@ -93,7 +93,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 blog-item">
                     <div class="blog-item-wrapper">
                         <div class="blog-item-img">
@@ -113,7 +112,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 blog-item">
                     <div class="blog-item-wrapper">
                         <div class="blog-item-img">

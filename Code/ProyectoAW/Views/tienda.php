@@ -1,13 +1,30 @@
 <?php 
+/**
+ * Explicación general de la vista:
+ * 
+ * tienda.php es una vista cuya idea es mostrar los productos electrónicos de la tienda
+ * se mostrarán los productos que tengan un stock mayor a 0 y cuando un cliente agregue
+ * productos al carrito se pasará el consecutivo del producto al carrito para sumarlo
+ * a la cuenta personal. Se rebajará el producto del stock (evento).
+ *  
+ * Ahora, para manejar un orden en el proyecto se agrega un "include_once" que apunta 
+ * al del controlador usuarios  y productos respectivo que almacenará las funciones 
+ * que validan la información.
+ * 
+ * En el caso de utilitarios.php, almacenará código reutilizable.
+ * 
+ * @author          Brandon Ruiz Miranda
+ * @version         1.1
+ */
   include_once 'utilitarios.php';
   include_once '../Controllers/usuariosController.php';  
   include_once '../Controllers/productosController.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php 
+    <?php 
       MostrarHead();
-   ?>
+    ?>
 
 <body>
 

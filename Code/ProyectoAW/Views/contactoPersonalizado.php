@@ -25,8 +25,7 @@
 <html lang="en">
     <?php 
       MostrarHead();
-   ?>
-
+    ?>
 <body>
 
     <!-- Header Section Start -->
@@ -86,8 +85,6 @@
         </div>
     </section>
     <!-- Services Section End -->
-
-
 
     <!-- Contact Section Start and Footer-->
     <?php 

@@ -2,8 +2,8 @@
 /**
  * Explicación general de la vista:
  * 
- * mantenimientoProducto.php es una vista cuya idea es brindar un resumen general de los productos 
- * y esta vista cuenta con lo siguiente:
+ * mantenimientoProducto.php es una vista cuya idea es brindar un resumen general de los 
+ * productos y esta vista cuenta con lo siguiente:
  * **
  * **   - Nombre del producto.
  * **   - Precio del producto.
@@ -81,7 +81,6 @@
                     </div>
                 </section>
             </div>
-
             <form action="" method="post">
                 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -109,7 +108,6 @@
         </div>
     </section>
     <!-- Services Section End -->
-
 
     <!-- Contact Section Start and Footer-->
     <?php 

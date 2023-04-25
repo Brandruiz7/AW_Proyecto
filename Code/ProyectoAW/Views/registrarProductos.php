@@ -1,4 +1,27 @@
 <?php 
+/**
+ * Explicación general de la vista:
+ * 
+ * registrarProductos.php es una vista cuya idea es poder obtener los datos para
+ * que el producto se pueda registrar en el sistema. En este caso, se le solicitan los 
+ * siguiente datos al cliente:
+ * **
+ * **   - Nombre del producto.
+ * **   - Costo del producto.
+ * **   - Ruta de la imagen.
+ * **   - Tipo de producto.
+ * **   - Stock. 
+ * **   - Descripción. 
+ * **
+ * Ahora, para manejar un orden en el proyecto se agrega un "include_once" que apunta 
+ * al del controlador productos respectivo que almacenará las funciones que validan la
+ * información.
+ * 
+ * En el caso de utilitarios.php, almacenará código reutilizable.
+ * 
+ * @author          Brandon Ruiz Miranda
+ * @version         1.1
+ */
   include_once 'utilitarios.php';
   include_once '../Controllers/productosController.php';
 ?>

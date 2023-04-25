@@ -2,8 +2,8 @@
 /**
  * Explicación general del controlador:
  * 
- * productosController.php es un controlador de las funciones de los productos que están registrados
- * en la página. En él encontrará las funcionalidades como:
+ * productosController.php es un controlador de las funciones de los productos que están 
+ * registrados en la página. En él encontrará las funcionalidades como:
  * *
  * *    - Consultar todos los productos que hay en la tienda.
  * *    - Consultar las características de un producto en específico.
@@ -25,14 +25,16 @@ if (session_status() == PHP_SESSION_NONE){
 }
 
 /**
- * Esta función se encarga de mandar una solicitud a la base de datos para conocer cuáles son los
- * productos que están registrados. Si la solicitud devuelve más de cero filas significa que hubo
- * coincidencias y es por ello que se almacenan en la variable $fila y se procesan los datos según
- * sus nombre en la base de datos. Además dependiendo si es usuario es Administrador / Cliente o el 
- * producto se encuentre activo o inactivo, puede ver un enlace de actualizar o eliminar. 
+ * Esta función se encarga de mandar una solicitud a la base de datos para conocer cuáles 
+ * son los productos que están registrados. Si la solicitud devuelve más de cero filas 
+ * significa que hubo coincidencias y es por ello que se almacenan en la variable $fila y
+ * se procesan los datos según sus nombre en la base de datos. Además dependiendo si es 
+ * usuario es Administrador / Cliente o el producto se encuentre activo o inactivo, puede
+ * ver un enlace de actualizar o eliminar. 
  * 
- * En el caso de que presione el botón de actualizar se activa una función que envía el consecutivo
- * a la página actualizarProducto.php, se recibe por medio de un script y se asigna.
+ * En el caso de que presione el botón de actualizar se activa una función que envía el 
+ * consecutivo a la página actualizarProducto.php, se recibe por medio de un script y se
+ * asigna.
  * 
  * @author              Brandon Ruiz Miranda
  * @version             1.5
@@ -74,11 +76,11 @@ function ConsultarProductos(){
 }
 
 /**
- * Esta función se encarga de mandar una solicitud a la base de datos para conocer cuáles son los 
- * datos del producto que tiene el consecutivo que ha sido enviado por parámetro.
+ * Esta función se encarga de mandar una solicitud a la base de datos para conocer cuáles 
+ * son los datos del producto que tiene el consecutivo que ha sido enviado por parámetro.
  * 
- * @return array                @res                    Devuelve los datos según el consecutivo del 
- *                                                      producto
+ * @return array                @res                    Devuelve los datos según el 
+ *                                                      consecutivo del producto
  * 
  * @author                      Brandon Ruiz Miranda
  * @version                     1.1
@@ -89,15 +91,15 @@ function ConsultarProducto($ConsecutivoProducto){
 }
 
 /**
- * Esta función se encarga de mandar una solicitud a la base de datos para conocer cuáles son los
- * tipos de productos. Si la solicitud devuelve más de cero filas significa que hubo
- * coincidencias y es por ello que se almacenan en la variable $fila y se procesan los datos según
- * sus nombre en la base de datos.
+ * Esta función se encarga de mandar una solicitud a la base de datos para conocer cuáles
+ * son los tipos de productos. Si la solicitud devuelve más de cero filas significa que 
+ * encontró coincidencias y es por ello que se almacenan en la variable $fila y se procesan
+ * los datos según sus nombre en la base de datos.
  * 
- * Además, en el option se le agrega en value el consecutivo del tipo de producto y se le muestra
- * al usuario el nombre del tipo. De esta manera cuando se envía una solicitud el valor que se 
- * obtiene es el consecutivo del producto. Se le agrega un selected para que cuando se abra el 
- * desplegable seleccione de una vez el dato que coincide con el registrado.
+ * Además, en el option se le agrega en value el consecutivo del tipo de producto y se le
+ * muestra al usuario el nombre del tipo. De esta manera cuando se envía una solicitud el
+ * valor que se obtiene es el consecutivo del producto. Se le agrega un selected para que
+ * cuando se abra el desplegable seleccione de una vez el dato que coincide con el registrado.
  * 
  * @author              Brandon Ruiz Miranda
  * @version             1.1
@@ -118,15 +120,15 @@ function ConsultarTiposProducto($tipoProducto){
 }
 
 /**
- * Esta función se encarga de mandar una solicitud a la base de datos para conocer cuáles son los
- * tipos de estado. Si la solicitud devuelve más de cero filas significa que hubo
- * coincidencias y es por ello que se almacenan en la variable $fila y se procesan los datos según
- * sus nombre en la base de datos.
+ * Esta función se encarga de mandar una solicitud a la base de datos para conocer cuáles
+ * son los tipos de estado. Si la solicitud devuelve más de cero filas significa que hubo
+ * coincidencias y es por ello que se almacenan en la variable $fila y se procesan los datos
+ * según sus nombres en la base de datos.
  * 
- * Además, en el option se le agrega en value el consecutivo del tipo de estado y se le muestra
- * al usuario el nombre del tipo. De esta manera cuando se envía una solicitud el valor que se 
- * obtiene es el consecutivo del estado. Se le agrega un selected para que cuando se abra el 
- * desplegable seleccione de una vez el dato que coincide con el registrado.
+ * Además, en el option se le agrega en value el consecutivo del tipo de estado y se le 
+ * muestra al usuario el nombre del tipo. De esta manera cuando se envía una solicitud el
+ * valor que se obtiene es el consecutivo del estado. Se le agrega un selected para que 
+ * cuando se abra el desplegable seleccione de una vez el dato que coincide con el registrado.
  * 
  * @author              Brandon Ruiz Miranda
  * @version             1.1
@@ -147,13 +149,14 @@ function ConsultarTiposEstadoProducto($Estado){
 }
 
 /**
- * Este if - isset se encarga de mandar una solicitud a la base de datos para poder actualizar los datos
- * del producto. Por medio del método POST, se recolecta la información de los inputs correspondientes
- * y se almacenan en variables locales.
+ * Este if - isset se encarga de mandar una solicitud a la base de datos para poder 
+ * actualizar los datos del producto. Por medio del método POST, se recolecta la 
+ * información de los inputs correspondientes y se almacenan en variables locales.
  * 
- * En el caso del adjunto, se recupera por medio de un $_FILES y se almacena en la dirección dist/img/ +
- * el nombre del archivo y su extensión. Por medio de addslashes se le define un formato que pueda ser
- * interpretado por la base de datos para cuando se quiera buscar en el disco imágenes.
+ * En el caso del adjunto, se recupera por medio de un $_FILES y se almacena en la 
+ * dirección dist/img/ + el nombre del archivo y su extensión. Por medio de addslashes
+ * se le define un formato que pueda ser interpretado por la base de datos para cuando
+ * se quiera buscar en el disco imágenes.
  * 
  * @author              Brandon Ruiz Miranda
  * @version             1.1
@@ -178,13 +181,14 @@ if(isset($_POST["btnActualizarProducto"])){
 }
 
 /**
- * Este if - isset se encarga de mandar una solicitud a la base de datos para poder registrar los datos
- * del producto. Por medio del método POST, se recolecta la información de los inputs correspondientes
- * y se almacenan en variables locales.
+ * Este if - isset se encarga de mandar una solicitud a la base de datos para poder 
+ * registrar los datos del producto. Por medio del método POST, se recolecta la 
+ * información de los inputs correspondientes y se almacenan en variables locales.
  * 
- * En el caso del adjunto, se recupera por medio de un $_FILES y se almacena en la dirección dist/img/ +
- * el nombre del archivo y su extensión. Por medio de addslashes se le define un formato que pueda ser
- * interpretado por la base de datos para cuando se quiera buscar en el disco imágenes.
+ * En el caso del adjunto, se recupera por medio de un $_FILES y se almacena en la 
+ * dirección dist/img/ + el nombre del archivo y su extensión. Por medio de addslashes
+ * se le define un formato que pueda ser interpretado por la base de datos para cuando
+ * se quiera buscar en el disco imágenes.
  * 
  * @author              Brandon Ruiz Miranda
  * @version             1.1
@@ -210,13 +214,15 @@ if(isset($_POST["btnRegistrarProducto"])){
 
 
 /**
- * Esta función se encarga de mandar una solicitud a la base de datos para poder consultar los datos
- * del producto. Y si obtiene coincidencias guarda los datos en un array en la variable $fila. En este
- * caso, si el producto está activo y el tipo de producto corresponde a 1 (Productos de Tienda), se 
- * muestran los datos según los nombres que se encuentran en la base de datos.
+ * Esta función se encarga de mandar una solicitud a la base de datos para poder 
+ * consultar los datos del producto. Y si obtiene coincidencias guarda los datos
+ * en un array en la variable $fila. En este caso, si el producto está activo y 
+ * el tipo de producto corresponde a 1 (Productos de Tienda), se  muestran los datos
+ * según los nombres que se encuentran en la base de datos.
  * 
- * Si una persona quiere comprar uno, le da clic al botón " + " y se agrega el producto al carrito 
- * mandando el consecutivo del producto por medio de una función en un script.  
+ * Si una persona quiere comprar uno, le da clic al botón " + " y se agrega el 
+ * producto al carrito mandando el consecutivo del producto por medio de una función
+ * en un script.  
  * 
  * @author              Brandon Ruiz Miranda
  * @version             1.1
@@ -257,17 +263,17 @@ function MostrarProductos(){
             } 
         }
     }
-
 }
 
 /**
- * Esta función se encarga de mandar una solicitud a la base de datos para poder consultar los datos
- * del producto. Y si obtiene coincidencias guarda los datos en un array en la variable $fila. En este
- * caso, si el producto está activo y el tipo de producto corresponde a 2 (Planes de fidelidad), se 
- * muestran los datos según los nombres que se encuentran en la base de datos.
+ * Esta función se encarga de mandar una solicitud a la base de datos para poder consultar
+ * los datos del producto. Y si obtiene coincidencias guarda los datos en un array en la
+ * variable $fila. En este caso, si el producto está activo y el tipo de producto 
+ * corresponde a 2 (Planes de fidelidad), se muestran los datos según los nombres que se
+ * encuentran en la base de datos.
  * 
- * Si una persona quiere comprar uno, le da clic al botón " + " y se agrega el producto al carrito 
- * mandando el consecutivo del producto por medio de una función en un script.  
+ * Si una persona quiere comprar uno, le da clic al botón " + " y se agrega el producto 
+ * al carrito mandando el consecutivo del producto por medio de una función en un script.  
  * 
  * @author              Brandon Ruiz Miranda
  * @version             1.1
@@ -301,17 +307,15 @@ function MostrarPlanes(){
                     </div>           
                     ';
                 }
-            
             }
         }
     }
-
 }
 
 /**
- * Este if - isset se encarga de mandar una solicitud a la base de datos para actualizar el carrito
- * con los productos que el cliente agrega. Para ello se le manda el ConsecutivoProducto y la 
- * CantidadProducto para más detalle.
+ * Este if - isset se encarga de mandar una solicitud a la base de datos para actualizar 
+ * el carrito con los productos que el cliente agrega. Para ello se le manda el 
+ * Consecutivo del Producto y la Cantidad del Producto para más detalle.
  * 
  * @author              Brandon Ruiz Miranda
  * @version             1.1
@@ -325,8 +329,9 @@ if(isset($_POST["ActualizarCarrito"])){
 }
 
 /**
- * Este if - isset se encarga de mandar una solicitud a la base de datos para actualizar el carrito
- * con los productos que el cliente agrega. Para ello se le manda el ConsecutivoProducto.
+ * Este if - isset se encarga de mandar una solicitud a la base de datos para actualizar 
+ * el carrito con los productos que el cliente agrega. Para ello se le manda el Consecutivo
+ * de Producto.
  * 
  * @author              Brandon Ruiz Miranda
  * @version             1.1

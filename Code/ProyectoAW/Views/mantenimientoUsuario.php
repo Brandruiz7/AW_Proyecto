@@ -2,8 +2,8 @@
 /**
  * Explicación general de la vista:
  * 
- * mantenimientoUsuario.php es una vista cuya idea es brindar un resumen general de los usuarios 
- * y esta vista cuenta con lo siguiente:
+ * mantenimientoUsuario.php es una vista cuya idea es brindar un resumen general de los 
+ * usuarios y esta vista cuenta con lo siguiente:
  * **
  * **   - Correo electrónico del usuario.
  * **   - Identificación del usuario.
@@ -29,10 +29,9 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php 
+    <?php 
       MostrarHead();
-   ?>
-
+    ?>
 <body>
 
     <!-- Header Section Start -->
@@ -108,7 +107,6 @@
         </div>
     </section>
     <!-- Services Section End -->
-
 
     <!-- Contact Section Start and Footer-->
     <?php 

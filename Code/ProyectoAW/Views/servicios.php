@@ -1,4 +1,19 @@
 <?php 
+/**
+ * Explicación general de la vista:
+ * 
+ * servicios.php es una vista cuya idea es mostrar los planes de fidelidad que tiene 
+ * la empresa disponible para adquirir (SILVER, GOLD, PLATINUN).
+ *  
+ * Ahora, para manejar un orden en el proyecto se agrega un "include_once" que apunta 
+ * a los controladores respectivos que almacenará las funciones que validan la
+ * información.
+ * 
+ * En el caso de utilitarios.php, almacenará código reutilizable.
+ * 
+ * @author          Brandon Ruiz Miranda
+ * @version         1.1
+ */
   include_once 'utilitarios.php';
   include_once '../Controllers/usuariosController.php'; 
   include_once '../Controllers/productosController.php';  
@@ -75,9 +90,7 @@
     ?>
 
 <script>
-
     function ActualizarCarritoPlan(ConsecutivoProducto) {
-
         $.ajax({
                 type: 'POST',
                 url: '../Controllers/productosController.php',
@@ -89,8 +102,7 @@
                     alert("Carrito actualizado correctamente");
                     window.location.href = "principal.php";
                 }
-            });
-        
+            }); 
     }
     </script>
 </body>

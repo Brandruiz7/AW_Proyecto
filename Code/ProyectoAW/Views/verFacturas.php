@@ -1,4 +1,26 @@
 <?php 
+/**
+ * Explicación general de la vista:
+ * 
+ * verFacturas.php es una vista cuya idea es brindar un resumen general 
+ * de la factura que tiene el cliente y esta vista cuenta con lo siguiente:
+ * **
+ * **   - N° Factura.
+ * **   - Fecha de compra.
+ * **   - ¢ SubTotal.
+ * **   - ¢ Impuesto.
+ * **   - ¢ Total.
+ * **   - Ver detalle.
+ * **
+ * Ahora, para manejar un orden en el proyecto se agrega un "include_once" que apunta 
+ * a los controladores respectivos que almacenará las funciones que validan la 
+ * información.
+ * 
+ * En el caso de utilitarios.php, almacenará código reutilizable.
+ * 
+ * @author          Brandon Ruiz Miranda
+ * @version         1.1
+ */
   include_once 'utilitarios.php';
   include_once '../Controllers/usuariosController.php'; 
   include_once '../Controllers/carritoController.php'; 
@@ -6,7 +28,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php 
+    <?php 
       MostrarHead();
     ?>
 

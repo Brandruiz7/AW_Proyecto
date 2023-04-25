@@ -2,22 +2,21 @@
 /**
  * Explicación general de la vista:
  * 
- * mantenimientoUsuario.php es una vista cuya idea es brindar un resumen general de los usuarios 
- * y esta vista cuenta con lo siguiente:
+ * pagos.php es una vista cuya idea es brindar un resumen general del carrito que tiene el 
+ * cliente y esta vista cuenta con lo siguiente:
  * **
- * **   - Correo electrónico del usuario.
- * **   - Identificación del usuario.
- * **   - Nombre completo del usuario.
- * **   - Tipo de usuario.
- * **   - Estado.
- * **   - Acciones (Actualizar | Eliminar).
+ * **   - Consecutivo del producto.
+ * **   - Cantidad.
+ * **   - Precio.
+ * **   - Subtotal.
+ * **   - Impuesto.
+ * **   - Total.
+ * **   - Procesar pago.
  * **
- * Ahora, en el caso que la persona le dé clic al botón actualizar se enviará el consecutivo 
- * del usuario a la página actualizarUsuario. También hay un modal que se activa cuando se da
- * clic a eliminar, ese mismo almacenará el consecutivo y en caso de confirmar será enviado a 
- * la base de datos para ser procesado y para manejar un orden en el proyecto se agrega un 
- * "include_once" que apunta al del controlador usuario respectivo que almacenará las 
- * funciones que validan la información.
+ * Ahora, en el caso que la persona le dé clic al botón de procesar pago se enviará 
+ * los datos del carrito a la vista que genera la factura y se envía al cliente por correo.
+ * Para manejar un orden en el proyecto se agrega un "include_once" que apunta a los 
+ * controladores respectivos que almacenarán las funciones que validan la información.
  * 
  * En el caso de utilitarios.php, almacenará código reutilizable.
  * 
@@ -31,7 +30,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php 
+    <?php 
       MostrarHead();
     ?>
 
@@ -82,7 +81,6 @@
                                     </div>
                                 </form>';
                             }
-
                         ?>
                     </div>
                 </section>
@@ -90,7 +88,6 @@
         </div>
     </section>
     <!-- Services Section End -->
-
 
     <!-- Contact Section Start and Footer-->
     <?php 

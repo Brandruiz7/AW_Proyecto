@@ -1,12 +1,27 @@
 <?php 
+/**
+ * Explicación general de la vista:
+ * 
+ * soporte.php es una vista cuya idea es mostrar información sobre los planes
+ * de soporte que posee la empresa y adicional tiene un vínculo para la razer insider.
+ *  
+ * Ahora, para manejar un orden en el proyecto se agrega un "include_once" que apunta 
+ * al del controlador usuarios respectivo que almacenará las funciones que validan la
+ * información.
+ * 
+ * En el caso de utilitarios.php, almacenará código reutilizable.
+ * 
+ * @author          Brandon Ruiz Miranda
+ * @version         1.1
+ */
   include_once 'utilitarios.php';
   include_once '../Controllers/usuariosController.php';  
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php 
+    <?php 
       MostrarHead();
-   ?>
+    ?>
 
 <body>
 
@@ -76,7 +91,6 @@
                     </div>
                     <!-- Blog Item Wrapper Ends-->
                 </div>
-
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 blog-item">
                     <!-- Blog Item Starts -->
                     <div class="blog-item-wrapper">

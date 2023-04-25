@@ -2,22 +2,19 @@
 /**
  * Explicación general de la vista:
  * 
- * mantenimientoUsuario.php es una vista cuya idea es brindar un resumen general de los usuarios 
- * y esta vista cuenta con lo siguiente:
+ * mantenimientoUsuario.php es una vista cuya idea es poder obtener los datos para
+ * que el cliente se pueda registrar en el sistema. En este caso, se le solicitan los 
+ * siguiente datos al cliente:
  * **
- * **   - Correo electrónico del usuario.
- * **   - Identificación del usuario.
- * **   - Nombre completo del usuario.
- * **   - Tipo de usuario.
- * **   - Estado.
- * **   - Acciones (Actualizar | Eliminar).
+ * **   - Identificación (unida a una API de hacienda para buscar nombre)
+ * **   - Nombre del usuario.
+ * **   - Correo electrónico.
+ * **   - Teléfono.
+ * **   - Contraseña. (confirmación de contraseña)
  * **
- * Ahora, en el caso que la persona le dé clic al botón actualizar se enviará el consecutivo 
- * del usuario a la página actualizarUsuario. También hay un modal que se activa cuando se da
- * clic a eliminar, ese mismo almacenará el consecutivo y en caso de confirmar será enviado a 
- * la base de datos para ser procesado y para manejar un orden en el proyecto se agrega un 
- * "include_once" que apunta al del controlador usuario respectivo que almacenará las 
- * funciones que validan la información.
+ * Ahora, para manejar un orden en el proyecto se agrega un "include_once" que apunta 
+ * al del controlador usuario respectivo que almacenará las funciones que validan la
+ * información.
  * 
  * En el caso de utilitarios.php, almacenará código reutilizable.
  * 
@@ -54,7 +51,7 @@
             </div>
             <div class="field">
                 <span class="fas fa-user"></span>
-                <input type="text" required placeholder="Nombre" disable id="Nombre" name="Nombre">
+                <input readOnly type="text" required placeholder="Nombre" disable id="Nombre" name="Nombre">
             </div>
             <br>
             <div class="field">

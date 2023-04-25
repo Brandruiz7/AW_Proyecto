@@ -16,10 +16,10 @@
  * del producto mostrado y el tipo de que es. También recibe los datos que se han modificado
  * y los envía en POST cuando se da clic en el botón de actualizar.
  * 
- * Los datos que se muestran en la página se consultan en la base de datos y se almacena en un array 
- * en la variable $datos, de esa manera se puede obtener la información del cliente y se distribuye 
- * en los value de los respectivos input. Esto es gracias a la recuperación del consecutivo que ha 
- * sido mandado de mantenimientoProducto.php
+ * Los datos que se muestran en la página se consultan en la base de datos y se almacena en 
+ * un array en la variable $datos, de esa manera se puede obtener la información del cliente 
+ * y se distribuye en los value de los respectivos input. Esto es gracias a la recuperación 
+ * del consecutivo que ha sido mandado de mantenimientoProducto.php
  * 
  * En el caso de utilitarios.php, almacenará código reutilizable.
  * 
@@ -111,7 +111,6 @@
                                     <br>
                                     <input type="submit" class="btn btn-primary btn-block" value="Actualizar"
                                         id="btnActualizarProducto" name="btnActualizarProducto">
-
                                 </form>
                             </div>
                         </div>

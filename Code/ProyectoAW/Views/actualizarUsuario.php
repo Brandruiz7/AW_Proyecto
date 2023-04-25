@@ -15,10 +15,10 @@
  * del producto mostrado y el tipo de que es. También recibe los datos que se han modificado
  * y los envía en POST cuando se da clic en el botón de actualizar.
  * 
- * Los datos que se muestran en la página se consultan en la base de datos y se almacena en un array 
- * en la variable $datos, de esa manera se puede obtener la información del cliente y se distribuye 
- * en los value de los respectivos input. Esto es gracias a la recuperación del consecutivo que ha 
- * sido mandado de mantenimientoUsuario.php
+ * Los datos que se muestran en la página se consultan en la base de datos y se almacena en 
+ * un array en la variable $datos, de esa manera se puede obtener la información del cliente
+ * y se distribuye en los value de los respectivos input. Esto es gracias a la recuperación
+ * del consecutivo que ha sido mandado de mantenimientoUsuario.php
  * 
  * En el caso de utilitarios.php, almacenará código reutilizable.
  * 
@@ -72,15 +72,23 @@
                                         value="<?php echo $datos["ConsecutivoUsuario"] ?>">
 
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-4">
                                             <input type="email" class="form-control" placeholder="Correo Electrónico"
                                                 required id="correoElectronico" name="correoElectronico"
                                                 onblur="validarCorreo();" readOnly="true"
                                                 value=<?php echo $datos["CorreoElectronico"] ?>>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-4">
                                             <input type="password" class="form-control" placeholder="Contraseña"
                                                 id="contrasenna" name="contrasenna">
+                                        </div>
+                                        <div class="col-4">
+                                            <select class="form-control" placeholder="Estado" required id="Estado"
+                                                name="Estado">
+                                                <?php
+                                                    ConsultarTiposEstadoUsuario($datos["Estado"]);
+                                                ?>
+                                            </select>
                                         </div>
                                     </div>
                                     <br>
@@ -97,18 +105,16 @@
                                         <div class="col-4">
                                             <select class="form-control" placeholder="Perfil" required id="Perfil"
                                                 name="Perfil">
-                                                <?php
+                                                    <?php
                                                         ConsultarTiposUsuario($datos["TipoUsuario"]);
-                                                        ?>
+                                                    ?>
                                             </select>
                                         </div>
                                     </div>
                                     <br>
                                     <input type="submit" class="btn btn-primary btn-block" value="Actualizar"
                                         id="btnActualizar" name="btnActualizar">
-
                                 </form>
-
                             </div>
                         </div>
                     </div>

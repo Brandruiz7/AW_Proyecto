@@ -1,4 +1,12 @@
 <?php 
+/**
+ * Explicación general de la vista:
+ * 
+ * En el caso de utilitarios.php, almacenará código reutilizable.
+ * 
+ * @author          Brandon Ruiz Miranda
+ * @version         1.1
+ */
 include_once '../Controllers/loginController.php';
 include_once '../Controllers/carritoController.php';
 
@@ -819,9 +827,6 @@ function MostrarFooter(){
             </li>
             <li>
               <a href="sobreNosotros.php">Sobre Nosotros</a>
-            </li>
-            <li>
-              <a href="#contact">Contáctenos</a>
             </li>
             <li>
               <a href="politicas.php">Políticas y privacidad</a>

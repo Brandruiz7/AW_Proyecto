@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3307
--- Tiempo de generación: 24-04-2023 a las 22:53:56
+-- Tiempo de generación: 25-04-2023 a las 19:31:17
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -104,7 +104,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarProducto` (IN `pNombrePro
     WHERE ConsecutivoProducto = pConsecutivoProducto;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarUsuario` (IN `pContrasenna` VARCHAR(10), IN `pCedula` VARCHAR(20), IN `pNombre` VARCHAR(100), IN `pTipoUsuario` TINYINT(4), IN `pConsecutivoUsuario` BIGINT(20))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarUsuario` (IN `pContrasenna` VARCHAR(10), IN `pCedula` VARCHAR(20), IN `pNombre` VARCHAR(100), IN `pEstado` TINYINT(4), IN `pTipoUsuario` TINYINT(4), IN `pConsecutivoUsuario` BIGINT(20))   BEGIN
     IF pContrasenna = '' THEN
 
         SELECT Contrasenna INTO pContrasenna
@@ -117,6 +117,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarUsuario` (IN `pContrasenn
     SET Contrasenna = pContrasenna,
         Cedula 		= pCedula,
         Nombre 		= pNombre,
+        Estado 		= pEstado,
         TipoUsuario = pTipoUsuario
     WHERE ConsecutivoUsuario = pConsecutivoUsuario;
 END$$
@@ -458,13 +459,6 @@ CREATE TABLE `carrito` (
   `FechaCarrito` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `carrito`
---
-
-INSERT INTO `carrito` (`ConsecutivoCarrito`, `ConsecutivoProducto`, `ConsecutivoUsuario`, `Cantidad`, `FechaCarrito`) VALUES
-(80, 1, 4, 1, '2023-04-24 14:52:19');
-
 -- --------------------------------------------------------
 
 --
@@ -492,51 +486,9 @@ INSERT INTO `detallefactura` (`ConsecutivoDetalle`, `ConsecutivoEncabezado`, `Co
 (6, 6, 1, 2, 12500.00),
 (7, 7, 1, 5, 12500.00),
 (8, 8, 8, 5, 120000.00),
-(9, 9, 8, 1, 120000.00),
-(10, 10, 4, 1, 15000.00),
-(11, 11, 1, 2, 12500.00),
-(12, 12, 4, 1, 15000.00),
-(13, 13, 4, 1, 15000.00),
-(14, 14, 4, 1, 15000.00),
-(15, 15, 1, 2, 12500.00),
-(16, 16, 6, 1, 35000.00),
-(17, 17, 8, 1, 120000.00),
-(18, 18, 9, 2, 110000.00),
-(19, 19, 10, 2, 45000.00),
-(20, 20, 12, 2, 750000.00),
-(21, 21, 12, 2, 750000.00),
-(22, 22, 4, 1, 15000.00),
-(23, 23, 8, 1, 120000.00),
-(24, 24, 8, 2, 120000.00),
-(25, 25, 8, 2, 120000.00),
-(26, 27, 8, 2, 120000.00),
-(27, 28, 9, 2, 110000.00),
-(28, 29, 4, 1, 15000.00),
-(29, 30, 4, 1, 15000.00),
 (30, 31, 8, 2, 120000.00),
 (31, 32, 8, 2, 120000.00),
-(32, 33, 8, 2, 120000.00),
-(33, 34, 12, 2, 750000.00),
-(34, 34, 5, 1, 22000.00),
-(36, 35, 12, 2, 750000.00),
-(37, 35, 5, 1, 22000.00),
-(39, 36, 12, 2, 750000.00),
-(40, 36, 5, 1, 22000.00),
-(42, 37, 12, 2, 750000.00),
-(43, 37, 5, 1, 22000.00),
-(45, 38, 12, 2, 750000.00),
-(46, 38, 5, 1, 22000.00),
-(48, 39, 8, 1, 120000.00),
-(49, 40, 8, 1, 120000.00),
-(50, 42, 1, 2, 12500.00),
-(51, 42, 4, 1, 15000.00),
-(53, 43, 1, 2, 12500.00),
-(54, 43, 4, 1, 15000.00),
-(56, 44, 1, 1, 12500.00),
-(57, 45, 8, 2, 120000.00),
-(58, 46, 8, 2, 120000.00),
-(59, 47, 8, 1, 120000.00),
-(60, 47, 12, 1, 750000.00);
+(32, 33, 8, 2, 120000.00);
 
 -- --------------------------------------------------------
 
@@ -566,43 +518,9 @@ INSERT INTO `encabezado` (`ConsecutivoEncabezado`, `ConsecutivoUsuario`, `FechaC
 (6, 1, '2023-04-20 11:19:13', 25000.00, 3250.00, 28250.00),
 (7, 1, '2023-04-20 11:20:22', 62500.00, 8125.00, 70625.00),
 (8, 1, '2023-04-20 11:24:13', 600000.00, 78000.00, 678000.00),
-(9, 4, '2023-04-20 13:00:39', 120000.00, 15600.00, 135600.00),
-(10, 4, '2023-04-20 13:01:17', 15000.00, 1950.00, 16950.00),
-(11, 4, '2023-04-20 13:10:58', 25000.00, 3250.00, 28250.00),
-(12, 4, '2023-04-20 13:34:31', 15000.00, 1950.00, 16950.00),
-(13, 4, '2023-04-20 13:37:51', 15000.00, 1950.00, 16950.00),
-(14, 4, '2023-04-20 13:39:35', 15000.00, 1950.00, 16950.00),
-(15, 4, '2023-04-20 13:41:05', 25000.00, 3250.00, 28250.00),
-(16, 4, '2023-04-20 13:41:44', 35000.00, 4550.00, 39550.00),
-(17, 4, '2023-04-20 13:43:25', 120000.00, 15600.00, 135600.00),
-(18, 4, '2023-04-20 13:46:48', 220000.00, 28600.00, 248600.00),
-(19, 4, '2023-04-20 13:48:09', 90000.00, 11700.00, 101700.00),
-(20, 4, '2023-04-20 13:50:11', 1500000.00, 195000.00, 1695000.00),
-(21, 4, '2023-04-20 13:54:59', 1500000.00, 195000.00, 1695000.00),
-(22, 4, '2023-04-20 13:57:28', 15000.00, 1950.00, 16950.00),
-(23, 4, '2023-04-20 13:59:11', 120000.00, 15600.00, 135600.00),
-(24, 4, '2023-04-20 13:59:38', 240000.00, 31200.00, 271200.00),
-(25, 4, '2023-04-20 14:00:10', 240000.00, 31200.00, 271200.00),
-(27, 4, '2023-04-20 14:01:48', 240000.00, 31200.00, 271200.00),
-(28, 4, '2023-04-20 14:02:22', 220000.00, 28600.00, 248600.00),
-(29, 4, '2023-04-20 14:04:11', 15000.00, 1950.00, 16950.00),
-(30, 4, '2023-04-20 14:07:40', 15000.00, 1950.00, 16950.00),
 (31, 5, '2023-04-20 14:11:51', 240000.00, 31200.00, 271200.00),
 (32, 5, '2023-04-20 14:16:36', 240000.00, 31200.00, 271200.00),
-(33, 1, '2023-04-20 14:19:30', 240000.00, 31200.00, 271200.00),
-(34, 4, '2023-04-20 14:21:27', 1522000.00, 197860.00, 1719860.00),
-(35, 4, '2023-04-20 14:23:36', 1522000.00, 197860.00, 1719860.00),
-(36, 4, '2023-04-20 14:24:04', 1522000.00, 197860.00, 1719860.00),
-(37, 4, '2023-04-20 14:25:58', 1522000.00, 197860.00, 1719860.00),
-(38, 4, '2023-04-20 14:27:17', 1522000.00, 197860.00, 1719860.00),
-(39, 4, '2023-04-20 14:29:01', 120000.00, 15600.00, 135600.00),
-(40, 4, '2023-04-20 14:33:14', 120000.00, 15600.00, 135600.00),
-(42, 4, '2023-04-20 17:23:41', 40000.00, 5200.00, 45200.00),
-(43, 4, '2023-04-20 17:26:01', 40000.00, 5200.00, 45200.00),
-(44, 4, '2023-04-20 17:27:04', 12500.00, 1625.00, 14125.00),
-(45, 4, '2023-04-20 17:37:16', 240000.00, 31200.00, 271200.00),
-(46, 4, '2023-04-20 17:38:48', 240000.00, 31200.00, 271200.00),
-(47, 4, '2023-04-23 18:19:57', 870000.00, 113100.00, 983100.00);
+(33, 1, '2023-04-20 14:19:30', 240000.00, 31200.00, 271200.00);
 
 -- --------------------------------------------------------
 
@@ -627,16 +545,17 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`ConsecutivoProducto`, `Nombre_Producto`, `RutaImagen`, `Estado`, `Precio`, `Stock`, `StockReservado`, `TipoProducto`, `Descripcion`) VALUES
-(1, 'RAZER KRAKEN - PINK', 'dist\\img\\Razer-Kraken.png', 1, 12500.00, 20, 0, 1, ''),
+(1, 'RAZER KRAKEN - PINK', 'dist\\img\\Razer-Kraken.png', 1, 12500.00, 19, 0, 1, ''),
 (4, 'Plan Silver', 'No aplica', 1, 15000.00, 1999999, 0, 2, '<li>Descuentos exclusivos: Los miembros de Razer Silver podrían recibir descuentos exclusivos en productos y accesorios de Razer</li>\r\n<li>Acceso anticipado a ventas y lanzamientos de productos: Los miembros de Razer Silver tendrían acceso anticipado a las ventas y lanzamientos de productos de Razer.</li>\r\n<li>Envío gratuito: Los miembros de Razer Silver podrían recibir envío gratuito en pedidos elegibles.</li>\r\n<li>Soporte técnico prioritario: Los miembros de Razer Silver tendrían acceso a soporte técnico prioritario para cualquier problema técnico que pudieran enfrentar con sus productos de Razer.</li>\r\n<li>Puntos de recompensa Silver: Los miembros de Razer Silver podrían acumular puntos de recompensa Silver al realizar compras que luego pueden canjear por descuentos en futuras compras de productos de Razer</li>'),
 (5, 'Gold', 'No aplica', 1, 22000.00, 2000000, 0, 2, '<li>Descuentos exclusivos: Los miembros de Razer Gold podrían recibir descuentos exclusivos en productos y accesorios de Razer.</li>\r\n<li>Acceso anticipado a ventas y lanzamientos de productos: Los miembros de Razer Gold tendrían acceso anticipado a las ventas y lanzamientos de productos de Razer.</li>\r\n<li>Envío a mitad de precio: Los miembros de Razer Gold podrían recibir envío con descuento en pedidos elegibles.</li>\r\n<li>Soporte técnico prioritario: Los miembros de Razer Gold tendrían acceso a soporte técnico prioritario para cualquier problema técnico que pudieran enfrentar con sus productos de Razer.</li>\r\n<li>Puntos de recompensa Gold: Los miembros de Razer Gold podrían acumular puntos de recompensa Gold al realizar compras que luego pueden canjear por descuentos en futuras compras de productos de Razer.</li>'),
 (6, 'Platinum', 'No aplica', 1, 35000.00, 2000000, 0, 2, '<li>Acceso exclusivo a productos de edición limitada: Los miembros del plan Platinum podrían tener la oportunidad de comprar productos de edición limitada de Razer que no están disponibles para el público en general.</li>\r\n<li>Atención al cliente VIP: Los miembros de Razer Platinum tendrían acceso a un equipo de soporte técnico altamente capacitado y experimentado, disponible las 24 horas del día, los 7 días de la semana, para resolver rápidamente cualquier problema o pregunta.</li>\r\n<li>Envío prioritario: Los miembros de Razer Platinum tendrían acceso a envío prioritario para sus pedidos, lo que les permitiría recibir sus productos más rápido que los clientes de otros planes de membresía.</li>\r\n<li>Experiencias de juego exclusivas: Los miembros de Razer Platinum podrían recibir invitaciones exclusivas para eventos y torneos de juegos en todo el mundo, así como acceso a demostraciones y versiones beta anticipadas de algunos juegos.</li>\r\n<li>Asesoramiento de productos personalizado: Los miembros de Razer Platinum tendrían acceso a un asesor de productos personalizado que les ayudaría a encontrar los productos y accesorios de Razer que mejor se adapten a sus necesidades y preferencias.</li>'),
-(7, 'Bronce', 'dist\\img\\', 2, 5000.00, 2000000, 0, 2, '<li>Descuentos en productos y accesorios de Razer: Los miembros de Razer Bronze podrían recibir descuentos exclusivos en productos y accesorios de Razer.</li>\r\n<li>Acceso anticipado a ventas y lanzamientos de productos: Los miembros de Razer Bronze tendrían acceso anticipado a las ventas y lanzamientos de productos de Razer.</li>\r\n<li>Soporte técnico básico: Los miembros de Razer Bronze tendrían acceso a soporte técnico básico para cualquier problema técnico que pudieran enfrentar con sus productos de Razer.</li>'),
-(8, 'RAZER BLACKWIDOW V4 PRO', 'dist\\img\\razer-blackwidow-v4.png', 1, 120000.00, 23, 0, 1, 'Es un teclado mecánico'),
+(7, 'Bronce', 'dist\\img\\', 1, 5000.00, 2000000, 0, 2, '<li>Descuentos en productos y accesorios de Razer: Los miembros de Razer Bronze podrían recibir descuentos exclusivos en productos y accesorios de Razer.</li>\r\n<li>Acceso anticipado a ventas y lanzamientos de productos: Los miembros de Razer Bronze tendrían acceso anticipado a las ventas y lanzamientos de productos de Razer.</li>\r\n<li>Soporte técnico básico: Los miembros de Razer Bronze tendrían acceso a soporte técnico básico para cualquier problema técnico que pudieran enfrentar con sus productos de Razer.</li>'),
+(8, 'RAZER BLACKWIDOW V4 PRO', 'dist\\img\\razer-blackwidow-v4.png', 1, 120000.00, 20, 0, 1, 'Es un teclado mecánico'),
 (9, 'RAZER BLACKWIDOW V3', 'dist\\img\\razer-blackwidow-v3.jpg', 1, 110000.00, 28, 0, 1, 'Teclado mecánico'),
 (10, 'Razer Basilisk V3 Pro', 'dist\\img\\razer-basilisk-v3-pro.png', 1, 45000.00, 30, 0, 1, 'Mouse 21 DPI'),
 (12, 'Razer Enki Pro - Automobili Lamborghini Edition', 'dist\\img\\Razer_Enki_Pro_Automobili_Lamborghini_Edition.png', 1, 750000.00, 7, 0, 1, 'Silla Profesional'),
-(13, 'Razer Wolverine V2 Pro - Black', 'dist\\img\\Razer_Wolverine_V2_Pro_-_Black.png', 1, 150000.00, 20, 0, 1, 'Control ps4');
+(13, 'Razer Wolverine V2 Pro - Black', 'dist\\img\\Razer_Wolverine_V2_Pro_-_Black.png', 1, 150000.00, 20, 0, 1, 'Control ps4'),
+(14, 'RAZER BLADE 14', 'dist\\img\\RAZER_blade14.png', 1, 895000.00, 50, 0, 1, 'LAPTOP RAZER BLADE 14');
 
 -- --------------------------------------------------------
 
@@ -745,7 +664,6 @@ INSERT INTO `usuario` (`ConsecutivoUsuario`, `Cedula`, `Nombre`, `CorreoElectron
 (1, '117020932 ', 'BRANDON JOSE RUIZ MIRANDA', 'RazerAmbienteWeb@outlook.com', '72153137', 'fidelitas', 1, 1),
 (2, '117020931', 'JAIRO ANTONIO ACEVEDO LACAYO', 'jairo21@gmail.com', '72153131', 'fidelitas', 1, 2),
 (3, '117020930', 'KENDRIK ANDRES BARRAZA ELIZONDO', 'kendrick@gmail.com', '11111112', 'fidelitas', 1, 2),
-(4, '117020932', 'BRANDON JOSE RUIZ MIRANDA', 'brandruiz7@gmail.com', '72153138', 'fidelitas', 1, 2),
 (5, '117020932', 'BRANDON JOSE RUIZ MIRANDA', 'isekaivlogsoficial@gmail.com', '11111111', 'fidelitas', 1, 2);
 
 --
@@ -824,19 +742,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `ConsecutivoCarrito` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `ConsecutivoCarrito` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT de la tabla `detallefactura`
 --
 ALTER TABLE `detallefactura`
-  MODIFY `ConsecutivoDetalle` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `ConsecutivoDetalle` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT de la tabla `encabezado`
 --
 ALTER TABLE `encabezado`
-  MODIFY `ConsecutivoEncabezado` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `ConsecutivoEncabezado` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`

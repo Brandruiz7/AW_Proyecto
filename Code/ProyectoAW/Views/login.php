@@ -54,7 +54,6 @@ include_once '../Controllers/loginController.php';
             <div class="forgot">¿Olvidó la contraseña? <a href="recuperar.php">Recuperar contraseña</a></div>
         </form>
     </div>
-
     <script src="javascripts/funcionesLogin.js"></script>
 </body>
 
